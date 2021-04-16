@@ -1,0 +1,246 @@
+.specific {
+    max-width: 1200px;
+    @include screen("mobile") {
+        margin: 0;
+    }
+    &__text {
+        max-width: 451px;
+        width: 100%;
+    }
+
+    &__img-section {
+        display: flex;
+        grid-gap: 1rem;
+        padding: 0;
+        margin: 0;
+        @include screen("desktop991px") {
+            padding: 0 1rem;
+          }
+        @include screen("desktop991px") {
+            padding: 0 ;
+          }
+        @include screen("mobileSm") {
+            display: none;
+        }
+    }
+
+    &__img-wrapper {
+        flex:1;
+        &--sm {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: .5rem;
+        }
+    }
+
+    &__wrapper {
+        display: flex;
+        
+        @include screen("tablet") {
+           padding: 0 1rem;
+          }
+        @include screen("mobile") {
+            padding: 0;
+            }
+        }
+
+    &__body {
+        @include screen("desktop991px") {
+           padding: 0 1rem;
+         }
+    }
+
+    &__btn {
+        width: 100%;
+        margin-top: 1rem;
+    }
+    &__header-link {
+        display: none;
+        @include screen("desktop") {
+            display: none;
+        }
+        @include screen("tablet") {
+            display: inline-block;
+        }
+        @include screen("mobile") {
+            display: none;
+    }
+    }
+    &__link {
+        @include screen("tablet") {
+           display: none;
+       }
+       @include screen("mobile") {
+            display: none;
+    }
+    }
+    &__sidebar-link-mobile { 
+        display: none;
+        margin: 0;
+        float: right;
+        width: 150px;
+        @include screen ("desktop991px") {
+           display: block; 
+        }
+    }
+    &__link-bottom {
+        display: none;
+        @include screen("desktop991px") {
+            display: block;
+        }
+    }
+    &__details {
+        display: flex;
+        flex-wrap: wrap;
+        grid-gap: 1rem;
+        flex-direction: row-reverse;
+        @include screen ("mobile") {
+            flex-direction: column;
+            padding: 0;
+            margin: 0;
+        }
+    }
+    &__details-wrapper {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        @include screen ("desktop991px") {
+            flex: 1;
+            flex-direction: column;
+        }
+    }
+
+    &__sidebar {
+        min-width: 200px;
+        @include screen("desktop991px") {
+            display: none;
+         }
+    }
+    &__sidebar-list-item {
+        padding: 0 0 .5rem;
+    }
+ 
+    &__sidebar-title {
+        margin-top: 1rem;
+    }
+
+    &__sidebar-mobile {
+        padding-top: 1rem;
+        padding-left: 2rem;
+        @include screen("minWidth991px") {
+           display: none;
+        }
+        @include screen("mobile") {
+             padding-left: 0;
+        }
+    }
+   
+    &__list-sm {
+        margin-top: 1rem;
+       
+        @include screen ("mobile") {
+            display:flex;
+            grid-gap: 1rem;
+            margin-left: 0rem;
+        }
+          @include screen ("mobileSm") {
+               width: 100%;
+          }
+    }
+
+    &__list-sm-item {
+        flex: 1;
+    }
+    
+    &__list-services-item {
+        padding-left: 1.5rem;
+       
+    }
+    &__details-list-item {
+        @extend .specific__sidebar-list-item;
+    }
+    &__details-item {
+        flex: 1;
+       
+       &:nth-child(1) {
+            @include screen ("desktop991px") {
+                //flex: none;
+       }
+       }
+        &:nth-child(2) {
+            flex: none;
+            display: flex;
+        }
+       &:nth-child(3) {
+            @include screen("minWidth991px"){
+                display: none;
+            }
+       }
+    }
+    &__details-item-child {
+        flex: 1;
+       
+    }
+  
+    &__guestReview {
+        border: 1px solid $blue;
+        border-radius: 5px;
+        padding: 1rem;
+        @include screen ("mobile") {
+            padding: .5rem;
+        }
+          @include screen ("mobileSm") {
+            max-width: 350px;
+            margin: 0 auto 1rem;
+            width: 100%;
+        }
+    }
+    &__attraction-item {
+        border-radius: 5px;
+        @include screen("mobileSm") {
+            margin: 0 auto 1rem;
+            max-width: 350px;
+        }
+    }
+     &__attraction-img {
+        border-radius: 5px;
+    }
+   
+    &__attraction-btn {
+        min-width: 150px;
+    }
+}
+
+.fa::after {
+    font-weight: normal;
+    padding-left: .5rem;
+    font-family: $helveticaRegular;
+}
+
+.fa-wifi::after {
+    content: "Wireless internet";
+}
+
+.fa-parking::after {
+    content: "Parking";
+} 
+.fa-concierge-bell::after{
+    font-weight: bold;
+    content: "Services";
+} 
+.fa-tv::after {
+    content: "Flat-screen TV";
+} 
+.fa-bath::after {
+    content: "Ensuite bathroom";
+}
+.fa-dumbbell::after {
+    content: "Fitness room";
+} 
+
+.fa-utensils::after {
+    content: "Restaurant";
+}
+.fa-smoking-ban::after {
+    content: "Non-smoking rooms";
+}

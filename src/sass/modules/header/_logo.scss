@@ -1,0 +1,13 @@
+.logo {
+    flex: 1;
+    margin: auto 0px !important;
+    padding: 1rem;
+    cursor: pointer;
+   
+    &__item {
+        width: 120px;
+         @include screen("mobile") {
+             width: 100px;
+         }
+    }
+}

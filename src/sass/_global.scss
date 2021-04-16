@@ -1,0 +1,121 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body {
+	color: #303030;
+	margin: 0;
+	padding: 0;
+	background-color: #feffff;
+	letter-spacing: 0.5;
+	width: 100%;
+}
+
+h1 {
+	font-size: 3em;
+}
+
+
+h2,
+h3,
+h4,
+h5 {
+	line-height: 1.1;
+	padding-top: 0.5rem;
+	margin: 1rem 0;
+	font-family: Helvetica-Bold;
+}
+
+p {
+	font-family: helvetica;
+	font-size: 1em;
+	line-height: 1.5;
+	max-width: 60ch;
+}
+
+article,
+aside,
+footer,
+header,
+main,
+nav,
+section {
+	display: block;
+	overflow-x: auto hidden !important;
+}
+
+main {
+    margin: auto;
+	padding: 0 1rem;
+    width: 100%;
+}
+
+section {
+	padding: 0 1rem;
+	margin: 0 auto 3rem;
+	max-width: 1200px;
+	width: 100%;
+	
+}
+
+img {
+	width: 100%;
+	object-fit: cover;
+	border-radius: 5px;
+}
+
+ul {
+	list-style: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 100%;
+	margin-top: 1rem;
+}
+
+tbody {
+	border-style: hidden; /* hide standard table (collapsed) border */
+	box-shadow: 0 0 0 1px #154BA0;
+	border-bottom: 1px solid #154BA0;
+}
+
+th {
+	padding: .5rem 1rem;
+}
+
+td {
+	text-align: left;
+	padding: 1rem;
+}
+
+tr {
+	border-bottom: 1px solid #154BA0;
+	vertical-align: text-top;
+}
+
+thead tr:nth-child(odd) {
+	background-color: white;
+}
+
+tbody tr:nth-child(odd) {
+	background-color: #d6e7ff;
+}
+tbody tr:nth-child(even) {
+	background-color: white;
+}
+
+@media screen and (max-width: 991px) {
+	p {
+		font-size: 14px;
+	}
+}
+@media screen and (max-width: 767px) {
+	
+	div {
+		padding: 0;
+	}
+}
+

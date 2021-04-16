@@ -1,0 +1,83 @@
+import { useContext, useEffect } from 'react';
+import { useForm } from "react-hook-form";
+import Form from 'react-bootstrap/Form';
+import Col from 'react-bootstrap/Col';
+
+import EstablishmentContext from '../../contexts/EstablishmentsContext';
+import { ERROR, SUCCESS, SUBMITTING } from '../../contexts/EstablishmentsContext'; // 
+// import ErrorMsg from '../../common/ErrorMsg';
+// import SuccessMsg from '../../common/SuccessMsg';
+
+const EstablishmentForm = () => {
+    const context = useContext(EstablishmentContext);
+    const [  addEstablishment, dispatch ] = context; //
+
+    const { register, handleSubmit } = useForm();
+		
+    //const handleAddEstablishment = () => addEstablishment();
+
+    useEffect(() => {
+        dispatch({type: ERROR })
+        dispatch({type: SUCCESS })
+        dispatch({type: SUBMITTING})
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+    
+    return (
+        <section className="w-600px">
+            <Form className="form" onSubmit={handleSubmit(addEstablishment)}>
+                <Form.Group >
+                    {/* {dispatch({type: ERROR}) && <ErrorMsg>{dispatch({type: 'ERROR'})}</ErrorMsg>}
+                    {dispatch({type: SUCCESS}) && <SuccessMsg>Establishment is sent</SuccessMsg>} */}
+                </Form.Group>
+                <Form.Row>
+                    <Col lg={6} md={6} sm={6} xs={12}>
+                        <Form.Group>
+                            <Form.Label className="form__label">Name</Form.Label>
+                            <Form.Control className="form__input" name="name" ref={register} />
+                        </Form.Group>
+                    </Col>
+                    <Col lg={6} md={6} sm={6} xs={12}>
+                        <Form.Group controlId="formBasicEmail">
+                            <Form.Label className="form__label">Email address</Form.Label>
+                            <Form.Control className="form__input" name="email" type="email" ref={register} /> 
+                        </Form.Group>
+                    </Col>
+                </Form.Row>
+                <Form.Row> 
+                <Col lg={6} md={6} sm={6} xs={12}>
+                        <Form.Group>
+                            <Form.Label className="form__label">Price</Form.Label>
+                            <Form.Control className="form__input" name="price" ref={register} /> 
+                        </Form.Group>
+                    </Col>
+                    <Col lg={6} md={6} sm={6} xs={12}>
+                        <Form.Group>
+                            <Form.Label className="form__label">Max Guests</Form.Label>
+                            <Form.Control className="form__input" name="maxGuests" type="text" ref={register} />
+                        </Form.Group>
+                    </Col>
+                   
+                        <Form.Group>
+                            <Form.Label className="form__label">Self catering</Form.Label>
+                            <Form.Control className="form__input" name="selfcatering" type="checkbox" ref={register} /> 
+                        </Form.Group>
+                  
+                </Form.Row>
+                <Form.Group>
+                    <Form.Label className="form__label">Description</Form.Label>              
+                    <Form.Control className="form__textField" as="textarea" name="description" rows={5} ref={register} /> 
+                </Form.Group>
+                 <Form.Row>
+                    <Col sm={6} xs={12}>
+                        <Form.Group>
+                            {/* <button className="form__btn">{dispatch({type: SUBMITTING}) ? "Submitting..." : "Submit"}</button>  */}
+                        </Form.Group>
+                    </Col>
+                </Form.Row>
+            </Form>
+        </section>
+    )
+}
+
+export default EstablishmentForm;

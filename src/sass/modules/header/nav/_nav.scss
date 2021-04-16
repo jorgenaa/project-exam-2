@@ -1,0 +1,92 @@
+.nav {
+    font-size: 1em;
+    font-family: $helveticaRegular;
+    margin-right: 1rem;
+    z-index: 100;
+    
+     @include screen("mobilNav") {
+            flex: 1;
+            display: none;
+            position: fixed;
+            top: 0px;
+            left: -100%;
+            background: $blue;
+            min-height: 100%;
+            width: 150px;
+            display: block;
+            transition: all 0.9s ease;
+            padding-top: 40px;
+            
+        }
+    &__label {
+        display: none;
+        @include screen("mobilNav") {
+            display: block;
+        }
+    }
+    &__hamburger {
+        color: $white;
+        font-size: 22px;
+        float: right;
+        margin-right: 16px;
+        display: none;
+        width: 22px;
+        height: 22px;
+      
+    }
+   
+
+    &__input {
+        display: none;
+    }
+   
+     &__link {
+        line-height: 100px;
+        text-decoration: none;
+        color: $white;
+        padding: 0 1rem;
+        //transition: all .9s ease;
+        @include screen("mobilNav"){
+            display: block;
+            //transition: 0s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            text-align: center;
+            line-height: 60px;
+            margin: auto;
+        }
+        &--hover {
+            &:hover {
+                color:$yellow;
+            }
+        }
+        &--active {
+            color: $yellow;
+        }
+    }
+    &__logout-wrapper{
+        margin: auto;
+        padding: 0;
+        @include screen("mobilNav"){
+            text-align: center;
+        }
+    }
+    &__logout {
+        font-size: 16px;
+        color: $white;
+        background-color: $blue;
+        border: 1px solid $white;
+        margin: 30px 0;
+        padding: 8px;
+        cursor: pointer;
+        &--hover {
+            &:hover {
+                color: $lightBlue;
+            }
+        }
+    }
+ }
+ 
+#hamburger-menu:checked ~ .nav {
+    display: block;
+    left: 0;
+ }
+

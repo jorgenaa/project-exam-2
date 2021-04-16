@@ -1,0 +1,48 @@
+@import "global";
+@import "mixins";
+
+//variables
+@import "abstracts/variables";
+@import "abstracts/fonts";
+@import "abstracts/colors";
+
+//common components
+@import "components/headings";
+@import "components/buttons";
+@import "components/card";
+@import "components/form";
+@import "components/table";
+@import "components/carousel";
+@import "components/sidebar";
+
+@import "modules/header/nav/nav";
+@import "modules/layout";
+@import "modules/header/header";
+@import "modules/header/logo";
+@import "modules/home/banner";
+@import "modules/home/searchbar";
+@import "modules/home/deals";
+
+@import "modules/resultsPage/resultsList";
+@import "modules/specificPage/specificPage";
+
+@import "modules/enquiry/enquiry";
+@import "modules/enquiry/bookDetails";
+@import "modules/inbox/inboxPage";
+@import "modules/footer/footer";
+
+
+@import "customized-bootstrap";
+
+@import "bootstrap/scss/bootstrap";
+
+
+
+
+
+
+
+
+
+
+

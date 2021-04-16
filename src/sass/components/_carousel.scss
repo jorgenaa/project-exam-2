@@ -1,0 +1,7 @@
+.carousel {
+    display: none;
+    @include screen("mobileSm") {
+        display: block;
+        
+    }
+}

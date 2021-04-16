@@ -1,0 +1,24 @@
+//font variables
+
+@font-face {
+    font-family: 'Helvetica';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../../assets/fonts/Helvetica.ttf') format('truetype'), 
+}
+
+@font-face {
+    font-family: 'Helvetica-Bold';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../../assets/fonts/Helvetica-Bold.ttf') format('truetype'), 
+}
+
+$helveticaRegular: 'Helvetica';
+$helveticaBold: 'Helvetica-Bold';
+
+
+$h2-font-size: 2.25em;
+$h3-font-size: 1.625em;
+$h4-font-size: 1.375em;
+$h5-font-size: 1em;

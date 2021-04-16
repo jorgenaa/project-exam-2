@@ -1,0 +1,71 @@
+//Media queries
+
+@mixin screen($size) {
+	$desktop: "(min-width: 1105px)";
+	$tablet1104px: "(max-width: 1104px)";
+	$desktop991px: "(max-width: 991px)";
+	$minWidth991px: "(min-width: 991px)";
+	$tablet: "(min-width: 768px) and (max-width: 1104px)";
+	$mobilNav: "(max-width: 800px)";
+	$mobile: "(max-width: 767px)";
+	$mobileMd: "(max-width: 650px)";
+	$mobileSm: "(max-width: 500px)";
+	
+	@if $size==desktop {
+		@media only screen and #{$desktop} {
+			@content;
+		}
+	}
+	@else if $size==tablet1104px {
+		@media only screen and #{$tablet1104px} { 
+			@content;
+		}
+	}
+	@else if $size==minWidth991px {
+			@media only screen and #{$minWidth991px} { 
+				@content;
+			}
+		}
+	@else if $size==desktop991px {
+		@media only screen and #{$desktop991px} {
+			@content;
+		}
+	}
+
+	@else if $size==tablet {
+		@media only screen and #{$tablet} {
+			@content;
+		}
+	}
+
+	@else if $size==mobilNav {
+		@media only screen and #{$mobilNav} {
+			@content;
+		}
+	}
+
+	@else if $size==mobile {
+		@media only screen and #{$mobile} {
+			@content;
+		}
+	}
+	
+	@else if $size==mobileMd {
+			@media only screen and #{$mobileMd} {
+				@content;
+			}
+		}
+
+	@else if $size==mobileSm {
+		@media only screen and #{$mobileSm} {
+			@content;
+		}
+	}
+
+	@else {
+		@media only screen and #{$size} {
+			@content;
+		}
+	}
+}
+

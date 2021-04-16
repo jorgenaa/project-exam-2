@@ -1,0 +1,15 @@
+.inbox {
+    &__header-section {
+        display: flex;
+        flex-direction: column;
+        justify-content: left;
+       
+       
+    }
+    &__header-btn { 
+        display: flex;
+        //justify-content: space-between;
+        grid-gap: 1rem;
+    }
+    
+}
