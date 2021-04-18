@@ -1,4 +1,5 @@
 import {useEffect, useState, createContext} from 'react'; //
+import axios from 'axios';
 
 //Components
 import { BASE_URL, HOTEL_PATH } from '../../constants/api'; //
@@ -17,20 +18,18 @@ export const HotelProvider = (props) => {
 	useEffect(() => {
 		const fetchHotels = async() => {
 		
-		fetch(url)
-		.then(data=> data.json())
-		.then(json => {
-			setHotels(json);	
-			console.log(json)
-		})
-		.catch((error) => {
+		const response = await axios.get(url);
+		console.log("response", response.data);
+		try {
+			setHotels(response.data);
+		} catch(error) {
 			console.log(error)
 			setError(error.toString());
-		})
-		.finally(()=> setLoading(false));
-			}
-		fetchHotels();
-		
+		} finally {
+			setLoading(false)
+		}
+	}
+	fetchHotels();
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
