@@ -15,7 +15,7 @@ console.log(state.users)
     return (
             <tbody >
                 {state.users.map((user) => {
-                  const {clientName, email, message, id} = user.acf; 
+                  const {clientName, email, message, id} = user; 
 
                   return (
                       <tr key={id} >

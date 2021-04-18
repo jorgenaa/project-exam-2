@@ -9,6 +9,7 @@ import { BASE_URL, TOKEN_PATH } from '../../constants/api';
 import ErrorMsg from "../common/ErrorMsg";
 import SuccessMsg from '../common/SuccessMsg';
 import AuthContext from "../contexts/AuthContext";
+//import useAxios from "../../hooks/useAxios";
 import Button from '../common/Button';
 import axios from "axios";
 
@@ -25,6 +26,7 @@ const schema = yup.object().shape({
 	const [successMsg, setSuccessMsg] = useState(false);
 	const [loginError, setLoginError] = useState(false);
 	
+	//const http = useAxios();
 	const history = useHistory();
 
 	const { register, handleSubmit, errors } = useForm({
@@ -37,12 +39,14 @@ const schema = yup.object().shape({
 	const onSubmit = async(data) => {
 		setSubmitting(true);
 		setLoginError(null);
+		
+		data = {identifier: data.username, password: data.password}
 
 		try {
 			const response = await axios.post(url, data);
 			console.log("response", response.data);
+			setAuth(response.data.jwt);
 			setSuccessMsg(true)
-			setAuth(response.data);
 			setTimeout(()=> {
 				//clearStorage();
 				setSuccessMsg(false)

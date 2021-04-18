@@ -9,10 +9,6 @@ export const HOTEL_PATH = "/establishments";
 export const INBOX_PATH = "/messages";
 export const ENQUIRIES_PATH = "/booking-enquiries";
 
-export const POST_MSG_PATH = "/wp/v2/messages";
-export const POST_ENQ_PATH = "wp/v2/booking_enquiries";
-export const POST_HOTEL_PATH = "wp/v2/booking_hotels";
-
 export const DELETE_MSG_PATH = "wp/v2/messages";
 export const DELETE_ENQ_PATH = "wp/v2/booking_enquiries";
 export const DELETE_HOTEL_PATH = "wp/v2/hotels";

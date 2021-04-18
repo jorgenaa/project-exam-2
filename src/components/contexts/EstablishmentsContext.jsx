@@ -1,6 +1,6 @@
 import { createContext, useReducer, useEffect, useState } from "react"; 
 import axios from "axios";
-import { BASE_URL, HOTEL_PATH, POST_HOTEL_PATH, DELETE_HOTEL_PATH } from '../../constants/api'; 
+import { BASE_URL, HOTEL_PATH } from '../../constants/api'; 
 import useAxios from "../../hooks/useAxios";
 //import { getAuth } from '../../localStorage/getLocalStorage';
 
@@ -73,8 +73,8 @@ export const EstablishmentsProvider = (props) => {
 	
 	const http = useAxios();
     const url = BASE_URL + HOTEL_PATH;
-	//const urlAdd = BASE_URL + POST_HOTEL_PATH;
-	const urlDelete = BASE_URL + DELETE_HOTEL_PATH;
+	
+	
 	//const token = getAuth();
 
 	async function getEstablishments() {
@@ -98,7 +98,7 @@ export const EstablishmentsProvider = (props) => {
 		data.status = "publish";
 
 		try {
-			const response = await http.post(POST_HOTEL_PATH, data);
+			const response = await http.post(url, data);
 			dispatch({ type: ADD_ESTABLISHMENT, payload: response.data });
 			dispatch({type: SUCCESS})
 			setTimeout(()=> {
@@ -114,12 +114,13 @@ export const EstablishmentsProvider = (props) => {
 	}
 
 	async function deleteEstablishment() {
+		
 		dispatch({ type: TOGGLE_DELETING });
 
 		for (let i = 0; i < state.checkedIds.length; i++) {
 			const id = state.checkedIds[i];
 
-			await axios.delete(urlDelete + id);
+			await axios.delete(url + id);
 			dispatch({ type: REMOVE_ESTABLISHMENT, payload: id });
 			dispatch({ type: REMOVE_ID, payload: id });
 		}

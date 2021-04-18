@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import axios from 'axios';
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -6,10 +7,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 //Components
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
-import { POST_MSG_PATH } from '../../constants/api'; 
+import { BASE_URL, INBOX_PATH } from '../../constants/api'; 
 import ErrorMsg from "../common/ErrorMsg";
 import SuccessMsg from '../common/SuccessMsg';
-import useAxios from "../../hooks/useAxios";
+//import useAxios from "../../hooks/useAxios";
 import Button from '../common/Button';
 
 const schema = yup.object().shape({
@@ -23,7 +24,8 @@ const ContactForm = () => {
     const [successMsg, setSuccessMsg] = useState(false);
     const [serverError, setServerError] = useState(null);
 
-    const http = useAxios();
+    //const http = useAxios();
+    const url = BASE_URL + INBOX_PATH;
 
     const { register, handleSubmit, errors } = useForm({
 		resolver: yupResolver(schema),
@@ -33,13 +35,10 @@ const ContactForm = () => {
         setSubmitting(true);
         setServerError(null);
         
-        data.title = data.clientName
-   
-        data.status = "publish";
 
         try {
-            const response = await http.post(POST_MSG_PATH, data);
-                console.log(response.data.acf);
+            const response = await axios.post(url, data);
+                console.log(response.data);
                 setSuccessMsg(true);
             if(response.ok) {
                 setTimeout(()=> {

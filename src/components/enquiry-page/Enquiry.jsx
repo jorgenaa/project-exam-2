@@ -68,6 +68,7 @@ const Enquiry = () => {
                             <EnquiryForm 
                                     key={id}
                                     id={id}
+                                    name={selectedHotel.name}
                                     dateRange={dateRange} 
                                     setDateRange={setDateRange} />
                         </Row>

@@ -13,15 +13,12 @@ const EstablishmentsList = () => {
 		return <div>No establishments</div>;
 	}
 
-    console.log(state.establishments);
-
     return (
         <tbody>
             {state.establishments.map((establishment) => {
-                const {name, description, price, id, email, selfcatering, maxGuests} = establishment.acf;
+                const {name, description, price, id, email, selfcatering, maxGuests} = establishment;
               
                 return(
-                  
                         <tr key={id}>
                             <td>
                                 <CheckedEstablishBtn

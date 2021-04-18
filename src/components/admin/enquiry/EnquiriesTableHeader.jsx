@@ -28,7 +28,8 @@ const EnquiriesTableHeader = () => {
                         />
                     </th>
                     <th>Establishment</th>
-                    <th>Name</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
                     <th>Email</th>
                     <th>Check in</th>
                     <th>Check out</th>

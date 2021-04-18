@@ -15,8 +15,7 @@ const EnquiriesList = ({enquiries}) => {
     return (
         <>
             {state.enquiries.map(enquiry => {
-                
-                const {hotel_id, establishment, clientName, email, from_date, to_date} = enquiry.acf;
+                const {hotel_id, establishment, firstName, lastName, email, fromDate, toDate} = enquiry;
               
                 return (
                     <tbody>
@@ -25,10 +24,11 @@ const EnquiriesList = ({enquiries}) => {
                                 <CheckedEnquiryBtn />
                             </td>
                             <td>{establishment}</td>
-                            <td>{clientName}</td>
+                            <td>{firstName}</td>
+                            <td>{lastName}</td>
                             <td>{email}</td>
-                            <td>{from_date}</td>
-                            <td>{to_date}</td>
+                            <td>{fromDate}</td>
+                            <td>{toDate}</td>
                         </tr>
                     </tbody>
                 )
