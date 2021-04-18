@@ -12,7 +12,6 @@ const Nav = () => {
         history.push("/login/");
     }
 
-
     return (
         <>
             <label htmlFor="hamburger-menu" className="nav__label"><Hamburger className="nav__hamburger" color="#FEFFFF" size={22} /></label>

@@ -18,31 +18,26 @@ import Attractions from './Attractions';
 import Sidebar from '../common/Sidebar';
 import SpecificSidebarContent from './sidebar/SpecificSidebarContent';
 
-
 const Specific = () => {
     const [specificHotel, setSpecificHotel] = useState([]);
-    let { id } = useParams();
+    const { id } = useParams();
     const hotelContext = useContext(HotelContext);
     const [hotels, error, loading] = hotelContext; 
-  
+ 
     useEffect(() => {
-        hotels.find(hotel => {
-            if(hotel.id === id) {
-              return true; 
-            }  
-        return setSpecificHotel(hotel); 
-        })
-      
+        if(hotels){
+            hotels.find(hotel => {
+                if(hotel.id === id) {
+                  return true;
+                } 
+            return setSpecificHotel(hotel);  
+            })  
+           
+        }
     // eslint-disable-next-line react-hooks/exhaustive-deps
    }, []);
+   console.log(specificHotel)
 
-   if(specificHotel.facility_icons !== undefined) {
-        console.log("icons are not undefined", specificHotel.facility_icons);
-   } else {
-       console.log("icons are undefined")
-   }
-
-  
    if(loading) {
         return <LoadingMsg>Loading...</LoadingMsg>
     }
