@@ -1,8 +1,11 @@
 import { useState } from 'react';
+import { useHistory } from "react-router-dom";
 
 const AutoCompleteText = ({hotels}) => {
     const [suggestions, setSuggestions] = useState([]);
     const [text, setText] = useState("");
+
+    const history = useHistory();
 
     const onTextChangeHandler = (e) => {
         const searchValue = e.target.value.toLowerCase();
@@ -19,6 +22,7 @@ const AutoCompleteText = ({hotels}) => {
     const suggestionSelected = (value) => {
         setText(value);
         setSuggestions([]);
+        history.push("/specific/" + value.id);
     }
 
     const renderSuggestions = () => {
@@ -27,7 +31,7 @@ const AutoCompleteText = ({hotels}) => {
         }else {
             return (
                 <ul className="searchBar__options">
-                    {suggestions.map((hotel) => <li className="searchBar__options-item" onClick={() => suggestionSelected(hotel.name)} key={hotel.id}>{hotel.name}</li>)}
+                    {suggestions.map((hotel) => <li className="searchBar__options-item" onClick={() => suggestionSelected(hotel)} key={hotel.id}>{hotel.name}</li>)}
                 </ul>
             )
         }
