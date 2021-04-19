@@ -27,7 +27,7 @@
 		appearance: auto;
 		
 		&:focus {
-			outline-color: $blue;
+			outline-color: $yellow;
 			
 		}
 		 @include screen("mobile") {

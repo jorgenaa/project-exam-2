@@ -17,8 +17,8 @@ const AutoCompleteText = ({hotels}) => {
     }
 
     const suggestionSelected = (value) => {
-        setSuggestions([]);
         setText(value);
+        setSuggestions([]);
     }
 
     const renderSuggestions = () => {
@@ -26,16 +26,16 @@ const AutoCompleteText = ({hotels}) => {
             return null;
         }else {
             return (
-                <ul>
-                    {suggestions.map((hotel) => <li onClick={() => suggestionSelected(hotel.name)} key={hotel.id}>{hotel.name}</li>)}
+                <ul className="searchBar__options">
+                    {suggestions.map((hotel) => <li className="searchBar__options-item" onClick={() => suggestionSelected(hotel.name)} key={hotel.id}>{hotel.name}</li>)}
                 </ul>
             )
         }
     }
 
     return (
-        <div>
-            <input type="text" value={text} onChange={onTextChangeHandler} />
+        <div className="searchBar__input-container">
+            <input className="searchBar__input" type="text" value={text} onChange={onTextChangeHandler} />
             {renderSuggestions()}
         </div>
     )
