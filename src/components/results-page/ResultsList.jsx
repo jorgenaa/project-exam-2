@@ -25,7 +25,6 @@ const ResultsList = () => {
 					
 					return( <CustomCard 
 								id={id}
-								key={id}
 								name={name}
 								description={description}
 								image={imgUrl.url}

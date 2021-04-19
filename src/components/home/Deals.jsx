@@ -33,7 +33,7 @@ const Deals = () => {
 					const {id, name, description, imgUrl, price} = hotel;
 					return(
 						 <CustomCard 
-							key={id}
+						 	key={id}
 							id={id}
 							name={name}
 							description={description}
@@ -57,7 +57,7 @@ const Deals = () => {
 };
 
 // Deals.propTypes = {
-// 	id: PropTypes.number.isRequired
+// 	specialDealId: PropTypes.number.isRequired
 // }
 
 export default Deals;

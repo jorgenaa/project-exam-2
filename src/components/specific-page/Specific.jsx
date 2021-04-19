@@ -1,5 +1,5 @@
-import {useContext, useState, useEffect} from 'react'; 
-//import {PropTypes} from "prop-types";
+import { useContext, useState, useEffect } from 'react'; 
+import { PropTypes } from "prop-types";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Button from '../common/Button';
@@ -22,21 +22,22 @@ const Specific = () => {
     const [specificHotel, setSpecificHotel] = useState([]);
     const { id } = useParams();
     const hotelContext = useContext(HotelContext);
-    const [hotels, error, loading] = hotelContext; 
- 
+    const [hotels, error, loading ] = hotelContext; 
+    
+    const parsedId = parseInt(id);
+    
+    
     useEffect(() => {
-        if(hotels){
-            hotels.find(hotel => {
-                if(hotel.id === id) {
-                  return true;
-                } 
-            return setSpecificHotel(hotel);  
-            })  
-           
-        }
+            for(let i = 0; i < hotels.length; i++) {
+                // eslint-disable-next-line eqeqeq
+                if(hotels[i].id === parsedId) {
+                    setSpecificHotel(hotels[i]);  
+                    break 
+                }
+            }
     // eslint-disable-next-line react-hooks/exhaustive-deps
    }, []);
-   console.log(specificHotel)
+
 
    if(loading) {
         return <LoadingMsg>Loading...</LoadingMsg>
@@ -46,21 +47,21 @@ const Specific = () => {
     }
 
     return (
-            <main className="specific mt-2" key={id}>
+            <main className="specific mt-2" key={parsedId}>
                 <SubHeading content={specificHotel.name} />
                 <div className="specific__wrapper">
                     <section className="specific__body">
                         <ImageSection 
                             image={specificHotel.imgUrl} 
                             images={specificHotel.imgsUrl} 
-                            id={id}
+                            id={parsedId}
                             />
                         <CarouselSlider 
                             imgMobile={specificHotel.imgsMobileUrl}
-                            id={id}
+                            id={parsedId}
                            />
                         <DetailsSection 
-                            id={id}
+                            id={parsedId}
                             name={specificHotel.name} 
                             description={specificHotel.description}
                             maxGuests={specificHotel.maxGuests}
@@ -70,7 +71,7 @@ const Specific = () => {
                     </section>
                     <div className="specific__sidebar">
                         <Sidebar type="sidebar__specific">
-                            <SpecificSidebarContent id={id} icons={specificHotel.facility_icons} />
+                            <SpecificSidebarContent id={parsedId} icons={specificHotel.facility_icons} />
                         </Sidebar>
                     </div>   
                 </div>
@@ -89,7 +90,7 @@ const Specific = () => {
                     <div className="specific__sidebar">
                         <Sidebar type="sidebar">
                             <section className="pt-3 ml-3">
-                                <Link className="float-right" to={"/enquiry/" + id}>
+                                <Link className="float-right" to={"/enquiry/" + parsedId}>
                                     <Button label="Reserve" type="specific__attraction-btn button--blue button--hover" />
                                 </Link>  
                             </section>
@@ -97,7 +98,7 @@ const Specific = () => {
                     </div>   
                 </div>
                 <section>
-                    <Link className="float-right pt-3 specific__link-bottom" to={"/enquiry/" + id}>
+                    <Link className="float-right pt-3 specific__link-bottom" to={"/enquiry/" + parsedId}>
                         <Button label="Reserve" type="specific__attraction-btn button--blue button--hover" />
                     </Link>  
                 </section>
@@ -106,8 +107,8 @@ const Specific = () => {
     )
 }
 
-// Specific.propTypes = {
-//     id: PropTypes.number.isRequired,
-// }
+Specific.propTypes = {
+    parsedId: PropTypes.number.isRequired,
+}
 
 export default Specific;

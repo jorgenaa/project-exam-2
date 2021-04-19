@@ -32,7 +32,7 @@ export const HotelProvider = (props) => {
 	fetchHotels();
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
-
+	
     return (
 	
         <HotelContext.Provider value={[hotels, error, loading]}>

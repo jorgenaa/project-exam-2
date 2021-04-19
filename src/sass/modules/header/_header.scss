@@ -2,9 +2,7 @@
     background-color: $blue;
     height: 100px;
     width: 100vw;
-    @include screen("mobile") {
-             height: 150px;
-         }
+   
 &__layout {
     max-width: 1200px;
     margin: 0 auto;

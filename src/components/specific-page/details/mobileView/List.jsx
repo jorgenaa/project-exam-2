@@ -3,27 +3,28 @@ const List = ({facilityIcons, id}) => {
     const [allIcons, setAllIcons] = useState([]);
     const [serviceIcon, setServiceIcon] = useState([]);
     const [secondIconsList, setSecondIconsList] = useState([]);
-    console.log(facilityIcons)
 
-   useEffect(() => {
-        const icons = facilityIcons.slice(0, 4);
+    useEffect(() => {
+      if(facilityIcons) {
+        console.log("icons are not undefined");
+        const splitedIcons =  facilityIcons.split(" ");
+        const icons = splitedIcons.slice(0, 4);
         setAllIcons(icons);
-      if(icons) {
-            //remove the service icon from the list
-            icons.splice(2, 1);
-            // add the service icon to a list element
-            const serviceIcon = facilityIcons.slice(2, 3);
-            setServiceIcon(serviceIcon);
-            const secondIconsList = facilityIcons.slice(4, 8);
-            setSecondIconsList(secondIconsList)
+        //remove the service icon from the list
+        icons.splice(2, 1);
+        // add the service icon to a list element
+        const serviceIcon = splitedIcons.slice(2, 3);
+        setServiceIcon(serviceIcon);
+        const secondIconsList = splitedIcons.slice(4, 8);
+        setSecondIconsList(secondIconsList)
       }
       	// eslint-disable-next-line react-hooks/exhaustive-deps
    }, []);
-   console.log(secondIconsList)
+  
     return (
         <>
-            <ul className="specific__list-sm" key={id}>
-                <ul className="specific__list-sm-item">
+            <ul className="specific__list-mobile" key={id}>
+                <ul className="specific__list-mobile-item">
                     {allIcons.map(icon => {
                         return <li className="specific__details-list-item"><span className={`fa ${icon}`}></span></li> 
                     })}
@@ -35,7 +36,7 @@ const List = ({facilityIcons, id}) => {
                         </ul> 
                     </li>
                 </ul>
-                <ul className="specific__list-sm-item">
+                <ul className="specific__list-mobile-item">
                    {secondIconsList.map(icon => {
                         return <li className="specific__details-list-item"><span className={`fa ${icon}`}></span></li> 
                     })}

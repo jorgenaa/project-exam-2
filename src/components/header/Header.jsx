@@ -2,7 +2,6 @@ import Logo from './Logo';
 
 //Components
 import Nav from './nav/Nav';
-import SearchBar from '../common/SearchBar';
 
 const Header = () => {
 	return (
@@ -12,9 +11,6 @@ const Header = () => {
 			
 				<Nav />
 			</div>
-			<section className="searchBar">
-				<SearchBar />
-			</section>
 		</header>
 	);
 };

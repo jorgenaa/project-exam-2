@@ -11,9 +11,9 @@ const CarouselSlider = ({ imgMobile, id }) => {
 	
 	return (
 		<Carousel className="carousel" onSelect={handleSelect} activeIndex={index}>
-		{imgMobile ? imgMobile.map(img => {
+		{imgMobile ? imgMobile.map((img) => {
 			return (
-				<Carousel.Item>
+				<Carousel.Item key={img.id}>
 					<img className="d-block w-100" src={`${BASE_URL}${img.url}`} alt="slide" />
 				</Carousel.Item>
 			)

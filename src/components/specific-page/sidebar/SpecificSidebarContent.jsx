@@ -19,7 +19,7 @@ const SpecificSidebarContent = ({ id, icons }) => {
 			setRevisedIcons(reviseIconList);
 
 			// add the service icon to a list element
-			const filteredIcon = allIcons.filter(icon => {
+			const filteredIcon = allIcons.find(icon => {
 				const lowerCaseName = icon.toLowerCase();
 	 
 				if(lowerCaseName.includes("fa-concierge-bell")) {
@@ -27,16 +27,14 @@ const SpecificSidebarContent = ({ id, icons }) => {
 				}
 					return false;
 			});
+			
 			setServiceIcon(filteredIcon);
-
-			// const serviceIco = allIcons.slice(2, 3);
-			// setServiceIcon(serviceIco);
+			
 		} else {
 			console.log('icons are undefined', icons);
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
-	console.log(serviceIcon)
 
 	return (
 		<>

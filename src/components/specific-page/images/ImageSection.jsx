@@ -2,17 +2,16 @@ import {PropTypes} from "prop-types";
 import { BASE_URL } from '../../../constants/api';
 
 const ImageSection = ({image, images, id}) => {
-   console.log(image)
    
     return (
         <section className="specific__img-section" key={id}>
             <div className="specific__img-wrapper">
-                <img src={image ? `${BASE_URL}${image.url}` : ""} alt="Hotel" />  
+                <img className="specific__img-item" src={image ? `${BASE_URL}${image.url}` : ""} alt="Hotel" />  
             </div> 
              <div className="specific__img-wrapper specific__img-wrapper--sm">
-                {images ? images.map(img => {
+                {images ? images.map((img) => {
                     return (
-                        <div className="specific__img specific__img--sm">
+                        <div className="specific__img specific__img--sm" key={img.id}>
                             <img src={`${BASE_URL}${img.url}`} alt="Hotel" /> 
                         </div>
                     ) 
