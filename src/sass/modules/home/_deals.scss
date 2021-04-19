@@ -19,7 +19,9 @@
         position: relative;
         background-position: top left;
         background-size: cover;
-        
+        @include screen("mobile") { 
+            height: 250px;
+        }
     }
     &__special-wrapper {
         position: absolute;
@@ -35,10 +37,7 @@
     &__special-title {
         color: $white;
         text-shadow: 0px 3px 6px $black;
-         @include screen("mobile") {
-            width: 200px; 
-            text-align: left;
-        }
+        
     }
     &__special-text {
         color: $white;

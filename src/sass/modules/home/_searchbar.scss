@@ -25,11 +25,8 @@
 		border-radius: 5px; 
         border: none;
 		appearance: auto;
+		outline: none;
 		
-		&:focus {
-			outline-color: $yellow;
-			
-		}
 		 @include screen("mobile") {
             padding:  .429em;
         }
@@ -39,6 +36,8 @@
 		z-index: 50;
 		background-color: $white;
 		border-radius: 5px; 
+		border-top: 1px solid $blue;
+		
 	}
 	&__options-item {
 		background-color: $white;
@@ -46,6 +45,7 @@
 		padding: .5rem;
 		text-align: left;
 		margin-bottom: 0;
+		cursor: pointer;
 		&:nth-last-child(1) {
 			border-bottom-left-radius: 5px;
 			border-bottom-right-radius: 5px;  
