@@ -26,7 +26,6 @@ const Specific = () => {
     
     const parsedId = parseInt(id);
     
-    
     useEffect(() => {
             for(let i = 0; i < hotels.length; i++) {
                 // eslint-disable-next-line eqeqeq

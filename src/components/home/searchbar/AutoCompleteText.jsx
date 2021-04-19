@@ -16,13 +16,18 @@ const AutoCompleteText = ({hotels}) => {
         setText(searchValue);
     }
 
+    const suggestionSelected = (value) => {
+        setSuggestions([]);
+        setText(value);
+    }
+
     const renderSuggestions = () => {
         if(suggestions.length === 0) {
             return null;
         }else {
             return (
                 <ul>
-                    {suggestions.map((hotel) => <li key={hotel.id}>{hotel.name}</li>)}
+                    {suggestions.map((hotel) => <li onClick={() => suggestionSelected(hotel.name)} key={hotel.id}>{hotel.name}</li>)}
                 </ul>
             )
         }
