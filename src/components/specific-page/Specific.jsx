@@ -28,7 +28,6 @@ const Specific = () => {
     
     useEffect(() => {
             for(let i = 0; i < hotels.length; i++) {
-                // eslint-disable-next-line eqeqeq
                 if(hotels[i].id === parsedId) {
                     setSpecificHotel(hotels[i]);  
                     break 

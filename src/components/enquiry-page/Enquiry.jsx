@@ -22,24 +22,18 @@ const Enquiry = () => {
     const hotelContext = useContext(HotelContext);
     const [hotels, error, loading] = hotelContext;
    
-    const [dateRange, setDateRange] = useState({
-            startDate: null,
-            endDate: null
-      });
+    const parsedId = parseInt(id);
 
     useEffect(() => {
-        const filterHotels = async()=> {
-            hotels.find(hotel => {
-               
-                if(hotel.id === id) {
-                    return true;
-                }
-            return setSelectedHotel(hotel); 
-            })
-       }
-       filterHotels();
+        for(let i = 0; i < hotels.length; i++) {
+            if(hotels[i].id === parsedId) {
+                setSelectedHotel(hotels[i]);  
+                break 
+            }
+        }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-   }, []);
+    }, []);
+
 
    if(loading) {
     return <LoadingMsg>Loading...</LoadingMsg>
@@ -59,24 +53,24 @@ const Enquiry = () => {
                     <Col lg={8} md={7} className="p-0">
                         <Row>
                             <Overview 
-                                key={id}
+                                key={parsedId}
                                 image={selectedHotel.imgUrl}
                                 name={selectedHotel.name} 
                                 />
                         </Row>
                         <Row>
                             <EnquiryForm 
-                                    key={id}
-                                    id={id}
+                                    key={parsedId}
+                                    id={parsedId}
+                                    stringId={id}
                                     name={selectedHotel.name}
-                                    dateRange={dateRange} 
-                                    setDateRange={setDateRange} />
+                                     />
                         </Row>
                     </Col>
                     <Col lg={4} md={5}>
                         <Sidebar type="sidebar__enquiry">
                             <div className="sidebar__enquiry-item">
-                                <BookingDetails key={id} />
+                                <BookingDetails key={parsedId} />
                             </div>
                             <div className="sidebar__enquiry-item">
                                 <Price />

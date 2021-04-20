@@ -7,11 +7,10 @@ import { AuthProvider } from "./components/contexts/AuthContext";
 import { MessagesProvider } from './components/contexts/MessagesContext';
 import { EnquiriesProvider } from './components/contexts/EnquiriesContext';
 import { EstablishmentsProvider } from './components/contexts/EstablishmentsContext';
-import { DatesProvider } from './components/contexts/DatesContext';
 import Layout from './components/layout/Layout';
 import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
-import ErrorBoundary from './components/ErrorBoundary';
+//import ErrorBoundary from './components/ErrorBoundary';
 
 const App = () => {
   return (
@@ -24,11 +23,9 @@ const App = () => {
               <EnquiriesProvider>
               <MessagesProvider>
               <EstablishmentsProvider>
-              <DatesProvider>
-                <ErrorBoundary>
+                {/* <ErrorBoundary> */}
                   <Layout />
-                </ErrorBoundary>
-              </DatesProvider>
+                {/* </ErrorBoundary> */}
               </EstablishmentsProvider>
               </MessagesProvider>
               </EnquiriesProvider>
