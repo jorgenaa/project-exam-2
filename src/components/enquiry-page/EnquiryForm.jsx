@@ -8,9 +8,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 //Components
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
-//import DatePicker from './DatePicker';
 import { BASE_URL, ENQUIRIES_PATH } from '../../constants/api';
-//import { getAuth } from '../../localStorage/getLocalStorage';
 import ErrorMsg from "../common/ErrorMsg";
 import SuccessMsg from '../common/SuccessMsg';
 import Button from '../common/Button';
@@ -38,7 +36,7 @@ const EnquiryForm = ({ id, stringId, name}) => {
         
     const url = BASE_URL + ENQUIRIES_PATH;
 
-    const { register, handleSubmit, errors } = useForm({ // 
+    const { register, handleSubmit, errors } = useForm({ 
 		resolver: yupResolver(schema),
 	});
 
