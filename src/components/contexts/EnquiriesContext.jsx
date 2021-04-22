@@ -1,6 +1,6 @@
 import { createContext, useReducer, useEffect, useState } from "react"; 
 import axios from "axios";
-import { BASE_URL, DELETE_ENQ_PATH, ENQUIRIES_PATH } from '../../constants/api'; 
+import { BASE_URL, ENQUIRIES_PATH } from '../../constants/api'; 
 
 const  EnquiriesContext = createContext();
 
@@ -43,7 +43,6 @@ export const EnquiriesProvider = (props) => {
 	const [state, dispatch] = useReducer(reducer, initialState);
 	const [error, setError] = useState(null);
 	const url = BASE_URL + ENQUIRIES_PATH;
-    const urlDelete = BASE_URL + DELETE_ENQ_PATH;
 	
 	async function getUsers() {
 		try {
@@ -68,7 +67,7 @@ export const EnquiriesProvider = (props) => {
 		for (let i = 0; i < state.checkedIds.length; i++) {
 			const id = state.checkedIds[i];
 
-			await axios.delete(urlDelete + id);
+			await axios.delete(url + id);
 			dispatch({ type: REMOVE_ENQUIRY, payload: id });
 			dispatch({ type: REMOVE_ID, payload: id });
 		}

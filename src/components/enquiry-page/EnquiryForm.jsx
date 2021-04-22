@@ -1,9 +1,8 @@
 import {useState} from 'react';
 import axios from 'axios';
-import { useForm } from "react-hook-form"; //
+import { useForm } from "react-hook-form"; 
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-
 
 //Components
 import Form from 'react-bootstrap/Form';
@@ -13,6 +12,7 @@ import ErrorMsg from "../common/ErrorMsg";
 import SuccessMsg from '../common/SuccessMsg';
 import Button from '../common/Button';
 
+
 const schema = yup.object().shape({
 	firstName: yup.string().required("Please enter your username"),
     lastName: yup.string().required("Please enter your lastname"),
@@ -21,19 +21,29 @@ const schema = yup.object().shape({
     toDate: yup.string().required("Please select a valid end date")
 });
 
-const EnquiryForm = ({ id, stringId, name}) => {
-   
+const EnquiryForm = ({ id, name, fromDate, toDate, handleOnDateChangeStart, handleOnDateChangeEnd}) => {
+    
     const [submitting, setSubmitting] = useState(false);
     const [successMsg, setSuccessMsg] = useState(false);
     const [serverError, setServerError] = useState(null);
     
-    let initialState = { startDate: null, endDate: null}
-	const [dateRange, setDateRange] = useState(initialState);
+    // let initialState = { startDate: null, endDate: null}
+	// const [dateRange, setDateRange] = useState(initialState);
     
-      const handleOnDateChange = (startDate, endDate) => {
-        setDateRange(startDate, endDate);
-      }
-        
+    //   const handleOnDateChangeStart = (startDate) => {
+    //     setDateRange(startDate, );
+    //     //const fromDate = startDate.target.value;
+    //     //saveFromDate(fromDate);
+    //     //setDate(fromDate)
+    //   }
+
+    //   const handleOnDateChangeEnd = (endDate) => {
+    //     setDateRange( endDate);
+    //     //const todate = endDate.target.value;
+    //     //saveToDate(toDate);
+    //     //setDate(todate)
+    //   }
+   
     const url = BASE_URL + ENQUIRIES_PATH;
 
     const { register, handleSubmit, errors } = useForm({ 
@@ -99,10 +109,10 @@ const EnquiryForm = ({ id, stringId, name}) => {
                             <Form.Label className="form__label">Check inn - Check out</Form.Label> 
                             <Form.Row>
                                 <Col sm={6}>
-                                    <Form.Control type="date" name='fromDate' value={dateRange.startDate} onChange={handleOnDateChange} ref={register} />
+                                    <Form.Control type="date" name='fromDate' value={fromDate.startDate} onChange={handleOnDateChangeStart} ref={register} />
                                 </Col>
                                 <Col sm={6}>
-                                    <Form.Control type="date" name='toDate' value={dateRange.endDate} onChange={handleOnDateChange} ref={register} />
+                                    <Form.Control type="date" name='toDate' value={toDate.endDate} onChange={handleOnDateChangeEnd} ref={register} />
                                 </Col>
                             </Form.Row>    
                             {errors.fromDate && <ErrorMsg>{errors.fromDate.message}</ErrorMsg>}
@@ -119,7 +129,6 @@ const EnquiryForm = ({ id, stringId, name}) => {
                 </Form.Row>
             </Form>
         </section>
-       
     )
 }
 

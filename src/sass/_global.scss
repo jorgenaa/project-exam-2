@@ -54,7 +54,7 @@ main {
 
 section {
 	padding: 0 1rem;
-	margin: 0 auto 3rem;
+	margin: 0 auto 1rem;
 	max-width: 1200px;
 	width: 100%;
 	
@@ -79,7 +79,7 @@ table {
 tbody {
 	border-style: hidden; /* hide standard table (collapsed) border */
 	box-shadow: 0 0 0 1px #154BA0;
-	border-bottom: 1px solid #154BA0;
+	//border-bottom: 1px solid #154BA0;
 }
 
 th {
@@ -88,11 +88,11 @@ th {
 
 td {
 	text-align: left;
-	padding: 1rem;
+	padding: .5rem 1rem;
 }
 
 tr {
-	border-bottom: 1px solid #154BA0;
+	//border-bottom: 1px solid #154BA0;
 	vertical-align: text-top;
 }
 

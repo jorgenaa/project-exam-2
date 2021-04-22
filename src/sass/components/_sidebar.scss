@@ -19,8 +19,10 @@
     padding: 0 1rem;
     display: flex;
     flex-direction: column;
+    align-content: space-between;
     @include screen('mobile') {
-      padding-top: 1rem;
+      
+      padding: 1rem 0;
       flex-direction: row;
       grid-gap: 1rem;
       
@@ -33,5 +35,6 @@
   }
   &__enquiry-item {
     flex: 1;
+   
   }
 }

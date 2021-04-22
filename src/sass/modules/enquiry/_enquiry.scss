@@ -3,17 +3,21 @@
 		display: flex;
 		width: 100%;
 		grid-gap: 1rem;
+		
 	}
 	&__overview-item-1 {
-		flex: 3;
-		@include screen('tablet1104px') {
-			
-		}
+		flex: 1;
+		
 	}
 	&__overview-item-2 {
 		flex: 1;
 	}
-	&__overview-img {
-		height: 267px;
+	
+	&__overview-stars {
+		display: flex;
+		color: $yellow;
+	}
+	&__overview-star {
+		padding-right: 2px;
 	}
 }

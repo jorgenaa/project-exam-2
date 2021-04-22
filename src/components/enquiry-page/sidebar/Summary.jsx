@@ -1,24 +1,35 @@
+import { useState, useEffect } from 'react';
 
+const Summary = ({bookingInc}) => {
+const [included, setIncluded] = useState([]);
 
-const Summary = () => {
+useEffect(() => {
+    if(bookingInc) {
+        const bookingIncluded = bookingInc.map(item => {
+                return (
+                    <tr>
+                        <td className="bookDetails__col">{item.name}</td>
+                        <td className="bookDetails__col"></td>
+                    </tr>
+                )
+            })
+            setIncluded(bookingIncluded);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+}, []);
+   
+
     return (
         <>
             <table className="bookDetails bookDetails--third">
                 <thead>
                     <tr className="bookDetails__header-row">
-                        <th>Your booking includes</th>
-                        <th></th>
+                        <th className="bookDetails__hd-col">Your booking includes</th>
+                        <th className="bookDetails__hd-col"></th>
                     </tr>
                 </thead>
-                <tbody className="bookDetails__body">
-                    <tr className="bookDetails__body-row">
-                        <td className="bookDetails__col">{}</td>
-                        <td className="bookDetails__col">{}</td>
-                    </tr>
-                     <tr className="bookDetails__body-row">
-                        <td className="bookDetails__col">{}</td>
-                        <td className="bookDetails__col">{}</td>
-                    </tr>
+                <tbody>
+                    {included} 
                 </tbody>
             </table>
         </>

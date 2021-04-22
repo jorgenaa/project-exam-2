@@ -8,14 +8,14 @@ const List = ({facilityIcons, id}) => {
       if(facilityIcons) {
         console.log("icons are not undefined");
         const splitedIcons =  facilityIcons.split(" ");
-        const icons = splitedIcons.slice(0, 4);
+        const icons = splitedIcons.slice(0, 2);
         setAllIcons(icons);
         //remove the service icon from the list
         icons.splice(2, 1);
         // add the service icon to a list element
         const serviceIcon = splitedIcons.slice(2, 3);
         setServiceIcon(serviceIcon);
-        const secondIconsList = splitedIcons.slice(4, 8);
+        const secondIconsList = splitedIcons.slice(3, 8);
         setSecondIconsList(secondIconsList)
       }
       	// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -25,8 +25,8 @@ const List = ({facilityIcons, id}) => {
         <>
             <ul className="specific__list-mobile" key={id}>
                 <ul className="specific__list-mobile-item">
-                    {allIcons.map(icon => {
-                        return <li className="specific__details-list-item"><span className={`fa ${icon}`}></span></li> 
+                    {allIcons.map((icon, index) => {
+                        return <li key={index} className="specific__details-list-item"><span className={`fa ${icon}`}></span></li> 
                     })}
                     <li><span className={`fa ${serviceIcon}`} />
                         <ul>
@@ -37,8 +37,8 @@ const List = ({facilityIcons, id}) => {
                     </li>
                 </ul>
                 <ul className="specific__list-mobile-item">
-                   {secondIconsList.map(icon => {
-                        return <li className="specific__details-list-item"><span className={`fa ${icon}`}></span></li> 
+                   {secondIconsList.map((icon, index) => {
+                        return <li key={index} className="specific__details-list-item"><span className={`fa ${icon}`}></span></li> 
                     })}
                 </ul>
             </ul>

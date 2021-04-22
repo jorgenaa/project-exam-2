@@ -65,11 +65,14 @@ const Specific = () => {
                             maxGuests={specificHotel.maxGuests}
                             popular_facilityIcons={specificHotel.popularFacilities}
                             facility_icons={specificHotel.facility_icons}
+                            selfcatering={specificHotel.selfCatering}
                             />
                     </section>
                     <div className="specific__sidebar">
                         <Sidebar type="sidebar__specific">
-                            <SpecificSidebarContent id={parsedId} icons={specificHotel.facility_icons} />
+                            <SpecificSidebarContent 
+                                        id={parsedId}  
+                                        icons={specificHotel.facilityIcons} />
                         </Sidebar>
                     </div>   
                 </div>

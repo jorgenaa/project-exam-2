@@ -1,7 +1,6 @@
 import { createContext, useReducer, useEffect, useState } from "react"; 
 import axios from "axios";
-import { BASE_URL, INBOX_PATH, DELETE_MSG_PATH } from '../../constants/api'; 
-import useAxios from "../../hooks/useAxios";
+import { BASE_URL, INBOX_PATH } from '../../constants/api'; 
 const MessagesContext = createContext();
 
 export const STORE_USERS = "STORE_USERS";
@@ -43,9 +42,7 @@ export const MessagesProvider = (props) => {
 	const [state, dispatch] = useReducer(reducer, initialState);
 	const [error, setError] = useState(null);
 	const url = BASE_URL + INBOX_PATH;
-	//const urlDelete = BASE_URL + DELETE_MSG_PATH;
-	const http = useAxios();
-
+	
 	async function getUsers() {
 		try {
 			const response = await axios.get(url);
@@ -69,7 +66,7 @@ export const MessagesProvider = (props) => {
 		for (let i = 0; i < state.checkedIds.length; i++) {
 			const id = state.checkedIds[i];
 
-			await http.delete(DELETE_MSG_PATH + id);
+			await axios.delete(url + id);
 			dispatch({ type: REMOVE_USER, payload: id });
 			dispatch({ type: REMOVE_ID, payload: id });
 		}

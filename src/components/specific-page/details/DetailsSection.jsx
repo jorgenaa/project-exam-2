@@ -9,14 +9,14 @@ import FacilitiesMobileView from './mobileView/FacilitiesMobileView';
 
 
 const DetailsSection = ({ name, description, maxGuests, id, selfcatering, popular_facilityIcons, facility_icons }) => {
- 
+    console.log(popular_facilityIcons)
    const [popularFacilityIcons, setPopularFacilityIcons] = useState([]);
    
     useEffect(() => {
         if(popular_facilityIcons) {
-            console.log("popular facility icons are not undefined");
             const popularFacilityIcons = popular_facilityIcons.split(" ");
             setPopularFacilityIcons(popularFacilityIcons)
+           
         } 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
@@ -31,8 +31,8 @@ const DetailsSection = ({ name, description, maxGuests, id, selfcatering, popula
                     </div>
                     <div className="specific__details-item pt-3">
                         <div className="specific__details-item-child pt-2">
-                            <p><span className="pr-2 bold">Max guests&#58;</span>{maxGuests}</p>
-                            <p><span className="pr-2 bold">Self catering&#58;</span>{selfcatering !== false ? "No" : "Yes" }</p>
+                            {maxGuests ? <p><span className="pr-2 bold">Max guests&#58;</span>{maxGuests}</p> : ""}
+                            <p><span className="pr-2 bold">Self catering&#58;</span>{selfcatering === false ? "No" : "Yes" }</p>
                         </div>
                         <div className="specific__details-item-child">
                             <h5 className="heading--h5 mb-3">Most popular facilities</h5>

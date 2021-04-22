@@ -4,7 +4,7 @@ import EnquiriesContext from '../../contexts/EnquiriesContext';
 import CheckedEnquiryBtn from './CheckedEnquiryBtn';
 
 const EnquiriesList = ({enquiries}) => {
-    //const [selected, setSelected] = useState(false);
+
     const context = useContext(EnquiriesContext);
     const [ state ] = context;
 
@@ -14,11 +14,10 @@ const EnquiriesList = ({enquiries}) => {
 
     return (
         <>
-            {state.enquiries.map(enquiry => {
+            <tbody>
+                {state.enquiries.map(enquiry => {
                 const {hotel_id, establishment, firstName, lastName, email, fromDate, toDate} = enquiry;
-              
                 return (
-                    <tbody>
                         <tr key={hotel_id}>
                             <td>
                                 <CheckedEnquiryBtn />
@@ -30,9 +29,9 @@ const EnquiriesList = ({enquiries}) => {
                             <td>{fromDate}</td>
                             <td>{toDate}</td>
                         </tr>
-                    </tbody>
-                )
-            })}
+                        )
+                    })}
+            </tbody>  
         </>
     )
 }

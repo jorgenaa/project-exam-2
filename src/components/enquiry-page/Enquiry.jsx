@@ -1,6 +1,7 @@
 import {useContext, useState, useEffect } from 'react'; 
 import { useParams } from "react-router-dom";
 import {PropTypes} from "prop-types";
+import moment from 'moment';
 
 //Components
 import Row from 'react-bootstrap/Row';
@@ -16,13 +17,38 @@ import BookingDetails from './sidebar/BookingDetails';
 import Price from './sidebar/Price';
 import Summary from './sidebar/Summary';
 
+
 const Enquiry = () => {
+	const [fromDate, setFromDate] = useState("");
+    const [toDate, setToDate] = useState("");
     const [selectedHotel, setSelectedHotel] = useState([]);
-    let { id } = useParams();
     const hotelContext = useContext(HotelContext);
     const [hotels, error, loading] = hotelContext;
-   
+    
+    let { id } = useParams();
     const parsedId = parseInt(id);
+
+    const handleOnDateChangeStart = (startDate) => {
+        const fromdate = startDate.target.value;
+        const start = moment(fromdate).format("DD/MM/YYYY");
+        setFromDate(start);
+    }
+        
+    const handleOnDateChangeEnd = (endDate) => {
+        const todate = endDate.target.value;
+        const end = moment(todate).format("DD/MM/YYYY");
+        setToDate(end);
+    }
+
+    const startDate = fromDate;
+    const endDate = toDate;
+
+    const start = moment(startDate, "DD/MM/YYYY");
+    const end = moment(endDate, "DD/MM/YYYY");
+    const diffDays = moment.duration(end.diff(start)).asDays();
+         
+   
+   
 
     useEffect(() => {
         for(let i = 0; i < hotels.length; i++) {
@@ -33,8 +59,7 @@ const Enquiry = () => {
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-
-
+  
    if(loading) {
     return <LoadingMsg>Loading...</LoadingMsg>
     }
@@ -42,6 +67,8 @@ const Enquiry = () => {
     if(error) {
         return <ErrorMsg>ERROR: {error}</ErrorMsg>
     }
+
+    
 
     return (
         <main className="enquiry">
@@ -55,31 +82,45 @@ const Enquiry = () => {
                             <Overview 
                                 key={parsedId}
                                 image={selectedHotel.imgUrl}
-                                name={selectedHotel.name} 
+                                name={selectedHotel.name}
+                                stars={selectedHotel.stars} 
                                 />
                         </Row>
                         <Row>
                             <EnquiryForm 
-                                    key={parsedId}
-                                    id={parsedId}
-                                    stringId={id}
-                                    name={selectedHotel.name}
-                                     />
+                                key={parsedId}
+                                id={parsedId}
+                                name={selectedHotel.name}
+                                handleOnDateChangeStart={handleOnDateChangeStart}
+                                handleOnDateChangeEnd={handleOnDateChangeEnd}
+                                fromDate={fromDate}
+                                toDate={toDate}
+                            />
                         </Row>
                     </Col>
-                    <Col lg={4} md={5}>
-                        <Sidebar type="sidebar__enquiry">
-                            <div className="sidebar__enquiry-item">
-                                <BookingDetails key={parsedId} />
-                            </div>
-                            <div className="sidebar__enquiry-item">
-                                <Price />
-                                <Summary />
-                            </div>
-                        </Sidebar>
+                    <Col lg={4} md={5} className="p-0">
+                            <Sidebar type="sidebar__enquiry">
+                                    <div className="sidebar__enquiry-item">
+                                        <BookingDetails 
+                                            key={parsedId}
+                                            fromDate={fromDate}
+                                            toDate={toDate}
+                                            roomType={selectedHotel.roomType}
+                                         />
+                                    </div>
+                                    <div className="sidebar__enquiry-item">
+                                        <Price 
+                                            price={selectedHotel.price}
+                                            roomType={selectedHotel.roomType}
+                                            diffDays={diffDays} />
+                                        <Summary
+                                            bookingInc={selectedHotel.bookingIncludes}
+                                             />   
+                                    </div>
+                            </Sidebar>
+                        
                     </Col>
                 </Row>
-             
             </section>
         </main>
     )

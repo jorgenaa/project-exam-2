@@ -1,5 +1,5 @@
 .bookDetails {
-    //width: 100%;
+    margin-top: 0;
     border-radius: 5px;
     margin-bottom: 1rem;
     //border-style: hidden; /* hide standard table (collapsed) border */
@@ -7,26 +7,22 @@
     border-color: #154BA0;
 	
     &--first {
-        max-height: 323px;
+        max-height: 400px;
         height: 100%;
         @include screen("desktop991px") {
            flex: 1;
         }
     }
     &--second {
-        max-height: 160px;
+        max-height: 200px;
         height: 100%;
     }
     &--third {
-        max-height: 207px;
+        max-height: 300px;
         height: 100%;
     }
     
-    &__header-row {
-        height: 50px;
-        background-color: $lightBlue;
-       
-    }
+    
     &__body-row {
         border-style: hide; /* hide standard table (collapsed) border */
         box-shadow: none;
@@ -41,10 +37,13 @@
     &__body-row:nth-child(even) {
         background-color: white;
     }
-   
-
-    &__footer-row {
-        @extend .bookDetails__header-row;
-        //border: 1px solid $blue;
+    &__hd-col {
+        background-color: $lightBlue;
+    }
+    &__col {
+        background-color: $white;
+    }
+    &__ft-col {
+        background-color: $lightBlue;
     }
 }

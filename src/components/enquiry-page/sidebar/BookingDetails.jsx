@@ -1,33 +1,35 @@
-//import React, { useContext } from 'react';
-//import DatesContext from '../DatesContext';
+import moment from 'moment';
 
-
-const BookingDetails = (props) => {
-   // const [dateRange ] = useContext(DatesContext);
-    //const { startDate, endDate } = dateRange;
+const BookingDetails = ({fromDate, toDate, roomType}) => {
   
+    const startDate = fromDate;
+    const endDate = toDate;
+
+    const start = moment(startDate, "DD/MM/YYYY");
+    const end = moment(endDate, "DD/MM/YYYY");
+    const diffDays = moment.duration(end.diff(start)).asDays();
 
     return (
         <>
             <table className="bookDetails bookDetails--first">
                 <thead>
-                    <tr className="bookDetails__header-row">
-                        <th>Your booking details</th>
-                        <th></th>
+                    <tr>
+                        <th className="bookDetails__hd-col">Your booking details</th>
+                        <th className="bookDetails__hd-col"></th>
                     </tr>
                 </thead>
                 <tbody className="bookDetails__body">
                     <tr className="bookDetails__body-row">
-                        <td className="bookDetails__col">Check inn</td>
-                        <td className="bookDetails__col">Check out</td>
+                        <td>Check inn</td>
+                        <td>Check out</td>
                     </tr>
                     <tr>
-                        {/* <th className="bookDetails__col">{startDate}</th>
-                        <th className="bookDetails__col">{endDate}</th> */}
+                        <th>{startDate}</th>
+                        <th>{endDate}</th> 
                     </tr>
                     <tr className="bookDetails__body-row">
-                        <td className="bookDetails__col">Total length of stay</td>
-                        <td></td>
+                        <td>Total length of stay</td>
+                        {diffDays ?<td>{diffDays} nights</td> : ""}
                     </tr>
                     <tr className="bookDetails__body-row">
                         <th></th>
@@ -35,12 +37,13 @@ const BookingDetails = (props) => {
                     </tr>
                     <tr className="bookDetails__body-row">
                         <th>You selected</th>
-                        <th></th>
+                        <th>{roomType}</th>
                     </tr>
                     <tr>
                         <td></td>
                         <td></td>
                     </tr>
+                   
                 </tbody>
             </table> 
         </>

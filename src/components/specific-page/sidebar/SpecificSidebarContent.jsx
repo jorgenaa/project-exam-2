@@ -1,38 +1,31 @@
-import { useEffect, useState } from 'react'; //
+import { useEffect, useState } from 'react'; 
 import { Link } from 'react-router-dom';
-//import {PropTypes} from "prop-types";
+import {PropTypes} from "prop-types";
 
 import Button from '../../common/Button';
 
 const SpecificSidebarContent = ({ id, icons }) => {
-	
 	const [serviceIcon, setServiceIcon] = useState([]);
 	const [revisedIcons, setRevisedIcons] = useState([]);
 
 	useEffect(() => {
-		if (icons) {
-			const allIcons = icons.split(" ");
-			const reviseIconList = allIcons.slice(0, 8);
-			
-			//remove the service icon from the list
-			reviseIconList.splice(2, 1);
-			setRevisedIcons(reviseIconList);
-
-			// add the service icon to a list element
-			const filteredIcon = allIcons.find(icon => {
-				const lowerCaseName = icon.toLowerCase();
-	 
-				if(lowerCaseName.includes("fa-concierge-bell")) {
-					return true
-				}
-					return false;
-			});
-			
-			setServiceIcon(filteredIcon);
-			
-		} else {
-			console.log('icons are undefined', icons);
+		if(icons) {
+			const filteredIcon = icons.filter(icon => icon.name !== "fa-concierge-bell");
+			setRevisedIcons(filteredIcon);
 		}
+		
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
+	useEffect(() => {
+		if(icons) {
+		for(let i = 0; i < icons.length; i++) {
+			if(icons[i].name === "fa-concierge-bell") {
+				setServiceIcon(icons[i]);  
+				break 
+			}
+		}
+	}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
@@ -45,15 +38,15 @@ const SpecificSidebarContent = ({ id, icons }) => {
 				<h4 className="specific__sidebar-title">Facilities</h4>
 
 				<ul className="specific__sidebar__list">
-					{revisedIcons.map((icon, index) => {
+					{revisedIcons.map((icon) => {
 						return (
-							<li key={index} className="specific__sidebar-list-item">
-								<span className={`fa ${icon}`}></span>
+							<li key={icon.id} className="specific__sidebar-list-item">
+								<span className={`fa ${icon.name}`}></span>
 							</li>
 						);
 					})}
 					{serviceIcon ? <li>
-						<span className={`fa ${serviceIcon}`} /> 
+						<span className={`fa ${serviceIcon.name}`} /> 
 						<ul>
 							<li className="specific__list-services-item">- Laundry</li>
 							<li className="specific__list-services-item">
@@ -69,8 +62,8 @@ const SpecificSidebarContent = ({ id, icons }) => {
 		</>
 	);
 };
-// SpecificSidebarContent.propTypes = {
-//     id: PropTypes.number.isRequired,
-// }
+SpecificSidebarContent.propTypes = {
+    id: PropTypes.number.isRequired,
+}
 
 export default SpecificSidebarContent;
