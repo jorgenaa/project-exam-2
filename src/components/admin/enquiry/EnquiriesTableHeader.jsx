@@ -4,15 +4,14 @@ import EnquiriesContext from '../../contexts/EnquiriesContext';
 import { TOGGLE_ALL } from "../../contexts/EnquiriesContext"
 
 const EnquiriesTableHeader = () => {
-    const [allSelected, setAllSelected] = useState(false);
+    const [, setAllSelected] = useState(false);
     const context = useContext(EnquiriesContext);
     const [state, dispatch] = context;
    
     useEffect(() => {
-        setAllSelected(state.allSelected )
-    }, [state.allSelected])
+        setAllSelected(state.allChecked )
+    }, [state.allChecked])
 
-    console.log(allSelected);
 
     const handleToggleAllChecked = () => {
         dispatch({type: TOGGLE_ALL, payload: !state.allChecked })

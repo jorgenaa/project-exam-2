@@ -10,7 +10,7 @@ const EstablishmentsList = () => {
     const [ state ] = context;
 
     if (state.establishments.length === 0) {
-		return <div>No establishments</div>;
+		return <tbody><tr><td>No establishments</td></tr></tbody>;
 	}
 
     return (

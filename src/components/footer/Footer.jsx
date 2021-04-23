@@ -9,21 +9,20 @@ import Container from  'react-bootstrap/Container';
 
 const Footer = () => {
 	
-
 	return <footer className="footer">
 				<Container>
 					<Row>
 						<Col xs={12} sm={6}>
 							<ul className="footer__text">
 								<li>Copyright 2021 – Jørgen Årnes</li>
-								<li class="block">© All Rights Reserved</li>
+								<li>© All Rights Reserved</li>
 							</ul>
 						</Col>
 						<Col xs={12} sm={6}>
 							<ul className="footer__icons">
 								<li className="footer__list-item"><a href="https://www.twitter.com"><FaTwitter className="footer__icon" /></a></li>
 								<li className="footer__list-item"><a href="https://www.facebook.com" ><FaFacebookF className="footer__icon" /></a></li>
-								<li><NavLink to="/contact/"><FiMail className="footer__icon" /></NavLink></li>
+								<li className="footer__list-item"><NavLink to="/contact/"><FiMail className="footer__icon" /></NavLink></li>
 							</ul>
 						</Col>
 					</Row>

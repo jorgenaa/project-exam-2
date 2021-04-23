@@ -4,15 +4,14 @@ import MessagesContext from '../../contexts/MessagesContext';
 import { TOGGLE_ALL } from "../../contexts/MessagesContext"
 
 const InboxTableHeader = () => {
-    const [allSelected, setAllSelected] = useState(false);
+    const [, setAllSelected] = useState(false);
     const context = useContext(MessagesContext);
     const [state, dispatch] = context;
    
     useEffect(() => {
-        setAllSelected(state.allSelected )
-    }, [state.allSelected])
+        setAllSelected(state.allChecked )
+    }, [state.allChecked])
 
-    console.log(allSelected);
 
     const handleToggleAllChecked = () => {
         dispatch({type: TOGGLE_ALL, payload: !state.allChecked })

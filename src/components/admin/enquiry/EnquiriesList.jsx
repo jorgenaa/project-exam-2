@@ -9,18 +9,18 @@ const EnquiriesList = () => {
     const [ state ] = context;
 
     if (state.enquiries.length === 0) {
-            return <div>No enquiries</div>;
+            return <tbody><tr><td>No enquiries</td></tr></tbody>;
         }
 
     return (
         <>
             <tbody>
                 {state.enquiries.map(enquiry => {
-                const {hotel_id, establishment, firstName, lastName, email, fromDate, toDate} = enquiry;
+                const {id, establishment, firstName, lastName, email, fromDate, toDate} = enquiry;
                 return (
-                        <tr key={hotel_id}>
+                        <tr key={id}>
                             <td>
-                                <CheckedEnquiryBtn key={hotel_id} id={hotel_id} />
+                                <CheckedEnquiryBtn key={id} id={id} />
                             </td>
                             <td>{establishment}</td>
                             <td>{firstName}</td>

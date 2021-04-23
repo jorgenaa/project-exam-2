@@ -7,7 +7,7 @@ const MessageList = () => {
   const [ state ] = context;
 
   if (state.users.length === 0) {
-		return <div>No users</div>;
+		return <tbody><tr><td>No users</td></tr></tbody>;
 	}
 
  
@@ -21,7 +21,6 @@ console.log(state.users)
                       <tr key={id} >
                         <td>
                               <CheckedMsgBtn
-                                    key={id}
                                     id={id}
                                     />  
                         </td>
