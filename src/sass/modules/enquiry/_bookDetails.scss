@@ -7,19 +7,20 @@
     border-color: #154BA0;
 	
     &--first {
-        max-height: 400px;
-        height: 100%;
+        height: 292.92px;
+     
+       
         @include screen("desktop991px") {
            flex: 1;
         }
     }
     &--second {
-        max-height: 200px;
-        height: 100%;
+       height: 162px;
+      
     }
     &--third {
-        max-height: 300px;
-        height: 100%;
+        height: 162px;
+        
     }
     
     

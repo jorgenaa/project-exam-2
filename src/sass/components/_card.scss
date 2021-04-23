@@ -2,14 +2,17 @@
 .custom-card {
     border: 1px solid $blue;
     border-radius: 5px;
-    padding: 16px;
+    padding: 1rem;
     display: flex;
     grid-gap: 8px;
     @include screen("mobile") {
         max-width: 500px;
         width: 100%;
         margin: 0 auto;
-          }
+        }
+    @include screen("mobile"){
+        padding: .5rem;
+        }
     &__img {
        flex: 1;
        
@@ -30,10 +33,13 @@
         flex: 2;
         position: relative;
     }
+    &__title-wrapper {
+        display: flex;
+    }
     
     &__title {
         font-size: 1.375em;
-
+        padding-right: 1rem;
         @include screen("mobile") {
             font-size: 1.125em;
         }

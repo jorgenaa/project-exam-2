@@ -4,7 +4,40 @@
         margin: 0;
     }
     
-
+    &__header-section {
+        display: flex;
+        margin: 0 1rem 1rem;
+        align-items: center;
+        @include screen("mobileSm") {
+            margin: 0 1rem .5rem;
+        }
+    }
+    &__heading {
+       display: inline-block;
+       margin-right: 1rem;
+       @include screen("mobile") {
+        font-size:  1.625em;
+      
+    }
+    @include screen("mobileSm") {
+        font-size: 1.375em;
+        text-align: left;
+    }
+    }
+    &__stars {
+        display: inline-block;
+        display: flex;
+        padding-top: .5rem;
+		color: $yellow;
+      
+        @include screen("mobileSm") {
+            flex:1;
+        }
+    }
+    &__star {
+        padding-right: 2px;
+       
+    }
     &__img-section {
         display: flex;
         grid-gap: 1rem;
@@ -42,12 +75,13 @@
           }
         @include screen("mobile") {
             padding: 0;
+            
             }
         }
 
     &__body {
         @include screen("desktop991px") {
-           padding: 0 1rem;
+           //padding: 0 1rem;
          }
     }
 
@@ -101,6 +135,7 @@
         @include screen ("desktop991px") {
             flex: 1;
             flex-direction: column;
+            margin-right: 1rem;
         }
     }
 

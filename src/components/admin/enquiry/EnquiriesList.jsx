@@ -3,13 +3,13 @@ import EnquiriesContext from '../../contexts/EnquiriesContext';
 
 import CheckedEnquiryBtn from './CheckedEnquiryBtn';
 
-const EnquiriesList = ({enquiries}) => {
+const EnquiriesList = () => {
 
     const context = useContext(EnquiriesContext);
     const [ state ] = context;
 
     if (state.enquiries.length === 0) {
-            return <div>No users</div>;
+            return <div>No enquiries</div>;
         }
 
     return (
@@ -20,7 +20,7 @@ const EnquiriesList = ({enquiries}) => {
                 return (
                         <tr key={hotel_id}>
                             <td>
-                                <CheckedEnquiryBtn />
+                                <CheckedEnquiryBtn key={hotel_id} id={hotel_id} />
                             </td>
                             <td>{establishment}</td>
                             <td>{firstName}</td>

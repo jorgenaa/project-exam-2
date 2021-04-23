@@ -37,14 +37,14 @@ const SpecificSidebarContent = ({ id, icons }) => {
 			<div>
 				<h4 className="specific__sidebar-title">Facilities</h4>
 
-				<ul className="specific__sidebar__list">
+				{revisedIcons ?<ul className="specific__sidebar__list">
 					{revisedIcons.map((icon) => {
 						return (
 							<li key={icon.id} className="specific__sidebar-list-item">
 								<span className={`fa ${icon.name}`}></span>
 							</li>
 						);
-					})}
+					})} 
 					{serviceIcon ? <li>
 						<span className={`fa ${serviceIcon.name}`} /> 
 						<ul>
@@ -57,7 +57,7 @@ const SpecificSidebarContent = ({ id, icons }) => {
 							</li>
 						</ul>
 					</li> : ""}
-				</ul>
+				</ul> : ""}
 			</div>
 		</>
 	);

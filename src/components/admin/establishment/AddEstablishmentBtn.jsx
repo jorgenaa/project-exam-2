@@ -1,19 +1,20 @@
-import { useContext } from 'react'; 
+//import { useContext } from 'react'; 
 
 import Button from '../../common/Button';
-import EstablishmentsContext from '../../contexts/EstablishmentsContext';
+//import EstablishmentsContext from '../../contexts/EstablishmentsContext';
 
-const AddEstablishmentBtn = () => {
+const AddEstablishmentBtn = ({handleShow}) => {
    
-    const context = useContext(EstablishmentsContext);
-    const [ addEstablishment, error ] = context;
+    // const context = useContext(EstablishmentsContext);
+    // const [ addEstablishment, error ] = context; //
     
-    const handleAddEstablishment = () => addEstablishment();
+    // const handleAddEstablishment = () => addEstablishment();
 
-    return <Button 
-                handleClick={handleAddEstablishment} 
-                label={!error ? "New establishment" : "Error" } 
+     return <Button 
+                handleClick={handleShow} 
+                // label={!error ? "New establishment" : "Error" } 
                 type="button--blue button--hover" 
+                label="New establishment"
             />
 }
 

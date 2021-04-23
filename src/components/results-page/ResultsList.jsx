@@ -21,11 +21,12 @@ const ResultsList = () => {
         <section className="resultsList">
 			
             	{hotels.map(hotel =>  {
-					const {id, name, description, imgUrl, price} = hotel;
+					const {id, name, stars, description, imgUrl, price} = hotel;
 					
 					return( <CustomCard 
 								id={id}
 								name={name}
+								stars={stars}
 								description={description}
 								image={imgUrl.url}
 								price={price} 

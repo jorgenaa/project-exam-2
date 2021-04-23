@@ -2,13 +2,12 @@ import { useContext, useState, useEffect } from 'react';
 import { PropTypes } from "prop-types";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import Button from '../common/Button';
 
 //Components
 import HotelContext from '../contexts/HotelContext';
 import ErrorMsg from '../common/ErrorMsg';
 import LoadingMsg from '../common/LoadingMsg';
-import SubHeading from '../common/SubHeading';
+import Button from '../common/Button';
 import ContentHeading from '../common/ContentHeading';
 import ImageSection from './images/ImageSection';
 import CarouselSlider from './images/Carousel';
@@ -37,7 +36,7 @@ const Specific = () => {
    }, []);
 
 
-   if(loading) {
+    if(loading) {
         return <LoadingMsg>Loading...</LoadingMsg>
     }
     if(error) {
@@ -46,7 +45,16 @@ const Specific = () => {
 
     return (
             <main className="specific mt-2" key={parsedId}>
-                <SubHeading content={specificHotel.name} />
+            <div className="specific__header-section">
+                <h2 className="specific__heading">{specificHotel.name}</h2>
+                {specificHotel.stars ?<ul className="specific__stars"> 
+                    {specificHotel.stars.map(star => {
+                        return <li key={star.id} className="specific__star">
+                                    <span className={`fas ${star.name}`}></span>
+                                </li>})} 
+                </ul>: ""}
+            </div>
+               
                 <div className="specific__wrapper">
                     <section className="specific__body">
                         <ImageSection 

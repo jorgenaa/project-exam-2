@@ -30,12 +30,13 @@ const Deals = () => {
 			<SubHeading content="Special deals this month" />
 			<div className="deals__hotelList">
 				{hotelResult.map(hotel =>  {
-					const {id, name, description, imgUrl, price} = hotel;
+					const {id, name, stars, description, imgUrl, price} = hotel;
 					return(
 						 <CustomCard 
 						 	key={id}
 							id={id}
 							name={name}
+							stars={stars}
 							description={description}
 							image={imgUrl.url}
 							price={price} 

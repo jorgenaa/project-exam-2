@@ -2,13 +2,17 @@ import { useContext, useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
+import { AiFillCloseCircle } from "react-icons/ai";
+import Modal from 'react-modal';
+
 
 import EstablishmentContext from '../../contexts/EstablishmentsContext';
-import { ERROR, SUCCESS, SUBMITTING } from '../../contexts/EstablishmentsContext'; // 
+import { ERROR, SUCCESS, SUBMITTING } from '../../contexts/EstablishmentsContext'; 
+import Button from '../../common/Button';
 // import ErrorMsg from '../../common/ErrorMsg';
 // import SuccessMsg from '../../common/SuccessMsg';
 
-const EstablishmentForm = () => {
+const EstablishmentForm = ({show, setShow}) => {
     const context = useContext(EstablishmentContext);
     const [  addEstablishment, dispatch ] = context; //
 
@@ -22,10 +26,17 @@ const EstablishmentForm = () => {
         dispatch({type: SUBMITTING})
   // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    const handleClose = () => setShow(false);
     
     return (
-        <section className="w-600px">
+        <Modal isOpen={show} className="Modal Overlay">
             <Form className="form" onSubmit={handleSubmit(addEstablishment)}>
+            <div className="form__header">
+                <h3 className="form__title heading--h3">Add Establishment</h3>
+                <AiFillCloseCircle className="form__close" onClick={handleClose} />
+            </div>
+               
                 <Form.Group >
                     {/* {dispatch({type: ERROR}) && <ErrorMsg>{dispatch({type: 'ERROR'})}</ErrorMsg>}
                     {dispatch({type: SUCCESS}) && <SuccessMsg>Establishment is sent</SuccessMsg>} */}
@@ -59,8 +70,8 @@ const EstablishmentForm = () => {
                     </Col>
                    
                         <Form.Group>
-                            <Form.Label className="form__label">Self catering</Form.Label>
-                            <Form.Control className="form__input" name="selfcatering" type="checkbox" ref={register} /> 
+                            <Form.Label className="form__label ml-2">Self catering</Form.Label>
+                            <input className="form__checkbox" name="selfcatering" type="checkbox" ref={register} /> 
                         </Form.Group>
                   
                 </Form.Row>
@@ -71,12 +82,14 @@ const EstablishmentForm = () => {
                  <Form.Row>
                     <Col sm={6} xs={12}>
                         <Form.Group>
-                            {/* <button className="form__btn">{dispatch({type: SUBMITTING}) ? "Submitting..." : "Submit"}</button>  */}
+                            <Button type="form__btn button--blue button--hover" 
+                                    label="Submit"></Button> 
+                            {/* {dispatch({type: SUBMITTING}) ? "Submitting..." : "Submit"} */}
                         </Form.Group>
                     </Col>
                 </Form.Row>
             </Form>
-        </section>
+        </Modal>
     )
 }
 
