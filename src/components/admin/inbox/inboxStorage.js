@@ -1,15 +1,15 @@
 const localStorageKey = 'message';
 
 export const getExistingMessages = () => {
-    const messages = localStorage.getItem(localStorageKey);
-    
-     if(!messages) {
-         return []; 
-     }else {
-          return JSON.parse(messages);
-     }
- }
+	const messages = localStorage.getItem(localStorageKey);
 
-export const saveMessages = (message) => {
-    localStorage.setItem(localStorageKey, JSON.stringify(message));
-}
+	if (!messages) {
+		return [];
+	} else {
+		return JSON.parse(messages);
+	}
+};
+
+export const saveMessages = message => {
+	localStorage.setItem(localStorageKey, JSON.stringify(message));
+};

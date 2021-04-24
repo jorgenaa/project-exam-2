@@ -1,6 +1,6 @@
-import { useContext } from "react";
-import axios from "axios";
-import AuthContext from "../components/contexts/AuthContext";
+import { useContext } from 'react';
+import axios from 'axios';
+import AuthContext from '../components/contexts/AuthContext';
 import { BASE_URL } from '../constants/api';
 
 const url = BASE_URL;
@@ -14,7 +14,7 @@ export default function useAxios() {
 
 	apiClient.interceptors.request.use(function (config) {
 		const token = auth.token;
-		config.headers.Authorization = token ? `Bearer ${token}` : "";
+		config.headers.Authorization = token ? `Bearer ${token}` : '';
 		return config;
 	});
 

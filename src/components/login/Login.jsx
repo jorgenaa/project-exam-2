@@ -1,5 +1,4 @@
-
-import LoginForm from "./LoginForm";
+import LoginForm from './LoginForm';
 import SubHeading from '../common/SubHeading';
 
 export default function Login() {

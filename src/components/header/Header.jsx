@@ -8,7 +8,7 @@ const Header = () => {
 		<header className="header">
 			<div className="header__layout">
 				<Logo />
-			
+
 				<Nav />
 			</div>
 		</header>

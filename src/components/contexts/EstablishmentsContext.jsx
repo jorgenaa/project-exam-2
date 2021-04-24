@@ -1,22 +1,22 @@
-import { createContext, useReducer, useEffect, useState } from "react"; 
-import axios from "axios";
-import { BASE_URL, HOTEL_PATH } from '../../constants/api'; 
-import useAxios from "../../hooks/useAxios";
+import { createContext, useReducer, useEffect, useState } from 'react';
+import axios from 'axios';
+import { BASE_URL, HOTEL_PATH } from '../../constants/api';
+import useAxios from '../../hooks/useAxios';
 //import { getAuth } from '../../localStorage/getLocalStorage';
 
 const EstablishmentsContext = createContext();
 
-export const STORE_ESTABLISHMENT = "STORE_ESTABLISHMENT";
-export const SUCCESS = "SUCCESS"
-export const ERROR = "ERROR";
-export const SUBMITTING = "SUBMITTING";
-export const SUBMITTED = "SUBMITTED";
-export const ADD_ESTABLISHMENT = "ADD_ESTABLISHMENT";
-export const REMOVE_ESTABLISHMENT = "REMOVE_ESTABLISHMENT";
-export const TOGGLE_ALL = "TOGGLE_ALL";
-export const ADD_ID = "ADD_ID";
-export const REMOVE_ID = "REMOVE_ID";
-export const TOGGLE_DELETING = "TOGGLE_DELETING";
+export const STORE_ESTABLISHMENT = 'STORE_ESTABLISHMENT';
+export const SUCCESS = 'SUCCESS';
+export const ERROR = 'ERROR';
+export const SUBMITTING = 'SUBMITTING';
+export const SUBMITTED = 'SUBMITTED';
+export const ADD_ESTABLISHMENT = 'ADD_ESTABLISHMENT';
+export const REMOVE_ESTABLISHMENT = 'REMOVE_ESTABLISHMENT';
+export const TOGGLE_ALL = 'TOGGLE_ALL';
+export const ADD_ID = 'ADD_ID';
+export const REMOVE_ID = 'REMOVE_ID';
+export const TOGGLE_DELETING = 'TOGGLE_DELETING';
 
 const initialState = {
 	establishments: [],
@@ -24,7 +24,7 @@ const initialState = {
 	checkedIds: [],
 	deleting: false,
 	successMsg: false,
-	serverError: null
+	serverError: null,
 };
 
 function reducer(state, action) {
@@ -32,34 +32,49 @@ function reducer(state, action) {
 		case STORE_ESTABLISHMENT:
 			return { ...state, establishments: action.payload };
 		case SUBMITTING: {
-			return {...state, submitting: true}
+			return { ...state, submitting: true };
 		}
 		case SUBMITTED: {
-			return{...state, submitting: false}
+			return { ...state, submitting: false };
 		}
 		case ERROR: {
-			return { ...state, 
-					serverError: action.payload,
-					successMsg: false
-			}
+			return { ...state, serverError: action.payload, successMsg: false };
 		}
 		case SUCCESS: {
-            return { ...state, 
-                    successMsg: true,   
-				}
-        }
+			return { ...state, successMsg: true };
+		}
 		case ADD_ESTABLISHMENT:
-			return { ...state, establishments: [...state.establishments, action.payload] };
+			return {
+				...state,
+				establishments: [...state.establishments, action.payload],
+			};
 		case REMOVE_ESTABLISHMENT:
-			return { ...state, establishments: state.establishments.filter((u) => u.id !== action.payload) };
+			return {
+				...state,
+				establishments: state.establishments.filter(
+					u => u.id !== action.payload
+				),
+			};
 		case TOGGLE_ALL:
-			return { ...state, allChecked: !state.allChecked, checkedIds: action.payload ? state.establishments.map((u) => u.id) : [] };
+			return {
+				...state,
+				allChecked: !state.allChecked,
+				checkedIds: action.payload ? state.establishments.map(u => u.id) : [],
+			};
 		case ADD_ID:
-			console.log("ADD action.payload", action.payload);
-			return { ...state, allChecked: state.checkedIds.length + 1 === state.establishments.length, checkedIds: [...state.checkedIds, action.payload] };
+			console.log('ADD action.payload', action.payload);
+			return {
+				...state,
+				allChecked: state.checkedIds.length + 1 === state.establishments.length,
+				checkedIds: [...state.checkedIds, action.payload],
+			};
 		case REMOVE_ID:
-			console.log("REMOVE action.payload", action.payload);
-			return { ...state, allChecked: false, checkedIds: state.checkedIds.filter((i) => i !== action.payload) };
+			console.log('REMOVE action.payload', action.payload);
+			return {
+				...state,
+				allChecked: false,
+				checkedIds: state.checkedIds.filter(i => i !== action.payload),
+			};
 		case TOGGLE_DELETING:
 			return { ...state, deleting: !state.deleting };
 		default:
@@ -67,14 +82,13 @@ function reducer(state, action) {
 	}
 }
 
-export const EstablishmentsProvider = (props) => {
+export const EstablishmentsProvider = props => {
 	const [state, dispatch] = useReducer(reducer, initialState);
 	const [error, setError] = useState(null);
-	
+
 	const http = useAxios();
-    const url = BASE_URL + HOTEL_PATH;
-	
-	
+	const url = BASE_URL + HOTEL_PATH;
+
 	//const token = getAuth();
 
 	async function getEstablishments() {
@@ -87,34 +101,32 @@ export const EstablishmentsProvider = (props) => {
 			setError(error.toString());
 		}
 	}
-	
+
 	useEffect(() => {
-		getEstablishments()
-	
-	  // eslint-disable-next-line react-hooks/exhaustive-deps
-}, []);
+		getEstablishments();
+
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	async function addEstablishment(data) {
-		data.status = "publish";
+		data.status = 'publish';
 
 		try {
 			const response = await http.post(url, data);
 			dispatch({ type: ADD_ESTABLISHMENT, payload: response.data });
-			dispatch({type: SUCCESS})
-			setTimeout(()=> {
-                dispatch({type: SUBMITTED})
-            }, 1500)
-		} catch (error){
-			dispatch({type: ERROR, payload: error.toString()})
-			dispatch({type: SUBMITTED})
+			dispatch({ type: SUCCESS });
+			setTimeout(() => {
+				dispatch({ type: SUBMITTED });
+			}, 1500);
+		} catch (error) {
+			dispatch({ type: ERROR, payload: error.toString() });
+			dispatch({ type: SUBMITTED });
 		} finally {
-			dispatch({type: SUBMITTED})
+			dispatch({ type: SUBMITTED });
 		}
-
 	}
 
 	async function deleteEstablishment() {
-		
 		dispatch({ type: TOGGLE_DELETING });
 
 		for (let i = 0; i < state.checkedIds.length; i++) {
@@ -128,7 +140,13 @@ export const EstablishmentsProvider = (props) => {
 		dispatch({ type: TOGGLE_DELETING });
 	}
 
-	return <EstablishmentsContext.Provider value={[state, dispatch, deleteEstablishment, addEstablishment, error]}>{props.children}</EstablishmentsContext.Provider>;
+	return (
+		<EstablishmentsContext.Provider
+			value={[state, dispatch, deleteEstablishment, addEstablishment, error]}
+		>
+			{props.children}
+		</EstablishmentsContext.Provider>
+	);
 };
 
 export default EstablishmentsContext;

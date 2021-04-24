@@ -1,10 +1,5 @@
-
-const TwoColumns = ({children}) => {
-    return (
-        <section className="columns columns--two">
-            {children}
-        </section>
-    )
-}
+const TwoColumns = ({ children }) => {
+	return <section className="columns columns--two">{children}</section>;
+};
 
 export default TwoColumns;

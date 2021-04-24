@@ -1,13 +1,11 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 const SuccessMsg = ({ children }) => {
-    return (
-       <p className="form__message form__message--success">{children}</p>
-    );
-}
+	return <p className="form__message form__message--success">{children}</p>;
+};
 
 SuccessMsg.proptTypes = {
-    children: PropTypes.node.isRequired,
-}
+	children: PropTypes.node.isRequired,
+};
 
 export default SuccessMsg;
