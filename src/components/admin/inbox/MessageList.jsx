@@ -25,7 +25,7 @@ console.log(state.users)
                                     />  
                         </td>
                         <td>{clientName}</td>
-                          <td>{email}</td>
+                        <td>{email}</td>
                         <td>{message}</td>
                     </tr> 
                   )

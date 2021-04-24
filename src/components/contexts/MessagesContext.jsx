@@ -18,6 +18,7 @@ const initialState = {
 };
 
 function reducer(state, action) {
+
 	switch (action.type) {
 		case STORE_USERS:
 			return { ...state, users: action.payload };
@@ -59,20 +60,42 @@ export const MessagesProvider = (props) => {
 	
 	  // eslint-disable-next-line react-hooks/exhaustive-deps
 }, []);
+	
+async function deleteUsers(){
+	dispatch({ type: TOGGLE_DELETING });
 
-	async function deleteUsers() {
-		dispatch({ type: TOGGLE_DELETING });
-
-		for (let i = 0; i < state.checkedIds.length; i++) {
-			const id = state.checkedIds[i];
-
-			await axios.delete(url + id);
-			dispatch({ type: REMOVE_USER, payload: id });
-			dispatch({ type: REMOVE_ID, payload: id });
+	for (let i = 0; i < state.checkedIds.length; i++) {
+		const id = state.checkedIds[i];
+  
+		let res = await axios.delete(url + id);
+		 const { status } = res;
+		 console.log(status)
+		 if(status === 200) 
+		{
+		dispatch({ type: REMOVE_USER, payload: res.data.id });
+		dispatch({ type: REMOVE_ID, payload: res.data.id });
 		}
-
-		dispatch({ type: TOGGLE_DELETING });
+	  }
+  
+	  dispatch({ type: TOGGLE_DELETING });
 	}
+
+
+	// async function deleteUsers() {
+	// 	dispatch({ type: TOGGLE_DELETING });
+
+	// 	for (let i = 0; i < state.checkedIds.length; i++) {
+	// 		const id = state.checkedIds[i];
+	// 		await axios.delete(url + id);
+			
+	// 		dispatch({ type: REMOVE_USER, payload: id });
+	// 		dispatch({ type: REMOVE_ID, payload: id });
+			
+			
+	// 	}
+
+	// 	dispatch({ type: TOGGLE_DELETING });
+	// }
 
 	return <MessagesContext.Provider value={[state, dispatch, deleteUsers, error]}>{props.children}</MessagesContext.Provider>;
 };

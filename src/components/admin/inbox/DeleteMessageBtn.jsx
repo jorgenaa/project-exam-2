@@ -3,6 +3,7 @@ import { useState, useContext, useEffect } from 'react';
 import { IoTrashBin } from 'react-icons/io5';
 import Button from '../../common/Button';
 import MessageContext from '../../contexts/MessagesContext';
+//import {REMOVE_USER, REMOVE_ID, TOGGLE_DELETING} from '../../contexts/MessagesContext';
 
 const DeleteMessageBtn = () => {
     const [visible, setVisible] = useState(false);
@@ -15,6 +16,8 @@ const DeleteMessageBtn = () => {
     }, [state.checkedIds.length]);
     
     const handleDeleteUsers = () => deleteUsers();
+
+    
 
     return (
         <>
