@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { PropTypes } from 'prop-types';
 import { Link } from 'react-router-dom';
 
-
 import Button from '../../common/Button';
 import ContentHeading from '../../common/ContentHeading';
 import FacilitiesMobileView from './mobileView/FacilitiesMobileView';

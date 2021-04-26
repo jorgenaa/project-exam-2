@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 //import {PropTypes} from "prop-types";
 
@@ -6,23 +6,27 @@ import { Link } from 'react-router-dom';
 import SubHeading from '../common/SubHeading';
 import CustomCard from '../common/Card';
 import Button from '../common/Button';
-import HotelContext from '../contexts/HotelContext';
+import EstablishmentContext from '../contexts/EstablishmentsContext';
 import ErrorMsg from '../common/ErrorMsg';
 import LoadingMsg from '../common/LoadingMsg';
 
 const Deals = () => {
 	const specialDealId = 3;
-	const hotelContext = useContext(HotelContext);
-	const [hotels, loading, error] = hotelContext;
+	const establishmentContext = useContext(EstablishmentContext);
+	const [state ] = establishmentContext; 
 
 	//Return max 4 hotels from array
-	const hotelResult = hotels.slice(0, 4);
+	const hotelResult = state.establishments.slice(0, 4);
 
-	if (loading) {
+useEffect(() => {
+	
+}, [state.loading, state.serverError]);
+
+	if (state.loading) {
 		return <LoadingMsg>Loading...</LoadingMsg>;
 	}
-	if (error) {
-		return <ErrorMsg>ERROR: {error}</ErrorMsg>;
+	if (state.serverError) {
+		return <ErrorMsg>ERROR: {state.serverError}</ErrorMsg>;
 	}
 
 	return (

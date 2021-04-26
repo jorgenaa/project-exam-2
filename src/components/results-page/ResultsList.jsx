@@ -4,22 +4,23 @@ import { useContext } from 'react';
 import ErrorMsg from '../common/ErrorMsg';
 import LoadingMsg from '../common/LoadingMsg';
 import CustomCard from '../common/Card';
-import HotelContext from '../contexts/HotelContext';
+import EstablishmentContext from '../contexts/EstablishmentsContext';
 
 const ResultsList = () => {
-	const hotelContext = useContext(HotelContext);
-	const [hotels, loading, error] = hotelContext;
+	
+	const establishmentContext = useContext(EstablishmentContext);
+	const [state ] = establishmentContext; 
 
-	if (loading) {
+	if (state.loading) {
 		return <LoadingMsg>Loading...</LoadingMsg>;
 	}
-	if (error) {
-		return <ErrorMsg>ERROR: {error}</ErrorMsg>;
+	if (state.serverError) {
+		return <ErrorMsg>ERROR: {state.serverError}</ErrorMsg>;
 	}
 
 	return (
 		<section className="resultsList">
-			{hotels.map(hotel => {
+			{state.establishments.map(hotel => {
 				const { id, name, stars, description, imgUrl, price } = hotel;
 
 				return (

@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 //import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -9,8 +9,8 @@ import { AiFillCloseCircle } from 'react-icons/ai';
 
 import EstablishmentContext from '../../contexts/EstablishmentsContext';
 import {
-	ERROR,
-	SUCCESS,
+	// ERROR,
+	// SUCCESS,
 	//SUBMITTING,
 	ADD_ESTABLISHMENT
 } from '../../contexts/EstablishmentsContext';
@@ -29,15 +29,8 @@ const EstablishmentForm = ({ show, setShow }) => {
 	const handleAddEstablishment = (data) => {
 		addEstablishment(data);
 		dispatch({ type: ADD_ESTABLISHMENT, payload: data });
-
+		
 	} 
-
-	useEffect(() => {
-		dispatch({ type: ERROR });
-		dispatch({ type: SUCCESS });
-		//dispatch({ type: SUBMITTING });
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
 
 	const handleClose = () => setShow(false);
 

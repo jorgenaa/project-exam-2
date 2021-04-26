@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 //Components
-import HotelContext from '../contexts/HotelContext';
+import EstablishmentContext from '../contexts/EstablishmentsContext';
 import ErrorMsg from '../common/ErrorMsg';
 import LoadingMsg from '../common/LoadingMsg';
 import Button from '../common/Button';
@@ -20,26 +20,26 @@ import SpecificSidebarContent from './sidebar/SpecificSidebarContent';
 const Specific = () => {
 	const [specificHotel, setSpecificHotel] = useState([]);
 	const { id } = useParams();
-	const hotelContext = useContext(HotelContext);
-	const [hotels, error, loading] = hotelContext;
+	const establishmentContext = useContext(EstablishmentContext);
+	const [state ] = establishmentContext; 
 
 	const parsedId = parseInt(id);
-
+console.log(state.establishments)
 	useEffect(() => {
-		for (let i = 0; i < hotels.length; i++) {
-			if (hotels[i].id === parsedId) {
-				setSpecificHotel(hotels[i]);
+		for (let i = 0; i < state.establishments.length; i++) {
+			if (state.establishments[i].id === parsedId) {
+				setSpecificHotel(state.establishments[i]);
 				break;
 			}
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
-	if (loading) {
+	if (state.loading) {
 		return <LoadingMsg>Loading...</LoadingMsg>;
 	}
-	if (error) {
-		return <ErrorMsg>ERROR: {error}</ErrorMsg>;
+	if (state.serverError) {
+		return <ErrorMsg>ERROR: {state.serverError}</ErrorMsg>;
 	}
 
 	return (
