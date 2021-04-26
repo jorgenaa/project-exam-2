@@ -1,15 +1,18 @@
 import { useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+//import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import { AiFillCloseCircle } from 'react-icons/ai';
-import Modal from 'react-modal';
+//import Modal from 'react-modal';
 
 import EstablishmentContext from '../../contexts/EstablishmentsContext';
 import {
 	ERROR,
 	SUCCESS,
-	SUBMITTING,
+	//SUBMITTING,
+	ADD_ESTABLISHMENT
 } from '../../contexts/EstablishmentsContext';
 import Button from '../../common/Button';
 // import ErrorMsg from '../../common/ErrorMsg';
@@ -19,31 +22,37 @@ const EstablishmentForm = ({ show, setShow }) => {
 	const context = useContext(EstablishmentContext);
 	const [addEstablishment, dispatch] = context; //
 
-	const { register, handleSubmit } = useForm();
+	const { register, handleSubmit } = useForm({
+		resolver: yupResolver(),
+	});
 
-	//const handleAddEstablishment = () => addEstablishment();
+	const handleAddEstablishment = (data) => {
+		addEstablishment(data);
+		dispatch({ type: ADD_ESTABLISHMENT, payload: data });
+
+	} 
 
 	useEffect(() => {
 		dispatch({ type: ERROR });
 		dispatch({ type: SUCCESS });
-		dispatch({ type: SUBMITTING });
+		//dispatch({ type: SUBMITTING });
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const handleClose = () => setShow(false);
 
 	return (
-		<Modal isOpen={show} className="Modal Overlay">
-			<Form className="form" onSubmit={handleSubmit(addEstablishment)}>
+		// <Modal isOpen={show} className="Modal Overlay">
+			<Form className="form" onSubmit={handleSubmit(handleAddEstablishment)}>
 				<div className="form__header">
 					<h3 className="form__title heading--h3">Add Establishment</h3>
 					<AiFillCloseCircle className="form__close" onClick={handleClose} />
 				</div>
 
-				<Form.Group>
-					{/* {dispatch({type: ERROR}) && <ErrorMsg>{dispatch({type: 'ERROR'})}</ErrorMsg>}
-                    {dispatch({type: SUCCESS}) && <SuccessMsg>Establishment is sent</SuccessMsg>} */}
-				</Form.Group>
+				{/* <Form.Group>
+					{dispatch({type: ERROR}) && <ErrorMsg>{dispatch({type: 'ERROR'})}</ErrorMsg>}
+                    {dispatch({type: SUCCESS}) && <SuccessMsg>Establishment is sent</SuccessMsg>}
+				</Form.Group> */}
 				<Form.Row>
 					<Col lg={6} md={6} sm={6} xs={12}>
 						<Form.Group>
@@ -122,7 +131,7 @@ const EstablishmentForm = ({ show, setShow }) => {
 					</Col>
 				</Form.Row>
 			</Form>
-		</Modal>
+		// </Modal>
 	);
 };
 

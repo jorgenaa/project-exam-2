@@ -74,12 +74,13 @@ table {
 	border-spacing: 0;
 	width: 100%;
 	margin-top: 1rem;
+	
 }
 
 tbody {
 	border-style: hidden; /* hide standard table (collapsed) border */
 	box-shadow: 0 0 0 1px #154BA0;
-	//border-bottom: 1px solid #154BA0;
+	border-bottom: 1px solid #154BA0;
 }
 
 th {

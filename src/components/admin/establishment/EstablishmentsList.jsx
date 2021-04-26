@@ -1,12 +1,7 @@
-import { useContext } from 'react';
+import { IoTrashBinSharp } from 'react-icons/io5';
 
-import EstablishmentsContext from '../../contexts/EstablishmentsContext';
-import CheckedEstablishBtn from './CheckedEstablishBtn';
-
-const EstablishmentsList = () => {
-	const context = useContext(EstablishmentsContext);
-	const [state] = context;
-
+const EstablishmentsList = ({REMOVE_ESTABLISHMENT, state, dispatch, deleteEstablishment}) => {
+	
 	if (state.establishments.length === 0) {
 		return (
 			<tbody>
@@ -16,6 +11,11 @@ const EstablishmentsList = () => {
 			</tbody>
 		);
 	}
+
+	const handleDeleteEstablishment = id => {
+		deleteEstablishment(id);
+		dispatch({ type: REMOVE_ESTABLISHMENT, payload: id });
+	};
 
 	return (
 		<tbody>
@@ -33,7 +33,10 @@ const EstablishmentsList = () => {
 				return (
 					<tr key={id}>
 						<td>
-							<CheckedEstablishBtn key={id} id={id} />
+							<IoTrashBinSharp
+								className="table__trash table__trash--hover"
+								onClick={() => handleDeleteEstablishment(id)}
+							/>
 						</td>
 						<td>{name}</td>
 						<td>{email}</td>

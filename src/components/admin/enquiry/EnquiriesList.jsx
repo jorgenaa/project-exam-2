@@ -1,11 +1,7 @@
-import { useContext } from 'react';
-import EnquiriesContext from '../../contexts/EnquiriesContext';
+import { IoTrashBinSharp } from 'react-icons/io5';
 
-import CheckedEnquiryBtn from './CheckedEnquiryBtn';
 
-const EnquiriesList = () => {
-	const context = useContext(EnquiriesContext);
-	const [state] = context;
+const EnquiriesList = ({ state, dispatch, deleteEnquiries, REMOVE_ENQUIRY  }) => {
 
 	if (state.enquiries.length === 0) {
 		return (
@@ -16,6 +12,11 @@ const EnquiriesList = () => {
 			</tbody>
 		);
 	}
+
+	const handleEnqury = id => {
+		deleteEnquiries(id);
+		dispatch({ type: REMOVE_ENQUIRY, payload: id });
+	};
 
 	return (
 		<>
@@ -33,7 +34,10 @@ const EnquiriesList = () => {
 					return (
 						<tr key={id}>
 							<td>
-								<CheckedEnquiryBtn key={id} id={id} />
+								<IoTrashBinSharp
+									className="table__trash table__trash--hover"
+									onClick={() => handleEnqury(id)}
+								/>
 							</td>
 							<td>{establishment}</td>
 							<td>{firstName}</td>

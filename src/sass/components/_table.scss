@@ -1,6 +1,15 @@
- .table {
-     &__section {
-        overflow-x: auto;
-     }
- }
- 
+.table {
+	&__section {
+		overflow-x: auto;
+	}
+	&__trash {
+		color: $red;
+		font-size: 22px;
+		cursor: pointer;
+		&--hover {
+			&:hover {
+				opacity: 0.8;
+			}
+		}
+	}
+}

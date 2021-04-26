@@ -1,28 +1,15 @@
-import { useEffect, useContext, useState } from 'react';
-
+import { useContext } from 'react';
 import MessagesContext from '../../contexts/MessagesContext';
-import { TOGGLE_ALL } from '../../contexts/MessagesContext';
 
 const InboxTableHeader = () => {
-	const [, setAllSelected] = useState(false);
 	const context = useContext(MessagesContext);
-	const [state, dispatch] = context;
-
-	useEffect(() => {
-		setAllSelected(state.allChecked);
-	}, [state.allChecked]);
-
-	const handleToggleAllChecked = () => {
-		dispatch({ type: TOGGLE_ALL, payload: !state.allChecked });
-	};
+	const [state] = context;
 
 	return (
 		<thead>
-			{state.users.length > 0 ? (
+			{state.messages.length > 0 ? (
 				<tr>
-					<th>
-						<input type="checkbox" onClick={handleToggleAllChecked} />
-					</th>
+					<th>Delete</th>
 					<th>Name</th>
 					<th>Email</th>
 					<th>Message</th>

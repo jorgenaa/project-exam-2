@@ -6,16 +6,9 @@ const EnquiriesContext = createContext();
 
 export const STORE_ENQUIRY = 'STORE_ENQUIRY';
 export const REMOVE_ENQUIRY = 'REMOVE_ENQUIRY';
-export const TOGGLE_ALL = 'TOGGLE_ALL';
-export const ADD_ID = 'ADD_ID';
-export const REMOVE_ID = 'REMOVE_ID';
-export const TOGGLE_DELETING = 'TOGGLE_DELETING';
 
 const initialState = {
 	enquiries: [],
-	allChecked: false,
-	checkedIds: [],
-	deleting: false,
 };
 
 function reducer(state, action) {
@@ -27,28 +20,6 @@ function reducer(state, action) {
 				...state,
 				enquiries: state.enquiries.filter(u => u.id !== action.payload),
 			};
-		case TOGGLE_ALL:
-			return {
-				...state,
-				allChecked: !state.allChecked,
-				checkedIds: action.payload ? state.enquiries.map(u => u.id) : [],
-			};
-		case ADD_ID:
-			console.log('ADD action.payload', action.payload);
-			return {
-				...state,
-				allChecked: state.checkedIds.length + 1 === state.enquiries.length,
-				checkedIds: [...state.checkedIds, action.payload],
-			};
-		case REMOVE_ID:
-			console.log('REMOVE action.payload', action.payload);
-			return {
-				...state,
-				allChecked: false,
-				checkedIds: state.checkedIds.filter(i => i !== action.payload),
-			};
-		case TOGGLE_DELETING:
-			return { ...state, deleting: !state.deleting };
 		default:
 			throw new Error();
 	}
@@ -76,19 +47,15 @@ export const EnquiriesProvider = props => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
-	async function deleteEnquiries() {
-		dispatch({ type: TOGGLE_DELETING });
+	async function deleteEnquiries(id) {
+		let res = await axios.delete(url + id);
+		const { status } = res;
 
-		for (let i = 0; i < state.checkedIds.length; i++) {
-			const id = state.checkedIds[i];
-
-			await axios.delete(url + id);
+		if (status === 200) {
 			dispatch({ type: REMOVE_ENQUIRY, payload: id });
-			dispatch({ type: REMOVE_ID, payload: id });
 		}
-
-		dispatch({ type: TOGGLE_DELETING });
 	}
+
 
 	return (
 		<EnquiriesContext.Provider

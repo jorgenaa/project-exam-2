@@ -7,24 +7,20 @@ import useAxios from '../../hooks/useAxios';
 const EstablishmentsContext = createContext();
 
 export const STORE_ESTABLISHMENT = 'STORE_ESTABLISHMENT';
+export const ADD_ESTABLISHMENT = 'ADD_ESTABLISHMENT';
+export const REMOVE_ESTABLISHMENT = 'REMOVE_ESTABLISHMENT';
 export const SUCCESS = 'SUCCESS';
 export const ERROR = 'ERROR';
 export const SUBMITTING = 'SUBMITTING';
 export const SUBMITTED = 'SUBMITTED';
-export const ADD_ESTABLISHMENT = 'ADD_ESTABLISHMENT';
-export const REMOVE_ESTABLISHMENT = 'REMOVE_ESTABLISHMENT';
-export const TOGGLE_ALL = 'TOGGLE_ALL';
-export const ADD_ID = 'ADD_ID';
-export const REMOVE_ID = 'REMOVE_ID';
-export const TOGGLE_DELETING = 'TOGGLE_DELETING';
+
+
 
 const initialState = {
 	establishments: [],
-	allChecked: false,
-	checkedIds: [],
-	deleting: false,
 	successMsg: false,
 	serverError: null,
+	
 };
 
 function reducer(state, action) {
@@ -44,10 +40,8 @@ function reducer(state, action) {
 			return { ...state, successMsg: true };
 		}
 		case ADD_ESTABLISHMENT:
-			return {
-				...state,
-				establishments: [...state.establishments, action.payload],
-			};
+			return {...state, establishments: action.payload};
+			
 		case REMOVE_ESTABLISHMENT:
 			return {
 				...state,
@@ -55,28 +49,6 @@ function reducer(state, action) {
 					u => u.id !== action.payload
 				),
 			};
-		case TOGGLE_ALL:
-			return {
-				...state,
-				allChecked: !state.allChecked,
-				checkedIds: action.payload ? state.establishments.map(u => u.id) : [],
-			};
-		case ADD_ID:
-			console.log('ADD action.payload', action.payload);
-			return {
-				...state,
-				allChecked: state.checkedIds.length + 1 === state.establishments.length,
-				checkedIds: [...state.checkedIds, action.payload],
-			};
-		case REMOVE_ID:
-			console.log('REMOVE action.payload', action.payload);
-			return {
-				...state,
-				allChecked: false,
-				checkedIds: state.checkedIds.filter(i => i !== action.payload),
-			};
-		case TOGGLE_DELETING:
-			return { ...state, deleting: !state.deleting };
 		default:
 			throw new Error();
 	}
@@ -109,35 +81,32 @@ export const EstablishmentsProvider = props => {
 	}, []);
 
 	async function addEstablishment(data) {
-		data.status = 'publish';
+		//data.status = 'publish';
 
 		try {
 			const response = await http.post(url, data);
+			console.log(response.data)
 			dispatch({ type: ADD_ESTABLISHMENT, payload: response.data });
-			dispatch({ type: SUCCESS });
-			setTimeout(() => {
-				dispatch({ type: SUBMITTED });
-			}, 1500);
+			// dispatch({ type: SUCCESS });
+			// setTimeout(() => {
+			// 	dispatch({ type: SUBMITTED });
+			// }, 1500);
 		} catch (error) {
-			dispatch({ type: ERROR, payload: error.toString() });
-			dispatch({ type: SUBMITTED });
+			console.log(error)
+			// dispatch({ type: ERROR, payload: error.toString() });
+			// dispatch({ type: SUBMITTED });
 		} finally {
 			dispatch({ type: SUBMITTED });
 		}
 	}
 
-	async function deleteEstablishment() {
-		dispatch({ type: TOGGLE_DELETING });
+	async function deleteEstablishment(id) {
+		let res = await axios.delete(url + id);
+		const { status } = res;
 
-		for (let i = 0; i < state.checkedIds.length; i++) {
-			const id = state.checkedIds[i];
-
-			await axios.delete(url + id);
+		if (status === 200) {
 			dispatch({ type: REMOVE_ESTABLISHMENT, payload: id });
-			dispatch({ type: REMOVE_ID, payload: id });
 		}
-
-		dispatch({ type: TOGGLE_DELETING });
 	}
 
 	return (

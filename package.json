@@ -15,7 +15,6 @@
     "react": "^16.1.1",
     "react-bootstrap": "^1.5.2",
     "react-bootstrap-typeahead": "^5.1.4",
-    "react-dates": "^21.8.0",
     "react-dom": "^16.1.1",
     "react-hook-form": "^6.15.2",
     "react-icons": "^4.2.0",

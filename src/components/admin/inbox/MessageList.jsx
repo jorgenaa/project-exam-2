@@ -1,31 +1,33 @@
-import { useContext } from 'react';
-import CheckedMsgBtn from './CheckedMsgBtn';
-import MessagesContext from '../../contexts/MessagesContext';
+import { IoTrashBinSharp } from 'react-icons/io5';
 
-const MessageList = () => {
-	const context = useContext(MessagesContext);
-	const [state] = context;
-
-	if (state.users.length === 0) {
+const MessageList = ({ state, dispatch, deleteMessages, REMOVE_MESSAGES  }) => {
+	if (state.messages.length === 0) {
 		return (
 			<tbody>
 				<tr>
-					<td>No users</td>
+					<td>No messages</td>
 				</tr>
 			</tbody>
 		);
 	}
 
-	console.log(state.users);
+	const handleDeleteMessage = id => {
+		deleteMessages(id);
+		dispatch({ type: REMOVE_MESSAGES, payload: id });
+	};
+
 	return (
 		<tbody>
-			{state.users.map(user => {
-				const { clientName, email, message, id } = user;
+			{state.messages.map(msg => {
+				const { clientName, email, message, id } = msg;
 
 				return (
 					<tr key={id}>
 						<td>
-							<CheckedMsgBtn id={id} />
+							<IoTrashBinSharp
+								className="table__trash table__trash--hover"
+								onClick={() => handleDeleteMessage(id)}
+							/>
 						</td>
 						<td>{clientName}</td>
 						<td>{email}</td>

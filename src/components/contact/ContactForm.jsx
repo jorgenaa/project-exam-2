@@ -30,7 +30,7 @@ const ContactForm = () => {
 	//const http = useAxios();
 	const url = BASE_URL + INBOX_PATH;
 
-	const { register, handleSubmit, errors } = useForm({
+	const { register, handleSubmit, errors, reset  } = useForm({
 		resolver: yupResolver(schema),
 	});
 
@@ -42,10 +42,13 @@ const ContactForm = () => {
 			const response = await axios.post(url, data);
 			console.log(response.data);
 			setSuccessMsg(true);
-			if (response.ok) {
+			const { status } = response;
+			if (status === 200){
 				setTimeout(() => {
 					setSuccessMsg(false);
-				}, 1500);
+					reset(response);
+				}, 1000);
+			
 			}
 		} catch (error) {
 			console.log('error', error);
@@ -53,6 +56,7 @@ const ContactForm = () => {
 		} finally {
 			setSubmitting(false);
 		}
+		
 	}
 
 	return (

@@ -46,7 +46,7 @@ const EnquiryForm = ({ id, name, fromDate, toDate, handleOnDateChangeStart, hand
    
     const url = BASE_URL + ENQUIRIES_PATH;
 
-    const { register, handleSubmit, errors } = useForm({ 
+    const { register, handleSubmit, errors, reset } = useForm({ 
 		resolver: yupResolver(schema),
 	});
 
@@ -61,9 +61,13 @@ const EnquiryForm = ({ id, name, fromDate, toDate, handleOnDateChangeStart, hand
         try {
             const response = await axios.post(url, data);
             console.log("response", response.data);
-            setTimeout(()=> {
-                setSuccessMsg(false)
-                }, 2500)
+            const { status } = response;
+			if (status === 200){
+				setTimeout(() => {
+					setSuccessMsg(false);
+					reset(response);
+				}, 1000);
+			}
         } catch (error) {
             console.log("error", error);
             setServerError(error.toString());

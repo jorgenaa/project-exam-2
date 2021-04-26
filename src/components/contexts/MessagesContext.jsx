@@ -3,51 +3,24 @@ import axios from 'axios';
 import { BASE_URL, INBOX_PATH } from '../../constants/api';
 const MessagesContext = createContext();
 
-export const STORE_USERS = 'STORE_USERS';
-export const REMOVE_USER = 'REMOVE_USER';
-export const TOGGLE_ALL = 'TOGGLE_ALL';
-export const ADD_ID = 'ADD_ID';
-export const REMOVE_ID = 'REMOVE_ID';
-export const TOGGLE_DELETING = 'TOGGLE_DELETING';
+export const STORE_MESSAGES = 'STORE_MESSAGES';
+export const REMOVE_MESSAGES = 'REMOVE_MESSAGES';
 
 const initialState = {
-	users: [],
-	allChecked: false,
-	checkedIds: [],
-	deleting: false,
+	messages: [],
+	
 };
 
 function reducer(state, action) {
 	switch (action.type) {
-		case STORE_USERS:
-			return { ...state, users: action.payload };
-		case REMOVE_USER:
+		case STORE_MESSAGES:
+			return { ...state, messages: action.payload };
+		case REMOVE_MESSAGES:
 			return {
 				...state,
-				users: state.users.filter(u => u.id !== action.payload),
+				messages: state.messages.filter(u => u.id !== action.payload),
 			};
-		case TOGGLE_ALL:
-			return {
-				...state,
-				allChecked: !state.allChecked,
-				checkedIds: action.payload ? state.users.map(u => u.id) : [],
-			};
-		case ADD_ID:
-			console.log('ADD action.payload', action.payload);
-			return {
-				...state,
-				allChecked: state.checkedIds.length + 1 === state.users.length,
-				checkedIds: [...state.checkedIds, action.payload],
-			};
-		case REMOVE_ID:
-			console.log('REMOVE action.payload', action.payload);
-			return {
-				...state,
-				allChecked: false,
-				checkedIds: state.checkedIds.filter(i => i !== action.payload),
-			};
-		case TOGGLE_DELETING:
-			return { ...state, deleting: !state.deleting };
+
 		default:
 			throw new Error();
 	}
@@ -61,7 +34,7 @@ export const MessagesProvider = props => {
 	async function getUsers() {
 		try {
 			const response = await axios.get(url);
-			dispatch({ type: STORE_USERS, payload: response.data });
+			dispatch({ type: STORE_MESSAGES, payload: response.data });
 			console.log(response.data);
 		} catch (error) {
 			console.log(error);
@@ -71,45 +44,20 @@ export const MessagesProvider = props => {
 
 	useEffect(() => {
 		getUsers();
-
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
-	async function deleteUsers() {
-		dispatch({ type: TOGGLE_DELETING });
+	async function deleteMessages(id) {
+		let res = await axios.delete(url + id);
+		const { status } = res;
 
-		for (let i = 0; i < state.checkedIds.length; i++) {
-			const id = state.checkedIds[i];
-
-			let res = await axios.delete(url + id);
-			const { status } = res;
-			console.log(status);
-			if (status === 200) {
-				dispatch({ type: REMOVE_USER, payload: id });
-				dispatch({ type: REMOVE_ID, payload: id });
-			}
+		if (status === 200) {
+			dispatch({ type: REMOVE_MESSAGES, payload: id });
 		}
-
-		dispatch({ type: TOGGLE_DELETING });
 	}
 
-	// async function deleteUsers() {
-	// 	dispatch({ type: TOGGLE_DELETING });
-
-	// 	for (let i = 0; i < state.checkedIds.length; i++) {
-	// 		const id = state.checkedIds[i];
-	// 		await axios.delete(url + id);
-
-	// 		dispatch({ type: REMOVE_USER, payload: id });
-	// 		dispatch({ type: REMOVE_ID, payload: id });
-
-	// 	}
-
-	// 	dispatch({ type: TOGGLE_DELETING });
-	// }
-
 	return (
-		<MessagesContext.Provider value={[state, dispatch, deleteUsers, error]}>
+		<MessagesContext.Provider value={[state, dispatch, deleteMessages, error]}>
 			{props.children}
 		</MessagesContext.Provider>
 	);

@@ -1,38 +1,36 @@
 .button {
-    font-family: $helveticaRegular;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    box-shadow: 0px 3px 6px $grey;
-    font-size: $btn-lg;
-    padding: $btn-lg-padding;
-    @include screen("tablet"){
-            font-size: $btn-sm;
-            padding: $btn-sm-padding;
-           
-     }
-    @include screen("mobile"){
-        font-size: $btn-sm;
-        padding: $btn-sm-padding;
-       
-    }
-    
-    &--blue {
-        background-color: $blue;
-        color: $white;
-    }
-    &--yellow{
-        background-color: $yellow;
-        color: $black;
-        font-weight: bold;
-    }
-    &--red{
-        background-color: $red;
-        color: $white;
-    }
-    &--hover {
-        &:hover {
-            opacity: 0.8;
-        }
-    }
+	font-family: $helveticaRegular;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	box-shadow: 0px 3px 6px $grey;
+	font-size: $btn-lg;
+	padding: $btn-lg-padding;
+	@include screen('tablet') {
+		font-size: $btn-sm;
+		padding: $btn-sm-padding;
+	}
+	@include screen('mobile') {
+		font-size: $btn-sm;
+		padding: $btn-sm-padding;
+	}
+
+	&--blue {
+		background-color: $blue;
+		color: $white;
+	}
+	&--yellow {
+		background-color: $yellow;
+		color: $black;
+		font-weight: bold;
+	}
+	&--red {
+		background-color: $red;
+		color: $white;
+	}
+	&--hover {
+		&:hover {
+			opacity: 0.8;
+		}
+	}
 }

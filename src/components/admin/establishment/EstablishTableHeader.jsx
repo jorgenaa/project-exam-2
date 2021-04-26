@@ -1,28 +1,15 @@
-import { useEffect, useContext, useState } from 'react';
-
+import {  useContext } from 'react';
 import EstablishmentsContext from '../../contexts/EstablishmentsContext';
-import { TOGGLE_ALL } from '../../contexts/EstablishmentsContext';
 
 const EstablishTableHeader = () => {
-	const [, setAllSelected] = useState(false);
 	const context = useContext(EstablishmentsContext);
-	const [state, dispatch] = context;
-
-	useEffect(() => {
-		setAllSelected(state.allSelected);
-	}, [state.allSelected]);
-
-	const handleToggleAllChecked = () => {
-		dispatch({ type: TOGGLE_ALL, payload: !state.allChecked });
-	};
+	const [state] = context;
 
 	return (
 		<thead>
 			{state.establishments.length > 0 ? (
 				<tr>
-					<th>
-						<input type="checkbox" onClick={handleToggleAllChecked} />
-					</th>
+					<th>Delete</th>
 					<th>Name</th>
 					<th>Email</th>
 					<th>Price</th>

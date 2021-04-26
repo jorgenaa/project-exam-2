@@ -1,30 +1,37 @@
-import { useState, useContext, useEffect } from 'react';
-
-import { IoTrashBin } from 'react-icons/io5';
+import { useContext } from 'react';
+//Components
 import Button from '../../common/Button';
 import EstablishmentsContext from '../../contexts/EstablishmentsContext';
+import { REMOVE_ESTABLISHMENT } from '../../contexts/EstablishmentsContext';
 
 const DeleteEstablishmentBtn = () => {
-	const [visible, setVisible] = useState(false);
 	const context = useContext(EstablishmentsContext);
-	const [state, deleteEstablishment, error] = context;
+	const [state, deleteEstablishment, dispatch] = context;
 
-	useEffect(() => {
-		setVisible(state.checkedIds.length > 0);
-	}, [state.checkedIds.length]);
+	let getAllIds = state.establishments.map(establishment => {
+		const { id } = establishment;
+		return id;
+	});
 
-	const handleDeleteEstablishment = () => deleteEstablishment();
+	let stringifyAllIds = JSON.stringify(getAllIds);
+	let parseAllIds = JSON.parse(stringifyAllIds);
+	let id = parseInt(parseAllIds)
+
+	const handleDeleteAllEstablishments = () => {
+		for (let i = 0; i < id.length; i++) {
+			dispatch({ type: REMOVE_ESTABLISHMENT, payload: id[i] });
+			deleteEstablishment(id[i]);
+		}
+	};
+
 
 	return (
-		<>
-			{visible ? (
-				<Button
-					handleClick={handleDeleteEstablishment}
-					label={!error ? <IoTrashBin /> : 'Error'}
-					type="button--red button--hover"
-				/>
-			) : null}
-		</>
+			<Button
+				handleClick={() => handleDeleteAllEstablishments()}
+				label="Delete All Establishments"
+				// label={!error ? "DeleteAllEstablishments" && <IoTrashBin /> : 'Error'}
+				type="button--red button--hover"
+			/>
 	);
 };
 
