@@ -1,8 +1,6 @@
 import { createContext, useReducer, useEffect, useState } from 'react';
 import axios from 'axios';
 import { BASE_URL, HOTEL_PATH } from '../../constants/api';
-import useAxios from '../../hooks/useAxios';
-//import { getAuth } from '../../localStorage/getLocalStorage';
 
 const EstablishmentsContext = createContext();
 
@@ -58,7 +56,7 @@ export const EstablishmentsProvider = props => {
 	const [state, dispatch] = useReducer(reducer, initialState);
 	const [error, setError] = useState(null);
 
-	const http = useAxios();
+	
 	const url = BASE_URL + HOTEL_PATH;
 
 	//const token = getAuth();
@@ -84,13 +82,15 @@ export const EstablishmentsProvider = props => {
 		//data.status = 'publish';
 
 		try {
-			const response = await http.post(url, data);
+			const response = await axios.post(url, data);
 			console.log(response.data)
+			if (response === 200) {
 			dispatch({ type: ADD_ESTABLISHMENT, payload: response.data });
 			// dispatch({ type: SUCCESS });
 			// setTimeout(() => {
 			// 	dispatch({ type: SUBMITTED });
 			// }, 1500);
+			}
 		} catch (error) {
 			console.log(error)
 			// dispatch({ type: ERROR, payload: error.toString() });
