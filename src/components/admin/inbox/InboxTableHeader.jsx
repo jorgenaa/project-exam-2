@@ -3,7 +3,7 @@ import MessagesContext from '../../contexts/MessagesContext';
 
 const InboxTableHeader = () => {
 	const context = useContext(MessagesContext);
-	const [state] = context;
+	const [state, ,] = context;
 
 	return (
 		<thead>

@@ -9,7 +9,6 @@ const EstablishTableHeader = () => {
 		<thead>
 			{state.establishments.length > 0 ? (
 				<tr>
-					<th>Delete</th>
 					<th>Name</th>
 					<th>Email</th>
 					<th>Price</th>

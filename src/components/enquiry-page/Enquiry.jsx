@@ -6,7 +6,7 @@ import moment from 'moment';
 //Components
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import HotelContext from '../contexts/HotelContext';
+import EstablishmentContext from '../contexts/EstablishmentsContext';
 import ErrorMsg from '../common/ErrorMsg';
 import LoadingMsg from '../common/LoadingMsg';
 import SubHeading from '../common/SubHeading';
@@ -22,8 +22,8 @@ const Enquiry = () => {
 	const [fromDate, setFromDate] = useState("");
     const [toDate, setToDate] = useState("");
     const [selectedHotel, setSelectedHotel] = useState([]);
-    const hotelContext = useContext(HotelContext);
-    const [hotels, error, loading] = hotelContext;
+    const context = useContext(EstablishmentContext);
+    const [state, , ,] = context;
     
     let { id } = useParams();
     const parsedId = parseInt(id);
@@ -47,25 +47,22 @@ const Enquiry = () => {
     const end = moment(endDate, "DD/MM/YYYY");
     const diffDays = moment.duration(end.diff(start)).asDays();
          
-   
-   
-
     useEffect(() => {
-        for(let i = 0; i < hotels.length; i++) {
-            if(hotels[i].id === parsedId) {
-                setSelectedHotel(hotels[i]);  
+        for(let i = 0; i < state.establishments.length; i++) {
+            if(state.establishments[i].id === parsedId) {
+                setSelectedHotel(state.establishments[i]);  
                 break 
             }
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
   
-   if(loading) {
+   if(state.loading) {
     return <LoadingMsg>Loading...</LoadingMsg>
     }
 
-    if(error) {
-        return <ErrorMsg>ERROR: {error}</ErrorMsg>
+    if(state.serverError) {
+        return <ErrorMsg>ERROR: {state.serverError}</ErrorMsg>
     }
 
     

@@ -1,6 +1,5 @@
-import { IoTrashBinSharp } from 'react-icons/io5';
 
-const EstablishmentsList = ({REMOVE_ESTABLISHMENT, state, dispatch, deleteEstablishment}) => {
+const EstablishmentsList = ({state}) => {
 	
 	if (state.establishments.length === 0) {
 		return (
@@ -12,10 +11,6 @@ const EstablishmentsList = ({REMOVE_ESTABLISHMENT, state, dispatch, deleteEstabl
 		);
 	}
 
-	const handleDeleteEstablishment = id => {
-		deleteEstablishment(id);
-		dispatch({ type: REMOVE_ESTABLISHMENT, payload: id });
-	};
 
 	return (
 		<tbody>
@@ -32,12 +27,6 @@ const EstablishmentsList = ({REMOVE_ESTABLISHMENT, state, dispatch, deleteEstabl
 
 				return (
 					<tr key={id}>
-						<td>
-							<IoTrashBinSharp
-								className="table__trash table__trash--hover"
-								onClick={() => handleDeleteEstablishment(id)}
-							/>
-						</td>
 						<td>{name}</td>
 						<td>{email}</td>
 						<td>{price}</td>

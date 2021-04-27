@@ -6,20 +6,36 @@ const EnquiriesContext = createContext();
 
 export const STORE_ENQUIRY = 'STORE_ENQUIRY';
 export const REMOVE_ENQUIRY = 'REMOVE_ENQUIRY';
+export const ADD_ENQUIRY = 'ADD_ENQUIRY';
+export const SUBMITTING = "SUBMITTING";
+export const SUCCESS = "SUCCESS";
+export const ERROR = "ERROR";
+export const LOADING = "LOADING";
 
 const initialState = {
 	enquiries: [],
+	successMsg: false,
+	serverError: null,
+	loading: true,
+	submitting: false
 };
 
 function reducer(state, action) {
 	switch (action.type) {
 		case STORE_ENQUIRY:
-			return { ...state, enquiries: action.payload };
+			return { ...state, enquiries: action.payload};
 		case REMOVE_ENQUIRY:
-			return {
-				...state,
-				enquiries: state.enquiries.filter(u => u.id !== action.payload),
-			};
+			return {...state, enquiries: state.enquiries.filter(u => u.id !== action.payload)};
+		case SUCCESS: 
+			return {...state, successMsg: action.payload, serverError: null };
+		case LOADING: 
+			return {...state, loading: action.payload };
+		case SUBMITTING: 
+			return {...state, submitting: action.payload };
+		case ERROR: 
+			return {...state, serverError: action.payload, successMsg: false };
+		case ADD_ENQUIRY: 
+			return {...state, enquiries: [...state.enquiries, action.payload]};	
 		default:
 			throw new Error();
 	}
@@ -48,7 +64,7 @@ export const EnquiriesProvider = props => {
 	}, []);
 
 	async function deleteEnquiries(id) {
-		let res = await axios.delete(url + id);
+		let res = await axios.delete(url + '/' + id);
 		const { status } = res;
 
 		if (status === 200) {

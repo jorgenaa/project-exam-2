@@ -1,12 +1,12 @@
 import { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import HotelContext from '../../contexts/HotelContext';
+import EstablishmentContext from '../../contexts/EstablishmentsContext';
 import { useClickOutside } from './useClickOutside';
 
 const Typeahead = () => {
-	const hotelContext = useContext(HotelContext);
-	const [hotels] = hotelContext;
+	const context = useContext(EstablishmentContext);
+	const [state, , ,] = context;
 	const [suggestions, setSuggestions] = useState([]);
 	const [text, setText] = useState('');
 	const [isOpen, setIsOpen] = useState(false);
@@ -17,7 +17,7 @@ const Typeahead = () => {
 		const searchValue = e.target.value.toLowerCase();
 		let suggestionsValue = [];
 		setIsOpen(true);
-		suggestionsValue = hotels.filter(hotel => {
+		suggestionsValue = state.establishments.filter(hotel => {
 			const lowerCaseName = hotel.name.toLowerCase();
 
 			if (lowerCaseName.includes(searchValue)) {

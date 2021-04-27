@@ -1,10 +1,11 @@
 import { useContext, useEffect, useState } from 'react';
+
 //Components
 import SubHeading from '../../common/SubHeading';
 import InboxTableHeader from './InboxTableHeader';
 import TableSection from '../../common/TableSection';
 import MessageList from './MessageList';
-import MessagesContext from '../../contexts/MessagesContext';
+import MessagesContext from '../../contexts/MessagesContext'
 import { REMOVE_MESSAGES } from '../../contexts/MessagesContext';
 import Button from '../../common/Button';
 
@@ -12,7 +13,7 @@ const Inbox = () => {
 	const context = useContext(MessagesContext);
 	const [state, dispatch, deleteMessages] = context;
 	const [visible, setVisible] = useState(false);
-
+	
 	useEffect(() => {
 		setVisible(state.messages.length > 0);
 	}, [state.messages.length]);
@@ -49,10 +50,10 @@ const Inbox = () => {
 				<table>
 					<InboxTableHeader />
 					<MessageList
+						REMOVE_MESSAGES={REMOVE_MESSAGES}
 						state={state}
 						dispatch={dispatch}
 						deleteMessages={deleteMessages}
-						REMOVE_MESSAGES={REMOVE_MESSAGES}
 					/>
 				</table>
 			</TableSection>

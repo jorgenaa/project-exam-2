@@ -1,17 +1,18 @@
-import {useState} from 'react';
+import { useContext } from 'react';
 import axios from 'axios';
 import { useForm } from "react-hook-form"; 
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-
-//Components
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
+
+//Components
 import { BASE_URL, ENQUIRIES_PATH } from '../../constants/api';
+import EnquiriesContext from '../contexts/EnquiriesContext'
+import { ADD_ENQUIRY, ERROR, SUCCESS, SUBMITTING } from '../contexts/EnquiriesContext';
 import ErrorMsg from "../common/ErrorMsg";
 import SuccessMsg from '../common/SuccessMsg';
 import Button from '../common/Button';
-
 
 const schema = yup.object().shape({
 	firstName: yup.string().required("Please enter your username"),
@@ -22,27 +23,8 @@ const schema = yup.object().shape({
 });
 
 const EnquiryForm = ({ id, name, fromDate, toDate, handleOnDateChangeStart, handleOnDateChangeEnd}) => {
-    
-    const [submitting, setSubmitting] = useState(false);
-    const [successMsg, setSuccessMsg] = useState(false);
-    const [serverError, setServerError] = useState(null);
-    
-    // let initialState = { startDate: null, endDate: null}
-	// const [dateRange, setDateRange] = useState(initialState);
-    
-    //   const handleOnDateChangeStart = (startDate) => {
-    //     setDateRange(startDate, );
-    //     //const fromDate = startDate.target.value;
-    //     //saveFromDate(fromDate);
-    //     //setDate(fromDate)
-    //   }
-
-    //   const handleOnDateChangeEnd = (endDate) => {
-    //     setDateRange( endDate);
-    //     //const todate = endDate.target.value;
-    //     //saveToDate(toDate);
-    //     //setDate(todate)
-    //   }
+    const context = useContext(EnquiriesContext);
+	const [state, dispatch, ] = context;
    
     const url = BASE_URL + ENQUIRIES_PATH;
 
@@ -50,29 +32,28 @@ const EnquiryForm = ({ id, name, fromDate, toDate, handleOnDateChangeStart, hand
 		resolver: yupResolver(schema),
 	});
 
-   
     const onSubmit = async(data) => {
-        setSuccessMsg(true);
-        setServerError(null);
+        dispatch({ type: SUBMITTING, payload: true})
+		dispatch({ type: ERROR, payload: null});
 
         data.establishment = name
        
-
         try {
             const response = await axios.post(url, data);
-            console.log("response", response.data);
+            dispatch({ type: SUCCESS, payload: true});
             const { status } = response;
 			if (status === 200){
+                dispatch({ type: ADD_ENQUIRY, payload: data})
 				setTimeout(() => {
-					setSuccessMsg(false);
+					dispatch({ type: SUCCESS, payload: false});
 					reset(response);
 				}, 1000);
 			}
         } catch (error) {
             console.log("error", error);
-            setServerError(error.toString());
+            dispatch({ type: ERROR, payload: error.toString()});
         } finally {
-            setSubmitting(false);
+            dispatch({ type: SUBMITTING, payload: false})
         }
     }
 
@@ -81,8 +62,8 @@ const EnquiryForm = ({ id, name, fromDate, toDate, handleOnDateChangeStart, hand
             <h4 className="form__title heading--h4">Enter your details</h4>
             <Form className="form" onSubmit={handleSubmit(onSubmit)}>
                 <Form.Group >
-                    {serverError && <ErrorMsg>{serverError}</ErrorMsg>}
-                    {successMsg && <SuccessMsg>Booking is successfully sent</SuccessMsg>}
+                    {state.serverError && <ErrorMsg>{state.serverError}</ErrorMsg>}
+                    {state.successMsg && <SuccessMsg>Booking is successfully sent</SuccessMsg>}
                 </Form.Group>
                 <Form.Row>
                     <Col sm={6} xs={12}>
@@ -127,7 +108,7 @@ const EnquiryForm = ({ id, name, fromDate, toDate, handleOnDateChangeStart, hand
                 <Form.Row>
                     <Col sm={6} xs={12}>
                         <Form.Group>
-                            <Button label={submitting ? "Completing booking..." : "Complete booking"} type="form__btn button--blue button--hover" />
+                            <Button label={state.submitting ? "Completing booking..." : "Complete booking"} type="form__btn button--blue button--hover" />
                         </Form.Group>
                     </Col>
                 </Form.Row>

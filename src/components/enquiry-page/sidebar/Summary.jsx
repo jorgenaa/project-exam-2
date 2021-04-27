@@ -2,7 +2,6 @@
 const Summary = ({bookingInc}) => {
    
     return (
-        <>
             <table className="bookDetails bookDetails--third">
                 <thead>
                     <tr className="bookDetails__header-row">
@@ -22,7 +21,6 @@ const Summary = ({bookingInc}) => {
                    
                 </tbody>: ""}
             </table>
-        </>
     )
 }
 
