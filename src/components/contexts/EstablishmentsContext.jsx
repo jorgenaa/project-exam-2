@@ -47,9 +47,11 @@ export const EstablishmentsProvider = props => {
 	const url = BASE_URL + HOTEL_PATH;
 
 	async function getEstablishments() {
+		dispatch({ type: LOADING, payload: true})
 		try {
 			const response = await axios.get(url);
 			dispatch({ type: STORE_ESTABLISHMENT, payload: response.data });
+			dispatch({ type: LOADING, payload: false})
 			console.log(response.data);
 		} catch (error) {
 			console.log(error);

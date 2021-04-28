@@ -1,34 +1,18 @@
-import { useEffect, useState } from 'react';
+
 import { PropTypes } from 'prop-types';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+//Components
 import Button from '../../common/Button';
 import ContentHeading from '../../common/ContentHeading';
 import FacilitiesMobileView from './mobileView/FacilitiesMobileView';
 
-const DetailsSection = ({
-	name,
-	description,
-	maxGuests,
-	id,
-	selfcatering,
-	popular_facilityIcons,
-	facility_icons,
-}) => {
-	console.log(popular_facilityIcons);
-	const [popularFacilityIcons, setPopularFacilityIcons] = useState([]);
-
-	useEffect(() => {
-		if (popular_facilityIcons) {
-			const popularFacilityIcons = popular_facilityIcons.split(' ');
-			setPopularFacilityIcons(popularFacilityIcons);
-		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
-
+const DetailsSection = ({name, description, maxGuests, id, selfcatering, popularFacilityIcons, icons }) => {
+	
 	return (
 		<section className="specific__details" key={id}>
-			<FacilitiesMobileView facility_icons={facility_icons} id={id} />
+			<FacilitiesMobileView icons={icons} id={id} />
 			<div className="specific__details-wrapper">
 				<div className="specific__details-item">
 					<ContentHeading content="Details about" data={name} />
@@ -39,14 +23,12 @@ const DetailsSection = ({
 				</div>
 				<div className="specific__details-item pt-3">
 					<div className="specific__details-item-child pt-2">
-						{maxGuests ? (
+						{/* {maxGuests ? ( */}
 							<p>
 								<span className="pr-2 bold">Max guests&#58;</span>
 								{maxGuests}
 							</p>
-						) : (
-							''
-						)}
+						{/* ) : null} */}
 						<p>
 							<span className="pr-2 bold">Self catering&#58;</span>
 							{selfcatering === false ? 'No' : 'Yes'}
@@ -54,15 +36,17 @@ const DetailsSection = ({
 					</div>
 					<div className="specific__details-item-child">
 						<h5 className="heading--h5 mb-3">Most popular facilities</h5>
+						{popularFacilityIcons ? (
 						<ul>
 							{popularFacilityIcons.map((icon, index) => {
 								return (
 									<li className="specific__details-list-item" key={index}>
-										<span className={`fa ${icon}`}></span>
+									<span className={`fa ${icon.cssClass}`}><FontAwesomeIcon icon={require("@fortawesome/free-solid-svg-icons")[icon.name]}></FontAwesomeIcon></span>
 									</li>
 								);
 							})}
-						</ul>
+						</ul> 
+						) : null}
 						<Link className="specific__link" to={'/enquiry/' + id}>
 							<Button
 								label="Reserve"
@@ -82,6 +66,8 @@ DetailsSection.propTypes = {
 	description: PropTypes.string.isRequired,
 	selfcatering: PropTypes.bool.isRequired,
 	maxGuests: PropTypes.number.isRequired,
+	popularFacilityIcons: PropTypes.object.isRequired,
+	icons: PropTypes.object.isRequired
 };
 
 export default DetailsSection;

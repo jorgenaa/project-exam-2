@@ -9,7 +9,6 @@
     &--first {
         height: 292.92px;
      
-       
         @include screen("desktop991px") {
            flex: 1;
         }
@@ -46,5 +45,10 @@
     }
     &__ft-col {
         background-color: $lightBlue;
+    }
+
+    &__price {
+        color:$red;
+        font-weight: bold;
     }
 }

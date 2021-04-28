@@ -1,7 +1,10 @@
-import { BASE_URL } from '../../constants/api'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { PropTypes } from 'prop-types';
 
-const Overview= ({name, stars, image, id}) => {
+import { BASE_URL } from '../../constants/api';
 
+const Overview = ({name, stars, image, id}) => {
+   
     return (
         <section className="enquiry__overview">
            {image ? <div className="enquiry__overview-item-1" key={id}>
@@ -13,15 +16,22 @@ const Overview= ({name, stars, image, id}) => {
                     {stars.map(star => {
                         return(
                             <li className="enquiry__overview-star" key={star.id}>
-                                <span className={`fas ${star.name}`}></span>
+                                <span className={`fa ${star.cssClass}`}><FontAwesomeIcon icon={require("@fortawesome/free-solid-svg-icons")[star.name]}></FontAwesomeIcon></span>
                             </li>
                         )
                     })}
-                </ul> : ""}
+                </ul> : null}
               
             </div>
         </section>
     )
 }
+
+Overview.propTypes = {
+	image: PropTypes.object.isRequired,
+    id: PropTypes.number.isRequired,
+    stars: PropTypes.object.isRequired,
+    name: PropTypes.string.isRequired
+};
 
 export default Overview; 

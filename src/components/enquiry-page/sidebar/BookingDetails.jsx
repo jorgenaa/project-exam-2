@@ -1,7 +1,8 @@
 import moment from 'moment';
+import {PropTypes} from "prop-types";
 
 const BookingDetails = ({fromDate, toDate, roomType}) => {
-  
+    
     const startDate = fromDate;
     const endDate = toDate;
 
@@ -10,7 +11,6 @@ const BookingDetails = ({fromDate, toDate, roomType}) => {
     const diffDays = moment.duration(end.diff(start)).asDays();
 
     return (
-        <>
             <table className="bookDetails bookDetails--first">
                 <thead>
                     <tr>
@@ -46,8 +46,14 @@ const BookingDetails = ({fromDate, toDate, roomType}) => {
                    
                 </tbody>
             </table> 
-        </>
+       
     )
+}
+
+BookingDetails.propTypes = {
+	fromDate: PropTypes.string.isRequired,
+    toDate: PropTypes.string.isRequired,
+    roomType: PropTypes.string.isRequired
 }
 
 export default BookingDetails;

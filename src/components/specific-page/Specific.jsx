@@ -2,6 +2,7 @@ import { useContext, useState, useEffect } from 'react';
 import { PropTypes } from 'prop-types';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 //Components
 import EstablishmentContext from '../contexts/EstablishmentsContext';
@@ -23,8 +24,8 @@ const Specific = () => {
 	const establishmentContext = useContext(EstablishmentContext);
 	const [state ] = establishmentContext; 
 
-	const parsedId = parseInt(id);
-console.log(state.establishments)
+	let parsedId = parseInt(id);
+	
 	useEffect(() => {
 		for (let i = 0; i < state.establishments.length; i++) {
 			if (state.establishments[i].id === parsedId) {
@@ -33,7 +34,7 @@ console.log(state.establishments)
 			}
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [state.establishments, specificHotel]);
 
 	if (state.loading) {
 		return <LoadingMsg>Loading...</LoadingMsg>;
@@ -51,7 +52,7 @@ console.log(state.establishments)
 						{specificHotel.stars.map(star => {
 							return (
 								<li key={star.id} className="specific__star">
-									<span className={`fas ${star.name}`}></span>
+									<span className={`fa ${star.cssClass}`}><FontAwesomeIcon icon={require("@fortawesome/free-solid-svg-icons")[star.name]}></FontAwesomeIcon></span>
 								</li>
 							);
 						})}
@@ -77,8 +78,8 @@ console.log(state.establishments)
 						name={specificHotel.name}
 						description={specificHotel.description}
 						maxGuests={specificHotel.maxGuests}
-						popular_facilityIcons={specificHotel.popularFacilities}
-						facility_icons={specificHotel.facility_icons}
+						popularFacilityIcons={specificHotel.popularFacilityIcons}
+						icons={specificHotel.facilityIcons}
 						selfcatering={specificHotel.selfCatering}
 					/>
 				</section>

@@ -1,6 +1,7 @@
+import {PropTypes} from "prop-types";
 
 const Summary = ({bookingInc}) => {
-   
+ 
     return (
             <table className="bookDetails bookDetails--third">
                 <thead>
@@ -12,7 +13,7 @@ const Summary = ({bookingInc}) => {
                 {bookingInc ? <tbody>
                    {bookingInc.map(item => {
                         return (
-                            <tr>
+                            <tr key={item.id}>
                                 <td className="bookDetails__col">{item.name}</td>
                                 <td className="bookDetails__col"></td>
                             </tr>
@@ -22,6 +23,10 @@ const Summary = ({bookingInc}) => {
                 </tbody>: ""}
             </table>
     )
+}
+
+Summary.propTypes = {
+	bookingInc: PropTypes.object.isRequired
 }
 
 export default Summary;

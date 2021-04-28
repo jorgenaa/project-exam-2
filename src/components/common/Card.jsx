@@ -1,7 +1,11 @@
 import { Link } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+//Componentns
 import Button from './Button';
 import { BASE_URL } from '../../constants/api';
+
 const CustomCard = ({ name, image, price, id, stars }) => {
 	return (
 		<div className="custom-card">
@@ -20,7 +24,7 @@ const CustomCard = ({ name, image, price, id, stars }) => {
 							{stars.map(star => {
 								return (
 									<li key={star.id} className="specific__star">
-										<span className={`fas ${star.name}`}></span>
+									<span className={`fa ${star.cssClass}`}><FontAwesomeIcon icon={require("@fortawesome/free-solid-svg-icons")[star.name]}></FontAwesomeIcon></span>
 									</li>
 								);
 							})}

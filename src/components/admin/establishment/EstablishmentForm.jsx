@@ -19,7 +19,7 @@ const schema = yup.object().shape({
 	email: yup.string().email('Please enter a valid email').required('Email is required'),
 	price: yup.number().required('Please provide a valid number'),
 	maxGuests: yup.number().required('Please provide a valid number'),
-	
+	description: yup.string().required('A description is required')
 });
 
 const EstablishmentForm = ({ show, setShow }) => {
@@ -108,7 +108,6 @@ const EstablishmentForm = ({ show, setShow }) => {
 							value={false}
 							ref={register}
 						/>
-						
 					</Form.Group>
 				</Form.Row>
 				<Form.Group>
@@ -120,6 +119,7 @@ const EstablishmentForm = ({ show, setShow }) => {
 						rows={5}
 						ref={register}
 					/>
+					{errors.description && (<ErrorMsg>{errors.description.message}</ErrorMsg>)}
 				</Form.Group>
 				<Form.Row>
 					<Col sm={6} xs={12}>
