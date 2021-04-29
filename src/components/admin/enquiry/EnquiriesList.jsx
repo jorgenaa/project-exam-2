@@ -1,6 +1,5 @@
 import { IoTrashBinSharp } from 'react-icons/io5';
 
-
 const EnquiriesList = ({ state, dispatch, deleteEnquiries, REMOVE_ENQUIRY  }) => {
 
 	if (state.enquiries.length === 0) {
@@ -32,7 +31,7 @@ const EnquiriesList = ({ state, dispatch, deleteEnquiries, REMOVE_ENQUIRY  }) =>
 						toDate,
 					} = enquiry;
 					return (
-						<tr key={id}>
+						<tr className="table__row table__row--border-bottom" key={id}>
 							<td>
 								<IoTrashBinSharp
 									className="table__trash table__trash--hover"

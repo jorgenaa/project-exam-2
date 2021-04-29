@@ -8,14 +8,10 @@ const EstablishTableHeader = () => {
 	return (
 		<thead>
 			{state.establishments.length > 0 ? (
-				<tr>
-					<th>Name</th>
-					<th>Email</th>
-					<th>Price</th>
-					<th>Max guests</th>
-					<th>Self catering</th>
-					<th>Description</th>
-				</tr>
+				<>
+				
+				
+				</>
 			) : null}
 		</thead>
 	);

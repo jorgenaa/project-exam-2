@@ -1,5 +1,4 @@
 import {  useContext } from 'react'; 
-import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -7,9 +6,8 @@ import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 
 //Components
-import { BASE_URL, INBOX_PATH } from '../../constants/api';
+
 import MessagesContext from '../contexts/MessagesContext'
-import { ADD_MESSAGES, ERROR, SUCCESS, SUBMITTING } from '../contexts/MessagesContext';
 import ErrorMsg from '../common/ErrorMsg';
 import SuccessMsg from '../common/SuccessMsg';
 import Button from '../common/Button';
@@ -25,41 +23,20 @@ const schema = yup.object().shape({
 
 const ContactForm = () => {
 	const context = useContext(MessagesContext);
-	const [state, dispatch, ] = context;
-	
-	const url = BASE_URL + INBOX_PATH;
+	const [state, , sendMsg, ] = context;
 
 	const { register, handleSubmit, errors, reset  } = useForm({
 		resolver: yupResolver(schema),
 	});
 
-	async function sendMsg(data) {
-		dispatch({ type: SUBMITTING, payload: true})
-		dispatch({ type: ERROR, payload: null});
-		
-		try {
-			const response = await axios.post(url, data);
-			dispatch({ type: SUCCESS, payload: true});
-			const { status } = response;
-			if (status === 200){
-				dispatch({ type: ADD_MESSAGES, payload: data });
-				setTimeout(() => {
-					dispatch({ type: SUCCESS, payload: false});
-					reset(response);
-				}, 1000);
-			}
-		} catch (error) {
-			console.log('error', error);
-			dispatch({ type: ERROR, payload: error.toString()});
-			
-		} finally {
-			dispatch({ type: SUBMITTING, payload: false})
-		}
-	}
+	const handleAddMessage = async (data) => {
+		sendMsg(data);
+		reset(sendMsg);
+	} 
 
 	return (
 		<section className="w-600px">
-			<form className="form" onSubmit={handleSubmit(sendMsg)}>
+			<form className="form" onSubmit={handleSubmit(handleAddMessage)}>
 				<div>
 					{state.serverError && <ErrorMsg>{state.serverError}</ErrorMsg>}
 					{state.successMsg && <SuccessMsg>Message is sent</SuccessMsg>}

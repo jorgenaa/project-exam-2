@@ -1,9 +1,8 @@
-
 import { IoTrashBinSharp } from 'react-icons/io5';
 
 
-const MessageList = ({ REMOVE_MESSAGES, state, dispatch, deleteMessages }) => { 
-	
+const MessageList = ({REMOVE_MESSAGES, state, dispatch, deleteMessages }) => { 
+
 	if (state.messages.length === 0) {
 		return (
 			<tbody>
@@ -15,8 +14,9 @@ const MessageList = ({ REMOVE_MESSAGES, state, dispatch, deleteMessages }) => {
 	}
 
 	const handleDeleteMessage = id => {
-		deleteMessages(id);
 		dispatch({ type: REMOVE_MESSAGES, payload: id });
+		deleteMessages(id);
+		
 	};
 
 	return (
@@ -25,7 +25,7 @@ const MessageList = ({ REMOVE_MESSAGES, state, dispatch, deleteMessages }) => {
 				const { clientName, email, message, id } = msg;
 
 				return (
-					<tr key={id}>
+					<tr className="table__row table__row--border-bottom" key={id}>
 						<td>
 							<IoTrashBinSharp
 								className="table__trash table__trash--hover"

@@ -1,20 +1,19 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react'; 
+import { useHistory } from 'react-router-dom';
 
 import Button from '../../common/Button';
 import SubHeading from '../../common/SubHeading';
 import TableSection from '../../common/TableSection';
 import EstablishTableHeader from './EstablishTableHeader';
 import EstablishmentsList from './EstablishmentsList';
-import EstablishmentForm from './EstablishmentForm';
+
 import EstablishmentsContext from '../../contexts/EstablishmentsContext';
 
 const Establishment = () => {
-	const [show, setShow] = useState(false);
-
-	const handleShow = () => setShow(true);
-
 	const context = useContext(EstablishmentsContext);
 	const [state, , ] = context;
+	const history = useHistory();
+	const handleShow = () => history.push("/establishmentForm");
 
 	return (
 		<main>
@@ -27,9 +26,6 @@ const Establishment = () => {
 						type="button--blue button--hover"
 					/>
 				</div>
-			</section>
-			<section>
-				<EstablishmentForm show={show} setShow={setShow} />
 			</section>
 			<TableSection className="table-section">
 				<table>

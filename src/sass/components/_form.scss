@@ -51,4 +51,12 @@
             border-bottom: 1px solid $red;
 		}
 	}
+    
+    &__option {
+        &--hover {
+            &:hover {
+                background-color: $lightBlue;
+            }
+        }
+    }
 }

@@ -26,7 +26,7 @@ const Enquiry = () => {
 	let { id } = useParams();
 	const parsedId = parseInt(id);
 
-	const handleOnDateChangeStart = startDate => {
+	const handleOnDateChangeStart = (startDate) => {
 		const fromdate = startDate.target.value;
 		const start = moment(fromdate).format('DD/MM/YYYY');
 		setFromDate(start);
@@ -62,6 +62,7 @@ const Enquiry = () => {
 	if (state.serverError) {
 		return <ErrorMsg>ERROR: {state.serverError}</ErrorMsg>;
 	}
+
 
 	return (
 		<main className="enquiry">

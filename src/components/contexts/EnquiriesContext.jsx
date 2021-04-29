@@ -24,7 +24,7 @@ function reducer(state, action) {
 	switch (action.type) {
 		case STORE_ENQUIRY:
 			return { ...state, enquiries: action.payload};
-		case REMOVE_ENQUIRY:
+		case REMOVE_ENQUIRY: 
 			return {...state, enquiries: state.enquiries.filter(u => u.id !== action.payload)};
 		case SUCCESS: 
 			return {...state, successMsg: action.payload, serverError: null };
@@ -68,10 +68,9 @@ export const EnquiriesProvider = props => {
 		const { status } = res;
 
 		if (status === 200) {
-			dispatch({ type: REMOVE_ENQUIRY, payload: id });
+			dispatch({ type: REMOVE_ENQUIRY });
 		}
 	}
-
 
 	return (
 		<EnquiriesContext.Provider

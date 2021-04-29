@@ -11,7 +11,7 @@ import Button from '../../common/Button';
 
 const Inbox = () => {
 	const context = useContext(MessagesContext);
-	const [state, dispatch, deleteMessages] = context;
+	const [state, dispatch, , deleteMessages] = context;
 	const [visible, setVisible] = useState(false);
 	
 	useEffect(() => {
@@ -22,10 +22,10 @@ const Inbox = () => {
 		const { id } = msg;
 		return id;
 	});
-
+	
 	let stringifyAllIds = JSON.stringify(getAllIds);
 	let id = JSON.parse(stringifyAllIds);
-	
+	 
 	const handleDeleteAllMessages = () => {
 		for (let i = 0; i < id.length; i++) {
 			dispatch({ type: REMOVE_MESSAGES, payload: id[i] });

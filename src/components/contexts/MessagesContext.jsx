@@ -48,13 +48,10 @@ export const MessagesProvider = props => {
 	const url = BASE_URL + INBOX_PATH;
 
 	async function getMessages() {
-		
+
 		try {
 			const response = await axios.get(url);
-			console.log(response.data);
 			dispatch({ type: STORE_MESSAGES, payload: response.data });
-			console.log(response.data);
-		
 		} catch (error) {
 			console.log(error);
 			dispatch({ type: ERROR, payload: error.toString() });
@@ -66,38 +63,40 @@ export const MessagesProvider = props => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
-	// async function sendMsg(data) {
-	// 	dispatch({ type: LOADING });
-	// 	try {
-	// 		const response = await axios.post(url, data);
-	// 		console.log(response.data)
-	// 		if (response === 200) {
-	// 		dispatch({ type: ADD_MESSAGES, payload: data });
-	// 		dispatch({ type: SUCCESS });
-	// 		dispatch({ type: LOADING, payload: false });
-	// 		setTimeout(() => {
-	// 			dispatch({ type: SUCCESS, payload: false })
-	// 		}, 1000);
-	// 		}
-	// 	} catch (error) {
-	// 		console.log(error)
-	// 		dispatch({ type: ERROR, payload: error.toString() });
-	// 	 } finally {
-	// 		dispatch({ type: SUCCESS, payload: true });
-	// 	 }
-	// }
+	async function sendMsg(data) {
+		dispatch({ type: SUBMITTING, payload: true})
+		dispatch({ type: ERROR, payload: null});
+		
+		try {
+			const response = await axios.post(url, data);
+			dispatch({ type: SUCCESS, payload: true});
+			const { status } = response;
+			if (status === 200){
+				dispatch({ type: ADD_MESSAGES, payload: data });
+				setTimeout(() => {
+					dispatch({ type: SUCCESS, payload: false});
+				}, 1000);
+			}
+		} catch (error) {
+			console.log('error', error);
+			dispatch({ type: ERROR, payload: error.toString()});
+			
+		} finally {
+			dispatch({ type: SUBMITTING, payload: false})
+		}
+	}
 
 	async function deleteMessages(id) {
 		let res = await axios.delete(url + '/' + id);
 		const { status } = res;
 
 		if (status === 200) {
-			dispatch({ type: REMOVE_MESSAGES, payload: id });
+			dispatch({ type: REMOVE_MESSAGES });
 		}
 	}
 
 	return (
-		<MessagesContext.Provider value={[state, dispatch, deleteMessages]}>
+		<MessagesContext.Provider value={[state, dispatch, sendMsg, deleteMessages]}>
 			{props.children}
 		</MessagesContext.Provider>
 	);

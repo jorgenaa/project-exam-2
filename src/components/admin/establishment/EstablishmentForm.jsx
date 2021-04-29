@@ -1,16 +1,18 @@
-import { useContext } from 'react';
+import { useContext } from 'react'; 
 import { useForm } from 'react-hook-form';
+import { useHistory } from "react-router-dom";
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
+
 import { AiFillCloseCircle } from 'react-icons/ai';
-import Modal from 'react-modal';
 
 //Components
 import EstablishmentsContext from '../../contexts/EstablishmentsContext';
-import { ADD_ESTABLISHMENT } from '../../contexts/EstablishmentsContext'; 
+import { ADD_ESTABLISHMENT } from '../../contexts/EstablishmentsContext';
 import Button from '../../common/Button';
+import SubHeading from '../../common/SubHeading';
 import ErrorMsg from '../../common/ErrorMsg';
 import SuccessMsg from '../../common/SuccessMsg';
 
@@ -19,120 +21,209 @@ const schema = yup.object().shape({
 	email: yup.string().email('Please enter a valid email').required('Email is required'),
 	price: yup.number().required('Please provide a valid number'),
 	maxGuests: yup.number().required('Please provide a valid number'),
+	roomType: yup.string().required("Select a room type"),
+	imgUrl: yup.mixed().required("You need to provice a jpg file").test("filesize", "The file is too large", (value) => {
+		return value && value[0].size < 180000;
+	}).test("type", "We only support jpg", (value) => {
+		return value && value[0].type === "image/jpeg";
+	}),
+	// imgsUrl: yup.mixed()("Select 4 jpg files"),
+	// imgsMobileUrl: yup.mixed()("Select 5 jpg files"),
 	description: yup.string().required('A description is required')
 });
 
-const EstablishmentForm = ({ show, setShow }) => {
+const EstablishmentForm = () => {
 	const context = useContext(EstablishmentsContext);
-	const [state, dispatch, , addEstablishment ] = context; 
+	const [state, dispatch, addEstablishment ] = context; 
 	
+	let history = useHistory();
+
 	const { register, handleSubmit, errors, reset } = useForm({ 
 		resolver: yupResolver(schema),
 	});
 	
+	
+
 	const handleAddEstablishment = async (data) => {
+		const formData = new FormData();
+		formData.append("file", data.imgUrl[0]);
+		data.imgUrl = formData;
+		console.log(data.imgUrl)
 		addEstablishment(data);
 		dispatch({ type: ADD_ESTABLISHMENT, payload: data });
 		reset(addEstablishment);
 	} 
 
-	const handleClose = () => setShow(false);
+
+	const handleClose = () => history.push("/establishment");
 
 	return (
-		<Modal isOpen={show} className="Modal Overlay">
-			<Form className="form" onSubmit={handleSubmit(handleAddEstablishment)}>
-				<div className="form__header">
-					<h3 className="form__title heading--h3">Add Establishment</h3>
-					<AiFillCloseCircle className="form__close" onClick={handleClose} />
-				</div>
-				<Form.Group>
-					{state.serverError && <ErrorMsg>{state.serverError}</ErrorMsg>}
-                    {state.successMsg && <SuccessMsg>Establishment is sent</SuccessMsg>}
-				</Form.Group>
-				<Form.Row>
-					<Col lg={6} md={6} sm={6} xs={12}>
-						<Form.Group>
-							<Form.Label className="form__label">Name</Form.Label>
-							<Form.Control
-								className="form__input"
-								name="name"
-								ref={register}
-							/>
-							{errors.name && (<ErrorMsg>{errors.name.message}</ErrorMsg>)}
-						</Form.Group>
-					</Col>
-					<Col lg={6} md={6} sm={6} xs={12}>
-						<Form.Group controlId="formBasicEmail">
-							<Form.Label className="form__label">Email address</Form.Label>
-							<Form.Control
-								className="form__input"
-								name="email"
-								type="email"
-								ref={register}
-							/>
-							{errors.email && (<ErrorMsg>{errors.email.message}</ErrorMsg>)}
-						</Form.Group>
-					</Col>
-				</Form.Row>
-				<Form.Row>
-					<Col lg={6} md={6} sm={6} xs={12}>
-						<Form.Group>
-							<Form.Label className="form__label">Price</Form.Label>
-							<Form.Control
-								className="form__input"
-								name="price"
-								ref={register}
-							/>
-							{errors.price && (<ErrorMsg>{errors.price.message}</ErrorMsg>)}
-						</Form.Group>
-					</Col>
-					<Col lg={6} md={6} sm={6} xs={12}>
-						<Form.Group>
-							<Form.Label className="form__label">Max Guests</Form.Label>
-							<Form.Control
-								className="form__input"
-								name="maxGuests"
-								type="text"
-								ref={register}
-							/>
-							{errors.maxGuests && (<ErrorMsg>{errors.maxGuests.message}</ErrorMsg>)}
-						</Form.Group>
-					</Col>
-
+		<main>
+			<section className="inbox__header-section">
+				<SubHeading content="Establishment Form" />
+			</section>
+			<section>
+				<Form className="form" onSubmit={handleSubmit(handleAddEstablishment)}>
+					<div className="form__header">
+						<h3 className="form__title heading--h3">Add Establishment</h3>
+						<AiFillCloseCircle className="form__close" onClick={handleClose} />
+					</div>
 					<Form.Group>
-						<Form.Label className="form__label ml-2">Self catering</Form.Label>
-						<input
-							className="form__checkbox"
-							name="selfcatering"
-							type="checkbox"
-							value={false}
+						{state.serverError && <ErrorMsg>{state.serverError}</ErrorMsg>}
+						{state.successMsg && <SuccessMsg>Establishment is sent</SuccessMsg>}
+					</Form.Group>
+					<Form.Row>
+						<Col lg={6} md={6} sm={6} xs={12}>
+							<Form.Group>
+								<Form.Label className="form__label">Name</Form.Label>
+								<Form.Control
+									className="form__input"
+									name="name"
+									ref={register}
+								/>
+								{errors.name && (<ErrorMsg>{errors.name.message}</ErrorMsg>)}
+							</Form.Group>
+						</Col>
+						<Col lg={6} md={6} sm={6} xs={12}>
+							<Form.Group controlId="formBasicEmail">
+								<Form.Label className="form__label">Email address</Form.Label>
+								<Form.Control
+									className="form__input"
+									name="email"
+									type="email"
+									ref={register}
+								/>
+								{errors.email && (<ErrorMsg>{errors.email.message}</ErrorMsg>)}
+							</Form.Group>
+						</Col>
+					</Form.Row>
+					<Form.Row>
+						<Col lg={6} md={6} sm={6} xs={12}>
+							<Form.Group>
+								<Form.Label className="form__label">Price</Form.Label>
+								<Form.Control
+									className="form__input"
+									name="price"
+									ref={register}
+								/>
+								{errors.price && (<ErrorMsg>{errors.price.message}</ErrorMsg>)}
+							</Form.Group>
+						</Col>
+						<Col lg={6} md={6} sm={6} xs={12}>
+							<Form.Group>
+								<Form.Label className="form__label">Max Guests</Form.Label>
+								<Form.Control
+									className="form__input"
+									name="maxGuests"
+									type="text"
+									ref={register}
+								/>
+								{errors.maxGuests && (<ErrorMsg>{errors.maxGuests.message}</ErrorMsg>)}
+							</Form.Group>
+						</Col>
+						<Col lg={6} md={6} sm={6} xs={12}>
+							<Form.Group>
+								<Form.Label className="form__label ml-2">Self Catering</Form.Label>
+								<input
+									className="form__checkbox"
+									name="selfcatering"
+									type="checkbox"
+									value={false}
+									ref={register}
+								/>
+							</Form.Group>
+						</Col>
+						<Col lg={6} md={6} sm={6} xs={12}>
+							<Form.Group>
+								<Form.Label className="form__label">Room Type</Form.Label>
+								<Form.Control as="select" name="roomType" ref={register} defaultValue="Select type of accommodation...">
+									<option className="form__option form__option--hover">Standard Double Room</option>
+									<option>Quen</option>
+									<option>King</option>
+									<option>Quad</option>
+									<option>Cottage</option>
+								</Form.Control>
+								{errors.roomType && (<ErrorMsg>{errors.roomType.message}</ErrorMsg>)}
+							</Form.Group>
+						</Col>
+					</Form.Row>
+					 <Form.Row>
+						<Col md={4} sm={6} xs={12}>
+							<Form.Group>
+								<Form.Label className="form__label">Main Image</Form.Label>
+								<input type="file" name="imgUrl" ref={register} />
+								{errors.imgUrl && (<ErrorMsg>{errors.imgUrl.message}</ErrorMsg>)}
+							</Form.Group>
+						</Col> 
+						<Col md={4} sm={6} xs={12}>
+							<Form.Group>
+								<Form.Label className="form__label">Images</Form.Label>
+								<Form.File multiple name="imgsUrl" ref={register} />
+								{errors.imgsUrl && (<ErrorMsg>{errors.imgsUrl.message}</ErrorMsg>)}
+							</Form.Group>
+						</Col>
+						<Col md={4} sm={6} xs={12}>
+							<Form.Group>
+								<Form.Label className="form__label">Images for mobile view</Form.Label>
+								<Form.File multiple name="imgsMobileUrl" ref={register} />
+								{errors.imgsMobileUrl && (<ErrorMsg>{errors.imgsMobileUrl.message}</ErrorMsg>)}
+							</Form.Group>
+						</Col>
+					</Form.Row> 
+					{/* <Form.Row>
+						<Col sm={6} xs={12}>
+							<Form.Group>
+								<Form.Label className="form__label">Facility icons in JSON format(FontAwesomeIcon)</Form.Label>
+								<Form.File name="facilityIcons" ref={register} />
+								{errors.facilityIcons && (<ErrorMsg>{errors.facilityIcons.message}</ErrorMsg>)}
+							</Form.Group>
+						</Col>
+						<Col sm={6} xs={12}>
+							<Form.Group>
+								<Form.Label className="form__label">Booking includes icons in JSON format(FontAwesomeIcon)</Form.Label>
+								<Form.File name="bookingIncludes" ref={register} />
+								{errors.bookingIncludes && (<ErrorMsg>{errors.bookingIncludes.message}</ErrorMsg>)}
+							</Form.Group>
+						</Col>
+						<Col sm={6} xs={12}>
+							<Form.Group>
+								<Form.Label className="form__label">Popular facility icons in JSON format(FontAwesomeIcon)</Form.Label>
+								<Form.File name="popularFacilityIcons" ref={register} />
+								{errors.popularFacilityIcons && (<ErrorMsg>{errors.popularFacilityIcons.message}</ErrorMsg>)}
+							</Form.Group>
+						</Col>
+						<Col sm={6} xs={12}>
+							<Form.Group>
+								<Form.Label className="form__label">Star icons in JSON format(FontAwesomeIcon)</Form.Label>
+								<Form.File name="stars" ref={register} />
+								{errors.stars && (<ErrorMsg>{errors.stars.message}</ErrorMsg>)}
+							</Form.Group>
+						</Col>
+					</Form.Row> */}
+					<Form.Group>
+						<Form.Label className="form__label">Description</Form.Label>
+						<Form.Control
+							className="form__textField"
+							as="textarea"
+							name="description"
+							rows={5}
 							ref={register}
 						/>
+						{errors.description && (<ErrorMsg>{errors.description.message}</ErrorMsg>)}
 					</Form.Group>
-				</Form.Row>
-				<Form.Group>
-					<Form.Label className="form__label">Description</Form.Label>
-					<Form.Control
-						className="form__textField"
-						as="textarea"
-						name="description"
-						rows={5}
-						ref={register}
-					/>
-					{errors.description && (<ErrorMsg>{errors.description.message}</ErrorMsg>)}
-				</Form.Group>
-				<Form.Row>
-					<Col sm={6} xs={12}>
-						<Form.Group>
-							<Button
-								type="form__btn button--blue button--hover"
-								label={state.loading ? "Submitting..." : "Submit"}
-							></Button>
-						</Form.Group>
-					</Col>
-				</Form.Row>
-			</Form>
-		</Modal>
+					<Form.Row>
+						<Col sm={6} xs={12}>
+							<Form.Group>
+								<Button
+									type="form__btn button--blue button--hover"
+									label={state.loading ? "Submitting..." : "Submit"}
+								></Button>
+							</Form.Group>
+						</Col>
+					</Form.Row>
+				</Form>
+			</section>
+	</main>
 	);
 };
 

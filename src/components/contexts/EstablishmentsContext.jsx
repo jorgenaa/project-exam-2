@@ -1,4 +1,5 @@
 import { createContext, useReducer, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { BASE_URL, HOTEL_PATH } from '../../constants/api';
 
@@ -32,7 +33,7 @@ function reducer(state, action) {
 			return {...state, submitting: action.payload };
 		case ERROR: 
 			return { ...state, serverError: action.payload, successMsg: false };
-		case ADD_ESTABLISHMENT:
+		case ADD_ESTABLISHMENT: console.log("ADD action.payload", action.payload);
 			return {...state, establishments: [...state.establishments, action.payload]};
 		case REMOVE_ESTABLISHMENT:
 			return {...state, establishments: state.establishments.filter(u => u.id !== action.payload)};
@@ -61,21 +62,26 @@ export const EstablishmentsProvider = props => {
 
 	useEffect(() => {
 		getEstablishments();
-
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
+	const history = useHistory();
+	
 	async function addEstablishment(data) {
 		dispatch({ type: SUBMITTING, payload: true})
 		dispatch({ type: ERROR, payload: null});
 
+		console.log(data)
 		try {
 			const response = await axios.post(url, data);
 			dispatch({ type: SUCCESS, payload: true });
 			const { status } = response;
 			if (status === 200) {
-				dispatch({ type: ADD_ESTABLISHMENT, payload: data });
-				dispatch({ type: SUCCESS, payload: false });
+				//dispatch({ type: ADD_ESTABLISHMENT });
+				setTimeout(() => {
+					dispatch({ type: SUCCESS, payload: false});
+					history.push("/establishment");
+				}, 1000);
 			}
 		} catch (error) {
 			console.log(error);
