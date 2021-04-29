@@ -15,7 +15,8 @@ const EstablishmentsList = ({state}) => {
 			</tbody>
 		);
 	}
-
+	//imgsUrl,
+	//imgsMobileUrl
 
 	return (
 		<tbody>
@@ -31,10 +32,9 @@ const EstablishmentsList = ({state}) => {
 					maxGuests,
 					roomType,
 					imgUrl,
-					imgsUrl,
-					imgsMobileUrl
+				
 				} = establishment;
-
+				
 				return (
 					<>
 					<tr >
@@ -63,10 +63,13 @@ const EstablishmentsList = ({state}) => {
 					</tr>
 					<tr className="table__row table__row--border-bottom-even">
 						<td>{roomType}</td>
-							{imgUrl ?<td>{imgUrl.name}</td> : null}
-							{imgsUrl ?<td><ul>{imgsUrl.map(img => {
-								return <li>{img.name}</li>})}</ul></td>: null}
-							{imgsMobileUrl ?<td><ul>{imgsMobileUrl.map(img => <li>{img.name}</li>)}</ul></td>: null}
+						<td>{imgUrl.name}</td> 
+						<td></td>
+						<td></td>
+						{/* <td>{imgsUrl}</td> */}
+						{/* <td><ul>{imgsUrl.map(img => {return <li>{img.name}</li>})}</ul></td> */}
+						{/* <td>{imgsMobileUrl}</td> */}
+						{/* <td><ul>{imgsMobileUrl.map(img => <li>{img.name}</li>)}</ul></td> */}
 						<td span="2" dangerouslySetInnerHTML={{ __html: description }}></td>
 					</tr>
 					</>

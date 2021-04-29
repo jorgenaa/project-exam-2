@@ -77,6 +77,7 @@ export const EstablishmentsProvider = props => {
 			dispatch({ type: SUCCESS, payload: true });
 			const { status } = response;
 			if (status === 200) {
+				console.log(response.data);
 				//dispatch({ type: ADD_ESTABLISHMENT });
 				setTimeout(() => {
 					dispatch({ type: SUCCESS, payload: false});

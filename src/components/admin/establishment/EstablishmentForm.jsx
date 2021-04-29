@@ -42,12 +42,12 @@ const EstablishmentForm = () => {
 		resolver: yupResolver(schema),
 	});
 	
-	
+	const formData = new FormData();
 
 	const handleAddEstablishment = async (data) => {
-		const formData = new FormData();
-		formData.append("file", data.imgUrl[0]);
-		data.imgUrl = formData;
+		
+		formData.append("files.imgUrl", data.imgUrl[0], data.imgUrl[0].name);
+		data.imgUrl = data.imgUrl[0];
 		console.log(data.imgUrl)
 		addEstablishment(data);
 		dispatch({ type: ADD_ESTABLISHMENT, payload: data });
@@ -151,7 +151,7 @@ const EstablishmentForm = () => {
 						<Col md={4} sm={6} xs={12}>
 							<Form.Group>
 								<Form.Label className="form__label">Main Image</Form.Label>
-								<input type="file" name="imgUrl" ref={register} />
+								<Form.File name="imgUrl" ref={register} />
 								{errors.imgUrl && (<ErrorMsg>{errors.imgUrl.message}</ErrorMsg>)}
 							</Form.Group>
 						</Col> 
