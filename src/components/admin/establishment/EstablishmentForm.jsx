@@ -1,6 +1,6 @@
-import { useContext } from 'react'; 
+import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Form from 'react-bootstrap/Form';
@@ -18,44 +18,54 @@ import SuccessMsg from '../../common/SuccessMsg';
 
 const schema = yup.object().shape({
 	name: yup.string().required('Name is required'),
-	email: yup.string().email('Please enter a valid email').required('Email is required'),
+	email: yup
+		.string()
+		.email('Please enter a valid email')
+		.required('Email is required'),
 	price: yup.number().required('Please provide a valid number'),
 	maxGuests: yup.number().required('Please provide a valid number'),
-	roomType: yup.string().required("Select a room type"),
-	imgUrl: yup.mixed().required("You need to provice a jpg file").test("filesize", "The file is too large", (value) => {
-		return value && value[0].size < 180000;
-	}).test("type", "We only support jpg", (value) => {
-		return value && value[0].type === "image/jpeg";
-	}),
+	roomType: yup.string().required('Select a room type'),
+	imgUrl: yup
+		.mixed()
+		.required('You need to provice a jpg file')
+		.test('filesize', 'The file is too large', value => {
+			return value && value[0].size < 180000;
+		})
+		.test('type', 'We only support jpg', value => {
+			return value && value[0].type === 'image/jpeg';
+		}),
 	// imgsUrl: yup.mixed()("Select 4 jpg files"),
 	// imgsMobileUrl: yup.mixed()("Select 5 jpg files"),
-	description: yup.string().required('A description is required')
+	description: yup.string().required('A description is required'),
 });
 
 const EstablishmentForm = () => {
 	const context = useContext(EstablishmentsContext);
-	const [state, dispatch, addEstablishment ] = context; 
-	
+	const [state, dispatch, addEstablishment] = context;
+
 	let history = useHistory();
 
-	const { register, handleSubmit, errors, reset } = useForm({ 
+	const { register, handleSubmit, errors, reset } = useForm({
 		resolver: yupResolver(schema),
 	});
-	
+
 	const formData = new FormData();
 
-	const handleAddEstablishment = async (data) => {
-		
-		formData.append("files.imgUrl", data.imgUrl[0], data.imgUrl[0].name);
+	const handleAddEstablishment = data => {
+		//Get the file
+		formData.append('files.imgUrl', data.imgUrl[0], data.imgUrl[0].name);
 		data.imgUrl = data.imgUrl[0];
 		console.log(data.imgUrl)
+
+		//Pass data from input fields to body
 		addEstablishment(data);
+		//Pass data from input fields to the state
 		dispatch({ type: ADD_ESTABLISHMENT, payload: data });
+		//reset input fields
 		reset(addEstablishment);
-	} 
+	};
 
-
-	const handleClose = () => history.push("/establishment");
+	const handleClose = () => history.push('/establishment');
 
 	return (
 		<main>
@@ -81,7 +91,7 @@ const EstablishmentForm = () => {
 									name="name"
 									ref={register}
 								/>
-								{errors.name && (<ErrorMsg>{errors.name.message}</ErrorMsg>)}
+								{errors.name && <ErrorMsg>{errors.name.message}</ErrorMsg>}
 							</Form.Group>
 						</Col>
 						<Col lg={6} md={6} sm={6} xs={12}>
@@ -93,7 +103,7 @@ const EstablishmentForm = () => {
 									type="email"
 									ref={register}
 								/>
-								{errors.email && (<ErrorMsg>{errors.email.message}</ErrorMsg>)}
+								{errors.email && <ErrorMsg>{errors.email.message}</ErrorMsg>}
 							</Form.Group>
 						</Col>
 					</Form.Row>
@@ -106,7 +116,7 @@ const EstablishmentForm = () => {
 									name="price"
 									ref={register}
 								/>
-								{errors.price && (<ErrorMsg>{errors.price.message}</ErrorMsg>)}
+								{errors.price && <ErrorMsg>{errors.price.message}</ErrorMsg>}
 							</Form.Group>
 						</Col>
 						<Col lg={6} md={6} sm={6} xs={12}>
@@ -118,12 +128,16 @@ const EstablishmentForm = () => {
 									type="text"
 									ref={register}
 								/>
-								{errors.maxGuests && (<ErrorMsg>{errors.maxGuests.message}</ErrorMsg>)}
+								{errors.maxGuests && (
+									<ErrorMsg>{errors.maxGuests.message}</ErrorMsg>
+								)}
 							</Form.Group>
 						</Col>
 						<Col lg={6} md={6} sm={6} xs={12}>
 							<Form.Group>
-								<Form.Label className="form__label ml-2">Self Catering</Form.Label>
+								<Form.Label className="form__label ml-2">
+									Self Catering
+								</Form.Label>
 								<input
 									className="form__checkbox"
 									name="selfcatering"
@@ -136,40 +150,55 @@ const EstablishmentForm = () => {
 						<Col lg={6} md={6} sm={6} xs={12}>
 							<Form.Group>
 								<Form.Label className="form__label">Room Type</Form.Label>
-								<Form.Control as="select" name="roomType" ref={register} defaultValue="Select type of accommodation...">
-									<option className="form__option form__option--hover">Standard Double Room</option>
+								<Form.Control
+									as="select"
+									name="roomType"
+									ref={register}
+									defaultValue="Select type of accommodation..."
+								>
+									<option className="form__option form__option--hover">
+										Standard Double Room
+									</option>
 									<option>Quen</option>
 									<option>King</option>
 									<option>Quad</option>
 									<option>Cottage</option>
 								</Form.Control>
-								{errors.roomType && (<ErrorMsg>{errors.roomType.message}</ErrorMsg>)}
+								{errors.roomType && (
+									<ErrorMsg>{errors.roomType.message}</ErrorMsg>
+								)}
 							</Form.Group>
 						</Col>
 					</Form.Row>
-					 <Form.Row>
+					<Form.Row>
 						<Col md={4} sm={6} xs={12}>
 							<Form.Group>
 								<Form.Label className="form__label">Main Image</Form.Label>
 								<Form.File name="imgUrl" ref={register} />
-								{errors.imgUrl && (<ErrorMsg>{errors.imgUrl.message}</ErrorMsg>)}
+								{errors.imgUrl && <ErrorMsg>{errors.imgUrl.message}</ErrorMsg>}
 							</Form.Group>
-						</Col> 
-						<Col md={4} sm={6} xs={12}>
+						</Col>
+						{/* <Col md={4} sm={6} xs={12}>
 							<Form.Group>
 								<Form.Label className="form__label">Images</Form.Label>
 								<Form.File multiple name="imgsUrl" ref={register} />
-								{errors.imgsUrl && (<ErrorMsg>{errors.imgsUrl.message}</ErrorMsg>)}
+								{errors.imgsUrl && (
+									<ErrorMsg>{errors.imgsUrl.message}</ErrorMsg>
+								)}
 							</Form.Group>
 						</Col>
 						<Col md={4} sm={6} xs={12}>
 							<Form.Group>
-								<Form.Label className="form__label">Images for mobile view</Form.Label>
+								<Form.Label className="form__label">
+									Images for mobile view
+								</Form.Label>
 								<Form.File multiple name="imgsMobileUrl" ref={register} />
-								{errors.imgsMobileUrl && (<ErrorMsg>{errors.imgsMobileUrl.message}</ErrorMsg>)}
+								{errors.imgsMobileUrl && (
+									<ErrorMsg>{errors.imgsMobileUrl.message}</ErrorMsg>
+								)}
 							</Form.Group>
-						</Col>
-					</Form.Row> 
+						</Col> */}
+					</Form.Row>
 					{/* <Form.Row>
 						<Col sm={6} xs={12}>
 							<Form.Group>
@@ -209,21 +238,23 @@ const EstablishmentForm = () => {
 							rows={5}
 							ref={register}
 						/>
-						{errors.description && (<ErrorMsg>{errors.description.message}</ErrorMsg>)}
+						{errors.description && (
+							<ErrorMsg>{errors.description.message}</ErrorMsg>
+						)}
 					</Form.Group>
 					<Form.Row>
 						<Col sm={6} xs={12}>
 							<Form.Group>
 								<Button
 									type="form__btn button--blue button--hover"
-									label={state.loading ? "Submitting..." : "Submit"}
+									label={state.loading ? 'Submitting...' : 'Submit'}
 								></Button>
 							</Form.Group>
 						</Col>
 					</Form.Row>
 				</Form>
 			</section>
-	</main>
+		</main>
 	);
 };
 

@@ -7,7 +7,6 @@ const EstablishmentsContext = createContext();
 
 export const STORE_ESTABLISHMENT = 'STORE_ESTABLISHMENT';
 export const ADD_ESTABLISHMENT = 'ADD_ESTABLISHMENT';
-export const REMOVE_ESTABLISHMENT = 'REMOVE_ESTABLISHMENT';
 export const LOADING = 'LOADING';
 export const SUBMITTING = 'SUBMITTING';
 export const SUCCESS = 'SUCCESS';
@@ -35,8 +34,6 @@ function reducer(state, action) {
 			return { ...state, serverError: action.payload, successMsg: false };
 		case ADD_ESTABLISHMENT: console.log("ADD action.payload", action.payload);
 			return {...state, establishments: [...state.establishments, action.payload]};
-		case REMOVE_ESTABLISHMENT:
-			return {...state, establishments: state.establishments.filter(u => u.id !== action.payload)};
 		default:
 			throw new Error();
 	}
@@ -71,7 +68,6 @@ export const EstablishmentsProvider = props => {
 		dispatch({ type: SUBMITTING, payload: true})
 		dispatch({ type: ERROR, payload: null});
 
-		console.log(data)
 		try {
 			const response = await axios.post(url, data);
 			dispatch({ type: SUCCESS, payload: true });
