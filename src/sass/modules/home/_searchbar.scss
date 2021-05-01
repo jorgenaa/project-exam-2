@@ -1,23 +1,16 @@
 .searchBar{
-    padding: 0 1rem;
-    display: none;
-    margin: 0;
-   
-    @include screen("mobile") {
-            display: block;
-        }
-    &__input-container {
-		max-width: 500px;
-		position: relative; 
-		margin: 1rem auto 0;
-		z-index: 50;
-		box-shadow: 0px 3px 6px $grey;
-		border-radius: 5px; 
-        @include screen("mobile") {
-            margin: 0 auto;
-            max-width: 350px;
-        }
+	max-width: 500px;
+	display: flex;
+	margin: 1rem auto 0;
+	z-index: 50;
+	box-shadow: 0px 3px 6px $grey;
+	border-radius: 5px; 
+	@include screen("mobile") {
+		margin: 0 auto;
+		max-width: 350px;
+		display: block;
 	}
+  
 	&__input {
 		width: 100%;
 		padding:  0.75em;
@@ -26,18 +19,17 @@
         border: none;
 		appearance: auto;
 		outline: none;
-		
 		 @include screen("mobile") {
             padding:  .429em;
         }
 	}
-	
 	&__options {
+		max-width: 500px;
+		margin: auto;
 		z-index: 50;
 		background-color: $white;
 		border-radius: 5px; 
 		border-top: 1px solid $blue;
-		
 	}
 	&__options-item {
 		background-color: $white;
@@ -54,5 +46,13 @@
 			background-color: $lightBlue;
 			color: $black;
 		}
+	}
+	&__icon {
+		font-size: 1.5rem;
+		align-self: center;
+		margin-left: -33px;
+		@include screen("mobile") {
+            font-size: 1rem;
+        }
 	}
 }

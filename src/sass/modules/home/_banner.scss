@@ -3,22 +3,20 @@
 	padding: 0;
 	height: 480px;
 	position: relative;
-	  @include screen("mobile") {
-             height: 200px;
-			 margin-top: 1rem;
-         }
-		 
-		&__background{
-			
-			height: 480px;
-			background-image: url('../../../assets/img/bryggen_v2.jpg');
-			background-repeat: no-repeat;
-			background-position: top;
-			background-size: cover;
-			  @include screen("mobile") {
-             	height: 230px;
-				
-         }
+	@include screen('mobile') {
+		height: 200px;
+		margin-top: 1rem;
+	}
+
+	&__background {
+		height: 480px;
+		background-image: url('../../../assets/img/bryggen_v2.jpg');
+		background-repeat: no-repeat;
+		background-position: top;
+		background-size: cover;
+		@include screen('mobile') {
+			height: 200px;
+		}
 	}
 
 	&__search-container {
@@ -26,21 +24,22 @@
 		top: 25%;
 		height: 200px;
 		width: 100%;
-		background-color: rgba(48, 48, 48, .7);
+		padding: 0 1rem;
+		background-color: rgba(48, 48, 48, 0.7);
 		text-align: center;
-		 @include screen("mobile") {
+		@include screen('mobile') {
 			top: 10%;
 			height: 150px;
-			//background-color: rgba(48, 48, 48, .0);
-         }
+			background-color: rgba(48, 48, 48, .0);
+		}
 	}
-	
-	&__heading{
- 		color: $white;
+
+	&__heading {
+		color: $white;
 		margin: 3.5rem 0 0;
-		@include screen("mobile") {
+		@include screen('mobile') {
 			margin: 1rem 4rem 0;
-			
+			text-shadow: 2px 2px $black;
 		}
 	}
 }

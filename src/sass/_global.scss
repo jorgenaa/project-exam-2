@@ -4,19 +4,24 @@
 	box-sizing: border-box;
 }
 
+html,
+body {
+	width: 100%;
+	max-width: 100%;
+	overflow-x: hidden !important;
+}
+
 body {
 	color: #303030;
 	margin: 0;
 	padding: 0;
 	background-color: #feffff;
 	letter-spacing: 0.5;
-	width: 100%;
 }
 
 h1 {
 	font-size: 3em;
 }
-
 
 h2,
 h3,
@@ -43,13 +48,13 @@ main,
 nav,
 section {
 	display: block;
-	overflow-x: auto hidden !important;
+	
 }
 
 main {
-    margin: auto;
+	//margin: auto;
 	padding: 0 1rem;
-    width: 100%;
+	width: 100%;
 }
 
 section {
@@ -57,7 +62,6 @@ section {
 	margin: 0 auto 1rem;
 	max-width: 1200px;
 	width: 100%;
-	
 }
 
 img {
@@ -74,26 +78,24 @@ table {
 	border-spacing: 0;
 	width: 100%;
 	margin-top: 1rem;
-	
 }
 
 tbody {
 	border-style: hidden; /* hide standard table (collapsed) border */
-	box-shadow: 0 0 0 1px #154BA0;
-	border-bottom: 1px solid #154BA0;
+	box-shadow: 0 0 0 1px #154ba0;
+	border-bottom: 1px solid #154ba0;
 }
 
 th {
-	padding: .5rem 1rem;
+	padding: 0.5rem 1rem;
 }
 
 td {
 	text-align: left;
-	padding: .5rem 1rem;
+	padding: 0.5rem 1rem;
 }
 
 tr {
-	
 	vertical-align: text-top;
 }
 
@@ -102,10 +104,10 @@ thead tr:nth-child(odd) {
 }
 
 tbody tr:nth-child(odd) {
-	background-color: white ;
+	background-color: #d6e7ff;
 }
 tbody tr:nth-child(even) {
-	background-color: #d6e7ff;
+	background-color: white ;
 }
 
 @media screen and (max-width: 991px) {
@@ -114,9 +116,7 @@ tbody tr:nth-child(even) {
 	}
 }
 @media screen and (max-width: 767px) {
-	
 	div {
 		padding: 0;
 	}
 }
-

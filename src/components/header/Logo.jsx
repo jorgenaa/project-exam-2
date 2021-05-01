@@ -3,11 +3,11 @@ import { NavLink } from 'react-router-dom';
 
 const Logo = () => {
 	return (
-		<div className="logo">
+		<h1 className="logo">
 			<NavLink to="/">
 				<img className="logo__item" src={LogoIcon} alt="logo" />
 			</NavLink>
-		</div>
+		</h1>
 	);
 };
 

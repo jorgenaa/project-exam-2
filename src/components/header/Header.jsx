@@ -1,6 +1,6 @@
 import Logo from './Logo';
 
-//Components
+//Component
 import Nav from './nav/Nav';
 
 const Header = () => {
@@ -8,7 +8,6 @@ const Header = () => {
 		<header className="header">
 			<div className="header__layout">
 				<Logo />
-
 				<Nav />
 			</div>
 		</header>

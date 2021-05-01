@@ -7,6 +7,10 @@ import Button from './Button';
 import { BASE_URL } from '../../constants/api';
 
 const CustomCard = ({ name, image, price, id, stars }) => {
+	//Convert from object to array
+	const allStars = Object.values(stars);
+	
+	console.log(allStars)
 	return (
 		<div className="custom-card">
 			<div className="custom-card__img">
@@ -19,9 +23,8 @@ const CustomCard = ({ name, image, price, id, stars }) => {
 			<div className="custom-card__info">
 				<div className="custom-card__title-wrapper">
 					<h5 className="custom-card__title">{name}</h5>
-					{stars ? (
-						<ul className="specific__stars">
-							{stars.map(star => {
+					 <ul className="specific__stars">
+							{allStars.map(star => {
 								return (
 									<li key={star.id} className="specific__star">
 									<span className={`fa ${star.cssClass}`}><FontAwesomeIcon icon={require("@fortawesome/free-solid-svg-icons")[star.name]}></FontAwesomeIcon></span>
@@ -29,9 +32,6 @@ const CustomCard = ({ name, image, price, id, stars }) => {
 								);
 							})}
 						</ul>
-					) : (
-						''
-					)}
 				</div>
 
 				<div className="custom-card__price-btn">
@@ -49,6 +49,7 @@ const CustomCard = ({ name, image, price, id, stars }) => {
 };
 
 CustomCard.propTypes = {
+	stars: PropTypes.object.isRequired,
 	name: PropTypes.string.isRequired,
 	image: PropTypes.string.isRequired,
 	description: PropTypes.string.isRequired,

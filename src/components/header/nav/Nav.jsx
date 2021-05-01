@@ -1,6 +1,8 @@
 import { useContext } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import { Squash as Hamburger } from 'hamburger-react';
+
+//Components
 import AuthContext from '../../contexts/AuthContext';
 
 const Nav = () => {
@@ -11,11 +13,11 @@ const Nav = () => {
 		setAuth(null);
 		history.push('/login/');
 	};
-
+	
 	return (
 		<>
-			<label htmlFor="hamburger-menu" className="nav__label">
-				<Hamburger className="nav__hamburger" color="#FEFFFF" size={22} />
+			<label htmlFor="hamburger-menu" className="nav__label" >
+				<Hamburger className="nav__hamburger" color="#FEFFFF" size={22}  />
 			</label>
 			<input type="checkbox" id="hamburger-menu" className="nav__input" />
 

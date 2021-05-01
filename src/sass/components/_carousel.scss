@@ -1,7 +1,6 @@
 .carousel {
-    display: none;
-    @include screen("mobileSm") {
-        display: block;
-        
-    }
+	display: none;
+	@include screen('mobileSm') {
+		display: block;
+	}
 }

@@ -23,7 +23,9 @@
     &__icon {
         color: $white;
         font-size: 32px;
-        
+        @include screen("mobile") {
+            font-size: 1.5rem;
+        }
     }
     &__list-item {
         line-height: 1.5;

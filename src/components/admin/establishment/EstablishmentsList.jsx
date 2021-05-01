@@ -1,10 +1,7 @@
 import { useEffect } from 'react';
 
-const EstablishmentsList = ({state}) => {
-	
-	useEffect(() => {
-	
-	}, [state.establishments.length]);
+const EstablishmentsList = ({ state }) => {
+	useEffect(() => {}, [state.establishments.length]);
 
 	if (state.establishments.length === 0) {
 		return (
@@ -20,7 +17,6 @@ const EstablishmentsList = ({state}) => {
 
 	return (
 		<tbody>
-		
 			{state.establishments.map(establishment => {
 				const {
 					name,
@@ -32,46 +28,53 @@ const EstablishmentsList = ({state}) => {
 					maxGuests,
 					roomType,
 					imgUrl,
-				
 				} = establishment;
-				
+			
 				return (
 					<>
-					<tr >
-						<th>Name</th>
-						<th>Email</th>
-						<th>Price</th>
-						<th>Max guests</th>
-						<th>Self catering</th>
-						
-					</tr>
-					<tr key={id}>
-						<td>{name}</td>
-						<td span="1">{email}</td>
-						<td>{price}</td>
-						<td>{maxGuests}</td>
-						<td value={selfcatering}>
-							{selfcatering === false ? 'No' : 'Yes'}
-						</td>
-					</tr>
-					<tr>
-						<th>Room Type</th>
-						<th>Main Img</th>
-						<th>Images</th>
-						<th>Images mobile</th>
-						<th>Description</th>
-					</tr>
-					<tr className="table__row table__row--border-bottom-even">
-						<td>{roomType}</td>
-						<td>{imgUrl.name}</td> 
-						<td></td>
-						<td></td>
-						{/* <td>{imgsUrl}</td> */}
-						{/* <td><ul>{imgsUrl.map(img => {return <li>{img.name}</li>})}</ul></td> */}
-						{/* <td>{imgsMobileUrl}</td> */}
-						{/* <td><ul>{imgsMobileUrl.map(img => <li>{img.name}</li>)}</ul></td> */}
-						<td span="2" dangerouslySetInnerHTML={{ __html: description }}></td>
-					</tr>
+						<tr>
+							<th>Name</th>
+							<th>Email</th>
+							<th>Price</th>
+							<th>Max guests</th>
+							<th>Self catering</th>
+						</tr>
+						<tr key={id}>
+							<td>{name}</td>
+							<td span="1">{email}</td>
+							<td>{price}</td>
+							<td>{maxGuests}</td>
+							<td value={selfcatering}>
+								{selfcatering === false ? 'No' : 'Yes'}
+							</td>
+						</tr>
+						<tr>
+							<th>Room Type</th>
+							<th>Main Img</th>
+							<th>Images</th>
+							<th>Images mobile</th>
+							<th></th>
+						</tr>
+						<tr >
+							<td>{roomType}</td>
+							{imgUrl ? <td>{imgUrl.name}</td> : null}
+							<td></td>
+							<td></td>
+							{/* <td>{imgsUrl}</td> */}
+							{/* <td><ul>{imgsUrl.map(img => {return <li>{img.name}</li>})}</ul></td> */}
+							{/* <td>{imgsMobileUrl}</td> */}
+							{/* <td><ul>{imgsMobileUrl.map(img => <li>{img.name}</li>)}</ul></td> */}
+							<td></td>
+						</tr>
+						<tr>
+							<th colspan="5">Description</th>
+						</tr>
+						<tr className="table__row table__row--border-bottom-even">
+						<td
+							colspan="5"
+							dangerouslySetInnerHTML={{ __html: description }}
+							></td>
+						</tr>
 					</>
 				);
 			})}

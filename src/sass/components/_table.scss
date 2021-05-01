@@ -1,19 +1,21 @@
 .table {
+
 	&__row {
-	&--border-bottom {
-		border-bottom: 1px solid $blue;
-		
-	}	
-	&--border-bottom-even {
-		&:nth-of-type(even) {
+		&--border-bottom {
 			border-bottom: 1px solid $blue;
 		}
-	}	
-	
-		
+		&--border-bottom-even {
+			&:nth-of-type(even) {
+				border-bottom: 1px solid $blue;
+			}
+		}
 	}
 	&__section {
-		overflow-x: auto;
+	
+		overflow-x: scroll;
+		@include screen("mobile") {
+			padding: 0;
+		}
 	}
 	&__trash {
 		color: $red;

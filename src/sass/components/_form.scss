@@ -1,62 +1,60 @@
 .form {
-    background-color: $lightBlue;
-    border-radius: 5px;
-    padding: 1rem;
-    margin: 0 auto;
-    border: 1px solid $blue;
-    &__header {
-        display: flex;
-    }
-    &__close {
-        margin-top: 1.5rem;
-        font-size: 32px;
-        color: $grey;
-    }
+	background-color: $lightBlue;
+	border-radius: 5px;
+	padding: 1rem;
+	margin: 0 auto;
+	border: 1px solid $blue;
+	&__header {
+		display: flex;
+	}
+	&__close {
+		font-size: 32px;
+		color: $blue;
+	}
 
-    &__title {
-        color: $blue;
-        padding-top: 1.5rem;
-        width: 100%;
-    }
-    &__label {
-        font-weight: bold;
-    }
-    &__input {
-        border-radius: 5px;
-    }
-    &__checkbox {
-        width: 16px;
-        height: 16px;
-        display: block;
-        margin-left: 1rem;
-    }
-    
-    &__btn {
-        width: 100%;
-    }
-  
-    &__message {
+	&__title {
+		color: $blue;
+		width: 100%;
+	}
+	&__label {
+		font-weight: bold;
+	}
+	&__input {
+		border-radius: 5px;
+	}
+	&__checkbox {
+		width: 16px;
+		height: 16px;
+		display: block;
+		margin-left: 1rem;
+	}
+
+	&__btn {
+		width: 100%;
+	}
+
+	&__message {
 		padding: 0rem;
-		margin-left: .5rem;
-        &--loading {
-            text-align: center;
-            font-size: 22px;
-        }
+		margin-left: 0.5rem;
+		&--loading {
+			text-align: center;
+			font-size: 22px;
+		}
 		&--success {
 			color: $blue;
-            border-bottom: 1px solid $blue;
+			border-bottom: 1px solid $blue;
 		}
-		&--error{
+		&--error {
 			color: $red;
-            border-bottom: 1px solid $red;
+			border-bottom: 1px solid $red;
 		}
 	}
-    
-    &__option {
-        &--hover {
-            &:hover {
-                background-color: $lightBlue;
-            }
-        }
-    }
+
+	&__option {
+		&--hover {
+			&:hover {
+				background-color: $lightBlue;
+			}
+		}
+	}
 }

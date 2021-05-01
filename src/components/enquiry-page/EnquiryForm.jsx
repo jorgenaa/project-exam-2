@@ -59,8 +59,9 @@ const EnquiryForm = ({ id, name, fromDate, toDate, handleOnDateChangeStart, hand
 
     return (
         <section key={id}>
-            <h4 className="form__title heading--h4">Enter your details</h4>
+           
             <Form className="form" onSubmit={handleSubmit(onSubmit)}>
+            <h4 className="form__title heading--h4">Enter your details</h4>
                 <Form.Group >
                     {state.serverError && <ErrorMsg>{state.serverError}</ErrorMsg>}
                     {state.successMsg && <SuccessMsg>Booking is successfully sent</SuccessMsg>}

@@ -1,40 +1,34 @@
 .sidebar {
-    &__specific {
-      font-family: $helveticaRegular;
-      padding: 0 1rem 0 2rem;
-      @include screen("tablet") {
-            //display: none;
-          }
-      @include screen("mobile") {
-          display: none;
-          }
-      
-      &__btn {
-           min-width: 150px;
-    }
-    }
-   
-  &__enquiry {
-    margin-bottom: 2rem;
-    padding: 0 1rem;
-    display: flex;
-    flex-direction: column;
-    align-content: space-between;
-    @include screen('mobile') {
-      
-      padding: 1rem 0;
-      flex-direction: row;
-      grid-gap: 1rem;
-      
-    }
-    @include screen('mobileSm') {
-      flex-direction: column;
-      margin-bottom: 0rem;
-      grid-gap: 0rem;
-    }
-  }
-  &__enquiry-item {
-    flex: 1;
-   
-  }
+	&__specific {
+		font-family: $helveticaRegular;
+		padding: 0 1rem 0 2rem;
+		@include screen('mobile') {
+			display: none;
+		}
+    
+		&__btn {
+			min-width: 150px;
+		}
+	}
+
+	&__enquiry {
+		margin-bottom: 2rem;
+		padding: 0 1rem;
+		display: flex;
+		flex-direction: column;
+		align-content: space-between;
+		@include screen('mobile') {
+			padding: 1rem 0;
+			flex-direction: row;
+			grid-gap: 1rem;
+		}
+		@include screen('mobileSm') {
+			flex-direction: column;
+			margin-bottom: 0rem;
+			grid-gap: 0rem;
+		}
+	}
+	&__enquiry-item {
+		flex: 1;
+	}
 }

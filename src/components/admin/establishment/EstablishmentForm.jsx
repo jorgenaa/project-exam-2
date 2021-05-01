@@ -27,40 +27,92 @@ const schema = yup.object().shape({
 	roomType: yup.string().required('Select a room type'),
 	imgUrl: yup
 		.mixed()
-		.required('You need to provice a jpg file')
+		.required('You need to provide a jpg file')
 		.test('filesize', 'The file is too large', value => {
 			return value && value[0].size < 180000;
 		})
 		.test('type', 'We only support jpg', value => {
 			return value && value[0].type === 'image/jpeg';
 		}),
-	// imgsUrl: yup.mixed()("Select 4 jpg files"),
-	// imgsMobileUrl: yup.mixed()("Select 5 jpg files"),
+	imgsUrl: yup
+		.mixed()
+		.required('You need to provide 4 jpg files')
+		// .test('filesize', 'The files are too large', value => {
+		// 	return value && value[0].size < 180000;
+		// })
+		.test('type', 'We only support jpg', value => {
+			return value && value[0].type === 'image/jpeg';
+		}),
+	imgsMobileUrl: yup
+		.mixed()
+		.required('You need to provide 5 jpg files')
+	// 	.test('filesize', 'The files are too large', value => {
+	// 		return value && value[0].size < 180000;
+	// })
+	.test('type', 'We only support jpg', value => {
+		return value && value[0].type === 'image/jpeg';
+	}),
+	// facilityIcons: yup 
+	// .mixed()
+	// .required('The file must contain an id, name and cssClass of the icons'),
+	// .test('type', 'We only support JSON', value => {
+	// 	return value && value[0].type === 'application/json';
+	// }),
+	// bookingIncludes: yup 
+	// .mixed()
+	// .required('You need to provide JSON file including id & name')
+	// .test('type', 'We only support JSON', value => {
+	// 	return value && value[0].type === 'application/json';
+	// }),
+	// popularFacilityIcons: yup 
+	// .mixed()
+	// .required('The file must contain an id, name and cssClass of the icons')
+	// .test('type', 'We only support JSON', value => {
+	// 	return value && value[0].type === 'application/json';
+	// }),
+	// stars: yup 
+	// .mixed()
+	// .required('The file must contain an id, name and cssClass of the icon')
+	// .test('type', 'We only support JSON', value => {
+	// 	return value && value[0].type === 'application/json';
+	// }),
 	description: yup.string().required('A description is required'),
 });
 
 const EstablishmentForm = () => {
 	const context = useContext(EstablishmentsContext);
-	const [state, dispatch, addEstablishment] = context;
+	const [state, dispatch, addEstablishment] = context; 
 
 	let history = useHistory();
 
-	const { register, handleSubmit, errors, reset } = useForm({
+	const { register, handleSubmit, errors, reset } = useForm({ 
 		resolver: yupResolver(schema),
 	});
 
 	const formData = new FormData();
-
+	
 	const handleAddEstablishment = data => {
-		//Get the file
+		//Get the files
 		formData.append('files.imgUrl', data.imgUrl[0], data.imgUrl[0].name);
-		data.imgUrl = data.imgUrl[0];
-		console.log(data.imgUrl)
+		
+		for(const file of data.imgsUrl) {
+			formData.append('files.imgsUrl', file, file.name);
+		}
+
+		for(const file of data.imgsMobileUrl) {
+			formData.append('files.imgsMobileUrl', file, file.name);
+		}
+		
+	 	//formData.append('files.facilityIcons', data.facilityIcons[0], data.facilityIcons[0].name);
+		// formData.append('files.bookingIncludes', data.bookingIncludes[0], data.bookingIncludes[0].name);
+		// formData.append('files.popularFacilityIcons', data.popularFacilityIcons[0], data.popularFacilityIcons[0].name);
+		formData.append('files.stars', data.stars[0], data.stars[0].name);
+		formData.append('data', JSON.stringify(data));
 
 		//Pass data from input fields to body
-		addEstablishment(data);
+		addEstablishment(formData);
 		//Pass data from input fields to the state
-		dispatch({ type: ADD_ESTABLISHMENT, payload: data });
+		dispatch({ type: ADD_ESTABLISHMENT, payload: formData });
 		//reset input fields
 		reset(addEstablishment);
 	};
@@ -178,7 +230,7 @@ const EstablishmentForm = () => {
 								{errors.imgUrl && <ErrorMsg>{errors.imgUrl.message}</ErrorMsg>}
 							</Form.Group>
 						</Col>
-						{/* <Col md={4} sm={6} xs={12}>
+						<Col md={4} sm={6} xs={12}>
 							<Form.Group>
 								<Form.Label className="form__label">Images</Form.Label>
 								<Form.File multiple name="imgsUrl" ref={register} />
@@ -197,15 +249,24 @@ const EstablishmentForm = () => {
 									<ErrorMsg>{errors.imgsMobileUrl.message}</ErrorMsg>
 								)}
 							</Form.Group>
-						</Col> */}
+						</Col>
 					</Form.Row>
-					{/* <Form.Row>
-						<Col sm={6} xs={12}>
+					<Col sm={6} xs={12}>
+							<Form.Group>
+								<Form.Label className="form__label">Star icons in JSON format(FontAwesomeIcon)</Form.Label>
+								<Form.File name="stars" ref={register} />
+								{errors.stars && (<ErrorMsg>{errors.stars.message}</ErrorMsg>)}
+							</Form.Group>
+						</Col>
+					 <Form.Row>
+					
+						{/* 
+							<Col sm={6} xs={12}>
 							<Form.Group>
 								<Form.Label className="form__label">Facility icons in JSON format(FontAwesomeIcon)</Form.Label>
-								<Form.File name="facilityIcons" ref={register} />
+								<Form.File accept="application/JSON" name="facilityIcons" ref={register} />
 								{errors.facilityIcons && (<ErrorMsg>{errors.facilityIcons.message}</ErrorMsg>)}
-							</Form.Group>
+							</Form.Group> 
 						</Col>
 						<Col sm={6} xs={12}>
 							<Form.Group>
@@ -227,8 +288,9 @@ const EstablishmentForm = () => {
 								<Form.File name="stars" ref={register} />
 								{errors.stars && (<ErrorMsg>{errors.stars.message}</ErrorMsg>)}
 							</Form.Group>
-						</Col>
-					</Form.Row> */}
+						</Col>*/}
+					</Form.Row> 
+				
 					<Form.Group>
 						<Form.Label className="form__label">Description</Form.Label>
 						<Form.Control

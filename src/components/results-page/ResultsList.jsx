@@ -30,14 +30,16 @@ const ResultsList = () => {
 				const { id, name, stars, description, imgUrl, price } = hotel;
 
 				return (
-					<CustomCard
+					<>
+					{imgUrl ?<CustomCard
 						id={id}
 						name={name}
 						stars={stars}
 						description={description}
-						image={imgUrl.url}
+						image={imgUrl.url} 
 						price={price}
-					/>
+					/>: null}
+					</>
 				);
 			})}
 		</section>

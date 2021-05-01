@@ -4,10 +4,8 @@ import ResultsList from './ResultsList';
 
 const ResultsPage = () => {
 	return (
-		<main className="results mt-2">
-			<section>
-				<SubHeading content="Results" />
-			</section>
+		<main className="results">
+			<SubHeading content="Results" />
 			<ResultsList />
 		</main>
 	);

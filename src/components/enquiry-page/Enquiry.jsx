@@ -66,9 +66,7 @@ const Enquiry = () => {
 
 	return (
 		<main className="enquiry">
-			<section>
-				<SubHeading content="Enter your details" />
-			</section>
+			<SubHeading content="Enter your details" />
 			<section>
 				<Row>
 					<Col lg={8} md={7} className="p-0">

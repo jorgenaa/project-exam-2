@@ -1,5 +1,6 @@
 import { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
+import { FaSearch } from 'react-icons/fa'
 
 import EstablishmentContext from '../../contexts/EstablishmentsContext';
 import { useClickOutside } from './useClickOutside';
@@ -60,15 +61,20 @@ const Typeahead = () => {
 	});
 
 	return (
-		<div className="searchBar__input-container" ref={domNode}>
+		<>
+		<div className="searchBar" ref={domNode}>
 			<input
 				className="searchBar__input"
 				type="text"
+				placeholder="Search..."
 				value={text}
 				onChange={onTextChangeHandler}
 			/>
-			{isOpen && <div>{renderSuggestions()}</div>}
+			<FaSearch className="searchBar__icon" />
+		
 		</div>
+		{isOpen && <div>{renderSuggestions()}</div>}
+		</>
 	);
 };
 
