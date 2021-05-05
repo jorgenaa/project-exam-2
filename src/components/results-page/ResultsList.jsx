@@ -12,10 +12,7 @@ const ResultsList = () => {
 	const establishmentContext = useContext(EstablishmentContext);
 	const [state, , , ] = establishmentContext; 
 
-	useEffect(() => {
-	
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [state.serverError, state.loading]);
+	useEffect(() => {}, [state.serverError, state.loading]);
 
 	if (state.loading) {
 		return <LoadingMsg>Loading...</LoadingMsg>;
@@ -27,19 +24,20 @@ const ResultsList = () => {
 	return (
 		<section className="resultsList">
 			{state.establishments.map(hotel => {
-				const { id, name, stars, description, imgUrl, price } = hotel;
-
+				//Convert from object to array
+				const allStars = Object.values(hotel.stars);
+				const { id, name, description, imgUrl, price } = hotel;
 				return (
-					<>
-					{imgUrl ?<CustomCard
+					<CustomCard
+						key={id}
 						id={id}
 						name={name}
-						stars={stars}
+						stars={allStars}
 						description={description}
-						image={imgUrl.url} 
+						image={imgUrl} 
 						price={price}
-					/>: null}
-					</>
+					/>
+					
 				);
 			})}
 		</section>

@@ -61,20 +61,20 @@ const Typeahead = () => {
 	});
 
 	return (
-		<>
-		<div className="searchBar" ref={domNode}>
-			<input
-				className="searchBar__input"
-				type="text"
-				placeholder="Search..."
-				value={text}
-				onChange={onTextChangeHandler}
-			/>
-			<FaSearch className="searchBar__icon" />
-		
+		<div ref={domNode}>
+			<div className="searchBar" >
+				<input
+					className="searchBar__input"
+					type="text"
+					placeholder="Search..."
+					value={text}
+					onChange={onTextChangeHandler}
+				/>
+				<FaSearch className="searchBar__icon" />
+			
+			</div>
+			{isOpen && <div>{renderSuggestions()}</div>}
 		</div>
-		{isOpen && <div>{renderSuggestions()}</div>}
-		</>
 	);
 };
 

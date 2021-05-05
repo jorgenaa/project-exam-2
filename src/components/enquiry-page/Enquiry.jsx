@@ -24,8 +24,12 @@ const Enquiry = () => {
 	const [state, , ,] = context;
 
 	let { id } = useParams();
-	const parsedId = parseInt(id);
-
+	
+	//Split string to array
+	const splitId = id.split(" ")
+	const parsedId = parseInt(splitId);
+	console.log(typeof(parsedId))
+	
 	const handleOnDateChangeStart = (startDate) => {
 		const fromdate = startDate.target.value;
 		const start = moment(fromdate).format('DD/MM/YYYY');
@@ -73,6 +77,7 @@ const Enquiry = () => {
 						<Row>
 							<Overview
 								key={parsedId}
+								id={id}
 								image={selectedHotel.imgUrl}
 								name={selectedHotel.name}
 								stars={selectedHotel.stars}
@@ -90,7 +95,7 @@ const Enquiry = () => {
 							/>
 						</Row>
 					</Col>
-					<Col lg={4} md={5} className="p-0">
+					<Col lg={4} md={5} className="p-0 ">
 						<Sidebar type="sidebar__enquiry">
 							<div className="sidebar__enquiry-item">
 								<BookingDetails

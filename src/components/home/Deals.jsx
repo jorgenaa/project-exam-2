@@ -14,17 +14,12 @@ import LoadingMsg from '../common/LoadingMsg';
 const Deals = () => {
 	const specialDealId = 3;
 	const establishmentContext = useContext(EstablishmentContext);
-	const [state, , , ] = establishmentContext; //dispatch
+	const [state, , ,] = establishmentContext; //dispatch
 
 	//Return max 4 hotels from array
 	const hotelResult = state.establishments.slice(0, 4);
 
-useEffect(() => {
-	// dispatch({ type: ERROR});
-	// dispatch({ type: LOADING});
-	
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-}, [state.serverError, state.loading]);
+	useEffect(() => {}, [state.serverError, state.loading]);
 
 	if (state.loading) {
 		return <LoadingMsg>Loading...</LoadingMsg>;
@@ -38,15 +33,17 @@ useEffect(() => {
 			<SubHeading content="Special deals this month" />
 			<div className="deals__hotelList">
 				{hotelResult.map(hotel => {
-					const { id, name, stars, description, imgUrl, price } = hotel;
+					//Convert from object to array
+					const allStars = Object.values(hotel.stars);
+					const { id, name, description, imgUrl, price } = hotel;
 					return (
 						<CustomCard
 							key={id}
 							id={id}
 							name={name}
-							stars={stars}
+							stars={allStars}
 							description={description}
-							image={imgUrl.url}
+							image={imgUrl}
 							price={price}
 						/>
 					);

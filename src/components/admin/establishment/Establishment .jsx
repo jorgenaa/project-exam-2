@@ -4,7 +4,6 @@ import { useHistory } from 'react-router-dom';
 import Button from '../../common/Button';
 import SubHeading from '../../common/SubHeading';
 import TableSection from '../../common/TableSection';
-import EstablishTableHeader from './EstablishTableHeader';
 import EstablishmentsList from './EstablishmentsList';
 
 import EstablishmentsContext from '../../contexts/EstablishmentsContext';
@@ -29,7 +28,6 @@ const Establishment = () => {
 			</section>
 			<TableSection className="table-section">
 				<table>
-					<EstablishTableHeader />
 					<EstablishmentsList state={state} />
 				</table>
 			</TableSection>

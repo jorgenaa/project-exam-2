@@ -16,7 +16,7 @@
 		padding: 0 1rem;
 		display: flex;
 		flex-direction: column;
-		align-content: space-between;
+	
 		@include screen('mobile') {
 			padding: 1rem 0;
 			flex-direction: row;
@@ -29,6 +29,7 @@
 		}
 	}
 	&__enquiry-item {
-		flex: 1;
+		//flex: 1;
+		flex-grow: 1;
 	}
 }

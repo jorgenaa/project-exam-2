@@ -4,13 +4,14 @@ import { PropTypes } from 'prop-types';
 import { BASE_URL } from '../../constants/api';
 
 const Overview = ({name, stars, image, id}) => {
-   
+const parsedId = parseInt(id);
+   console.log(typeof(image))
     return (
-        <section className="enquiry__overview">
-           {image ? <div className="enquiry__overview-item-1" key={id}>
+        <section className="enquiry__overview" key={parsedId}>
+           {image ? <div className="enquiry__overview-item-1">
                 <img className="enquiry__overview-img" src={`${BASE_URL}${image.url}`} alt="Hotel" /> 
             </div> : ""} 
-            <div className="enquiry__overview-item-2" key={id}>
+            <div className="enquiry__overview-item-2">
                 <h4 className="heading--h4">{name}</h4>
                 {stars ? <ul className="enquiry__overview-stars">
                     {stars.map(star => {
@@ -29,8 +30,8 @@ const Overview = ({name, stars, image, id}) => {
 
 Overview.propTypes = {
 	image: PropTypes.object.isRequired,
-    id: PropTypes.number.isRequired,
-    stars: PropTypes.object.isRequired,
+    id: PropTypes.string.isRequired,
+    stars: PropTypes.array.isRequired,
     name: PropTypes.string.isRequired
 };
 

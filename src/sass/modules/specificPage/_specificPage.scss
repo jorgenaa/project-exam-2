@@ -1,5 +1,6 @@
 .specific {
 	max-width: 1200px;
+	margin: auto;
 	@include screen('mobile') {
 		margin: 0;
 	}
@@ -247,6 +248,10 @@
 	&__attraction-btn {
 		min-width: 150px;
 	}
+}
+
+.faWifi::after {
+	content: 'Wireless internet';
 }
 
 .fa::after {

@@ -1,14 +1,21 @@
-
 import { PropTypes } from 'prop-types';
 import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 //Components
 import Button from '../../common/Button';
 import ContentHeading from '../../common/ContentHeading';
 import FacilitiesMobileView from './mobileView/FacilitiesMobileView';
 
-const DetailsSection = ({name, description, maxGuests, id, selfcatering, popularFacilityIcons, icons }) => {
+const DetailsSection = ({
+	name,
+	description,
+	maxGuests,
+	id,
+	selfcatering,
+	popularFacilityIcons,
+	icons,
+}) => {
 	
 	return (
 		<section className="specific__details" key={id}>
@@ -24,10 +31,10 @@ const DetailsSection = ({name, description, maxGuests, id, selfcatering, popular
 				<div className="specific__details-item pt-3">
 					<div className="specific__details-item-child pt-2">
 						{/* {maxGuests ? ( */}
-							<p>
-								<span className="pr-2 bold">Max guests&#58;</span>
-								{maxGuests}
-							</p>
+						<p>
+							<span className="pr-2 bold">Max guests&#58;</span>
+							{maxGuests}
+						</p>
 						{/* ) : null} */}
 						<p>
 							<span className="pr-2 bold">Self catering&#58;</span>
@@ -37,15 +44,23 @@ const DetailsSection = ({name, description, maxGuests, id, selfcatering, popular
 					<div className="specific__details-item-child">
 						<h5 className="heading--h5 mb-3">Most popular facilities</h5>
 						{popularFacilityIcons ? (
-						<ul>
-							{popularFacilityIcons.map((icon, index) => {
-								return (
-									<li className="specific__details-list-item" key={index}>
-									<span className={`fa ${icon.cssClass}`}><FontAwesomeIcon icon={require("@fortawesome/free-solid-svg-icons")[icon.name]}></FontAwesomeIcon></span>
-									</li>
-								);
-							})}
-						</ul> 
+							<ul>
+								{popularFacilityIcons.map((icon, index) => {
+									return (
+										<li className="specific__details-list-item" key={index}>
+											<span className={`fa ${icon.cssClass}`}>
+												<FontAwesomeIcon
+													icon={
+														require('@fortawesome/free-solid-svg-icons')[
+															icon.name
+														]
+													}
+												></FontAwesomeIcon>
+											</span>
+										</li>
+									);
+								})}
+							</ul>
 						) : null}
 						<Link className="specific__link" to={'/enquiry/' + id}>
 							<Button
@@ -66,8 +81,8 @@ DetailsSection.propTypes = {
 	description: PropTypes.string.isRequired,
 	selfcatering: PropTypes.bool.isRequired,
 	maxGuests: PropTypes.number.isRequired,
-	popularFacilityIcons: PropTypes.object.isRequired,
-	icons: PropTypes.object.isRequired
+	popularFacilityIcons: PropTypes.array.isRequired,
+	icons: PropTypes.array.isRequired,
 };
 
 export default DetailsSection;

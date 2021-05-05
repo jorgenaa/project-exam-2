@@ -1,5 +1,4 @@
 import { useContext, useState, useEffect } from 'react';
-import { PropTypes } from 'prop-types';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -132,8 +131,5 @@ const Specific = () => {
 	);
 };
 
-Specific.propTypes = {
-	parsedId: PropTypes.number.isRequired,
-};
 
 export default Specific;
