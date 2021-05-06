@@ -16,20 +16,33 @@
 		padding: 0 1rem;
 		display: flex;
 		flex-direction: column;
-	
+		
 		@include screen('mobile') {
 			padding: 1rem 0;
-			flex-direction: row;
+			flex-direction: column;
 			grid-gap: 1rem;
 		}
 		@include screen('mobileSm') {
-			flex-direction: column;
 			margin-bottom: 0rem;
 			grid-gap: 0rem;
 		}
 	}
 	&__enquiry-item {
-		//flex: 1;
-		flex-grow: 1;
+		
+	&:nth-child(1) {
+		flex: 0 1 305.92px;
+		display: flex;
+		flex-direction: column;
+		@include screen('mobile') {
+			display: block;
+			flex: auto;
+		}
+	}
+	&:nth-child(2) {
+		flex: 1 1 190px;
+		display: flex;
+		flex-direction: column;
+		
+	}
 	}
 }

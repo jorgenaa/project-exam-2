@@ -95,7 +95,7 @@ const Enquiry = () => {
 							/>
 						</Row>
 					</Col>
-					<Col lg={4} md={5} className="p-0 ">
+					<Col lg={4} md={5} sm={12} className="p-0 ">
 						<Sidebar type="sidebar__enquiry">
 							<div className="sidebar__enquiry-item">
 								<BookingDetails

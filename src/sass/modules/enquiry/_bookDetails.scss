@@ -1,28 +1,38 @@
 .bookDetails {
+    min-height: 100%;
     margin-top: 0;
     border-radius: 5px;
+	overflow: hidden;
     margin-bottom: 1rem;
-    //border-style: hidden; /* hide standard table (collapsed) border */
+    border-style: hidden; /* hide standard table (collapsed) border */
 	box-shadow: 0 0 0 1px #154BA0;
     border-color: #154BA0;
- 
+   
     &--first {
-        //height: 292.92px;
-        flex-grow: 1;
-        @include screen("desktop991px") {
-           flex: 1;
+        flex: 1 1 auto;
+        @include screen("mobile") {
+            flex: 1 1 380px;
+            margin-bottom: 0rem;
         }
     }
     &--second {
-       //height: 162px;
-       
-     
+       flex: 1 1 149.5px;
+       @include screen("mobile") {
+            flex: 1 1 auto;
+        }
     }
     &--third {
-        //height: 162px;
-       
+        flex: 1 1 149.5px;
+        @include screen("mobile") {
+            flex: 1 1 auto;
+           
+         }
     }
     
+    &__body{
+        border-bottom: none;
+      
+    }
     
     &__body-row {
         border-style: hide; /* hide standard table (collapsed) border */
@@ -31,7 +41,7 @@
         background-color: $white;
         vertical-align: center;
     }
-
+    
     &__body-row:nth-child(odd) {
         background-color: white;
     }

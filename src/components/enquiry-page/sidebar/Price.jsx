@@ -15,8 +15,6 @@ const Price = ({ price, roomType, diffDays }) => {
 						<td>Type of room</td>
 						<td>{roomType}</td>
 					</tr>
-				</tbody>
-				<tfoot>
 					<tr className="bookDetails__footer-row">
 						<td className="bookDetails__ft-col">Total Price</td>
 						{sum ? (
@@ -27,7 +25,7 @@ const Price = ({ price, roomType, diffDays }) => {
 							<td className="bookDetails__ft-col"></td>
 						)}
 					</tr>
-				</tfoot>
+				</tbody>
 			</table>
 		</>
 	);
