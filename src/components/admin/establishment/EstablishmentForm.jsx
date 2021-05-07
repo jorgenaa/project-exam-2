@@ -135,10 +135,6 @@ const EstablishmentForm = () => {
 		reset(addEstablishment);
 	};
 
-	// useEffect(() => {
-	// 	dispatch({ type: ADD_ESTABLISHMENT})
-	// }, [dispatch]);
-
 	const handleClose = () => history.push('/establishment');
 
 	return (
