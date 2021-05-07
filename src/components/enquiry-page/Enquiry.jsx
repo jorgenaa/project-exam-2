@@ -24,13 +24,13 @@ const Enquiry = () => {
 	const [state, , ,] = context;
 
 	let { id } = useParams();
-	
+
 	//Split string to array
-	const splitId = id.split(" ")
+	const splitId = id.split(' ');
 	const parsedId = parseInt(splitId);
-	console.log(typeof(parsedId))
-	
-	const handleOnDateChangeStart = (startDate) => {
+	console.log(typeof parsedId);
+
+	const handleOnDateChangeStart = startDate => {
 		const fromdate = startDate.target.value;
 		const start = moment(fromdate).format('DD/MM/YYYY');
 		setFromDate(start);
@@ -66,7 +66,6 @@ const Enquiry = () => {
 	if (state.serverError) {
 		return <ErrorMsg>ERROR: {state.serverError}</ErrorMsg>;
 	}
-
 
 	return (
 		<main className="enquiry">

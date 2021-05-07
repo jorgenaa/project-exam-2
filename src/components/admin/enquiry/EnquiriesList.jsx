@@ -1,7 +1,11 @@
 import { IoTrashBinSharp } from 'react-icons/io5';
 
-const EnquiriesList = ({ state, dispatch, deleteEnquiries, REMOVE_ENQUIRY  }) => {
-
+const EnquiriesList = ({
+	state,
+	dispatch,
+	deleteEnquiries,
+	REMOVE_ENQUIRY,
+}) => {
 	if (state.enquiries.length === 0) {
 		return (
 			<tbody>

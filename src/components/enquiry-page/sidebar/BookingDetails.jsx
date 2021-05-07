@@ -30,11 +30,11 @@ const BookingDetails = ({ fromDate, toDate, roomType }) => {
 					<td>Total length of stay</td>
 					{diffDays ? <td>{diffDays} nights</td> : ''}
 				</tr>
-			
+
 				<tr className="bookDetails__body-row">
 					<th>You selected</th>
 					<th>{roomType}</th>
-				</tr>	
+				</tr>
 			</tbody>
 		</table>
 	);

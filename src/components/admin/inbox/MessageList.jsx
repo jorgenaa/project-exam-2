@@ -1,8 +1,6 @@
 import { IoTrashBinSharp } from 'react-icons/io5';
 
-
-const MessageList = ({REMOVE_MESSAGES, state, dispatch, deleteMessages }) => { 
-
+const MessageList = ({ REMOVE_MESSAGES, state, dispatch, deleteMessages }) => {
 	if (state.messages.length === 0) {
 		return (
 			<tbody>
@@ -16,7 +14,6 @@ const MessageList = ({REMOVE_MESSAGES, state, dispatch, deleteMessages }) => {
 	const handleDeleteMessage = id => {
 		dispatch({ type: REMOVE_MESSAGES, payload: id });
 		deleteMessages(id);
-		
 	};
 
 	return (

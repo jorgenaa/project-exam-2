@@ -1,13 +1,9 @@
 import { useEffect } from 'react';
 import { PropTypes } from 'prop-types';
 
+const EstablishmentsList = ({ state }) => {
+	useEffect(() => {}, [state.establishments.length]);
 
-const EstablishmentsList = ({state}) => {
-	
-	useEffect(() => {
-		
-	}, [state.establishments.length]);
-	
 	if (state.establishments.length === 0) {
 		return (
 			<tbody>
@@ -21,7 +17,6 @@ const EstablishmentsList = ({state}) => {
 	return (
 		<tbody>
 			{state.establishments.map(establishment => {
-			
 				const {
 					name,
 					description,
@@ -37,9 +32,9 @@ const EstablishmentsList = ({state}) => {
 					facilityIcons,
 					bookingIncludes,
 					popularFacilityIcons,
-					stars
+					stars,
 				} = establishment;
-		
+
 				return (
 					<>
 						<tr key={id}>
@@ -64,13 +59,37 @@ const EstablishmentsList = ({state}) => {
 							<th>Main Img</th>
 							<th>Images</th>
 							<th colSpan="2">Images mobile</th>
-							<th colSpan="2">Facility Icons</th> 
+							<th colSpan="2">Facility Icons</th>
 						</tr>
 						<tr>
 							{imgUrl ? <td key={imgUrl.id}>{imgUrl.name}</td> : null}
-							<td>{imgsUrl ?<ul>{imgsUrl.map(img => (<li key={img.id}>{img.name}</li>))}</ul>: null}</td> 
-							<td colSpan="2">{imgsMobileUrl ?<ul>{imgsMobileUrl.map(img => <li key={img.id}>{img.name}</li>)}</ul> : null}</td> 
-							<td colSpan="2">{facilityIcons ?<ul>{facilityIcons.map(icon => (<li key={icon.id}>{icon.name}</li>))}</ul> : null}</td>
+							<td>
+								{imgsUrl ? (
+									<ul>
+										{imgsUrl.map(img => (
+											<li key={img.id}>{img.name}</li>
+										))}
+									</ul>
+								) : null}
+							</td>
+							<td colSpan="2">
+								{imgsMobileUrl ? (
+									<ul>
+										{imgsMobileUrl.map(img => (
+											<li key={img.id}>{img.name}</li>
+										))}
+									</ul>
+								) : null}
+							</td>
+							<td colSpan="2">
+								{facilityIcons ? (
+									<ul>
+										{facilityIcons.map(icon => (
+											<li key={icon.id}>{icon.name}</li>
+										))}
+									</ul>
+								) : null}
+							</td>
 						</tr>
 						<tr>
 							<th>Star Icons</th>
@@ -79,10 +98,37 @@ const EstablishmentsList = ({state}) => {
 							<th colSpan="3">Description</th>
 						</tr>
 						<tr className="table__row table__row--border-bottom-even">
-							<td>{stars ?<ul>{stars.map(item => {return<li key={item.id}>{item.name}</li>})}</ul>: null}</td>
-							<td>{popularFacilityIcons ?<ul>{popularFacilityIcons.map(icon => (<li key={icon.id}>{icon.name}</li>))}</ul>: null}</td>
-							<td>{bookingIncludes ?<ul>{bookingIncludes.map(item => (<li key={item.id}>{item.name}</li>))}</ul>: null}</td>
-							<td colSpan="3" dangerouslySetInnerHTML={{ __html: description }}></td>
+							<td>
+								{stars ? (
+									<ul>
+										{stars.map(item => {
+											return <li key={item.id}>{item.name}</li>;
+										})}
+									</ul>
+								) : null}
+							</td>
+							<td>
+								{popularFacilityIcons ? (
+									<ul>
+										{popularFacilityIcons.map(icon => (
+											<li key={icon.id}>{icon.name}</li>
+										))}
+									</ul>
+								) : null}
+							</td>
+							<td>
+								{bookingIncludes ? (
+									<ul>
+										{bookingIncludes.map(item => (
+											<li key={item.id}>{item.name}</li>
+										))}
+									</ul>
+								) : null}
+							</td>
+							<td
+								colSpan="3"
+								dangerouslySetInnerHTML={{ __html: description }}
+							></td>
 						</tr>
 					</>
 				);
@@ -92,7 +138,7 @@ const EstablishmentsList = ({state}) => {
 };
 
 EstablishmentsList.propTypes = {
-	state: PropTypes.object.isRequired
-}
+	state: PropTypes.object.isRequired,
+};
 
 export default EstablishmentsList;

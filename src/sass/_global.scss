@@ -48,7 +48,6 @@ main,
 nav,
 section {
 	display: block;
-	
 }
 
 main {
@@ -78,7 +77,6 @@ table {
 	border-spacing: 0;
 	width: 100%;
 	margin-top: 1rem;
-	
 }
 
 tbody {
@@ -86,7 +84,6 @@ tbody {
 	box-shadow: 0 0 0 1px #154ba0;
 	border-bottom: 1px solid #154ba0;
 }
-
 
 th {
 	padding: 0.5rem 1rem;
@@ -109,7 +106,7 @@ tbody tr:nth-child(odd) {
 	background-color: #d6e7ff;
 }
 tbody tr:nth-child(even) {
-	background-color: white ;
+	background-color: white;
 }
 
 @media screen and (max-width: 991px) {

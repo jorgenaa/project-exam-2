@@ -16,7 +16,6 @@ const DetailsSection = ({
 	popularFacilityIcons,
 	icons,
 }) => {
-	
 	return (
 		<section className="specific__details" key={id}>
 			<FacilitiesMobileView icons={icons} id={id} />
@@ -30,12 +29,10 @@ const DetailsSection = ({
 				</div>
 				<div className="specific__details-item pt-3">
 					<div className="specific__details-item-child pt-2">
-						{/* {maxGuests ? ( */}
 						<p>
 							<span className="pr-2 bold">Max guests&#58;</span>
 							{maxGuests}
 						</p>
-						{/* ) : null} */}
 						<p>
 							<span className="pr-2 bold">Self catering&#58;</span>
 							{selfcatering === false ? 'No' : 'Yes'}
