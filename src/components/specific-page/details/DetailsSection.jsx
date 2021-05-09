@@ -1,6 +1,7 @@
 import { PropTypes } from 'prop-types';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+//import { library } from "@fortawesome/fontawesome-svg-core";
 
 //Components
 import Button from '../../common/Button';
@@ -16,6 +17,7 @@ const DetailsSection = ({
 	popularFacilityIcons,
 	icons,
 }) => {
+	
 	return (
 		<section className="specific__details" key={id}>
 			<FacilitiesMobileView icons={icons} id={id} />
@@ -42,9 +44,9 @@ const DetailsSection = ({
 						<h5 className="heading--h5 mb-3">Most popular facilities</h5>
 						{popularFacilityIcons ? (
 							<ul>
-								{popularFacilityIcons.map((icon, index) => {
+								{popularFacilityIcons.map((icon) => {
 									return (
-										<li className="specific__details-list-item" key={index}>
+										<li className="specific__details-list-item" key={icon.id}>
 											<span className={`fa ${icon.cssClass}`}>
 												<FontAwesomeIcon
 													icon={

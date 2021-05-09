@@ -8,9 +8,11 @@ import Button from '../../common/Button';
 const SpecificSidebarContent = ({ id, icons }) => {
 	const [serviceIcon, setServiceIcon] = useState([]);
 	const [revisedIcons, setRevisedIcons] = useState([]);
+	const SVGicons = require("@fortawesome/free-solid-svg-icons");
 
 	useEffect(() => {
 		if (icons) {
+			//Remove "faConciergeBell" icon from the list
 			const filteredIcon = icons.filter(
 				icon => icon.name !== 'faConciergeBell'
 			);
@@ -20,6 +22,7 @@ const SpecificSidebarContent = ({ id, icons }) => {
 
 	useEffect(() => {
 		if (icons) {
+			//get the "faConciergeBell" icon from the list
 			for (let i = 0; i < icons.length; i++) {
 				if (icons[i].name === 'faConciergeBell') {
 					setServiceIcon(icons[i]);
@@ -28,8 +31,6 @@ const SpecificSidebarContent = ({ id, icons }) => {
 			}
 		}
 	}, [icons]);
-	
-	
 	return (
 		<>
 			<Link to={'/enquiry/' + id}>
@@ -39,14 +40,13 @@ const SpecificSidebarContent = ({ id, icons }) => {
 				<h4 className="specific__sidebar-title">Facilities</h4>
 
 				<ul className="specific__sidebar__list">
-					{revisedIcons.map((icon, index) => {
+					{revisedIcons.map((icon) => {
+					
 						return (
-						
 							 <li key={icon.id} className="specific__sidebar-list-item">
 								<span className={`fa ${icon.cssClass}`}>
 									<FontAwesomeIcon
-										icon={
-											require('@fortawesome/free-solid-svg-icons')[icon.name]
+										icon={SVGicons[icon.name]
 										}
 									></FontAwesomeIcon>
 								</span>
