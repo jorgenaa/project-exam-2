@@ -36,6 +36,7 @@ const Deals = () => {
 					//Convert from object to array
 					const allStars = Object.values(hotel.stars);
 					const { id, name, description, imgUrl, price } = hotel;
+					console.log(hotel.img)
 					return (
 						<CustomCard
 							key={id}
@@ -45,6 +46,7 @@ const Deals = () => {
 							description={description}
 							image={imgUrl}
 							price={price}
+							img={hotel.img}
 						/>
 					);
 				})}

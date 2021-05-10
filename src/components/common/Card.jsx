@@ -6,19 +6,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Button from './Button';
 import { BASE_URL } from '../../constants/api';
 
-const CustomCard = ({ name, image, price, id, stars }) => {
+const CustomCard = ({ name, image, price, id, stars, img }) => {
 	//Convert from object to array
 	const allStars = Object.values(stars);
 
 	return (
 		<div className="custom-card">
 			<div className="custom-card__img">
-				<img
+				<img src={img.name} alt="Hotels" key={img.id} />
+				{/* <img
 					key={image.id}
 					className="custom-card__img-item"
 					src={`${BASE_URL}${image.url}`}
 					alt="Hotels"
-				/>
+				/> */}
 			</div>
 			<div className="custom-card__info">
 				<div className="custom-card__title-wrapper">
