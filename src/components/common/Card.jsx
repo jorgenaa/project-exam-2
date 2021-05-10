@@ -13,7 +13,7 @@ const CustomCard = ({ name, image, price, id, stars, img }) => {
 	return (
 		<div className="custom-card">
 			<div className="custom-card__img">
-				<img src={img.name} alt="Hotels" key={img.id} />
+				<img src={img.name} alt="Hotels" key={img.id} className="custom-card__img-item" />
 				{/* <img
 					key={image.id}
 					className="custom-card__img-item"
