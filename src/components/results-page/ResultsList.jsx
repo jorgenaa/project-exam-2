@@ -27,6 +27,7 @@ const ResultsList = () => {
 				//Convert from object to array
 				const allStars = Object.values(hotel.stars);
 				const { id, name, description, imgUrl, price } = hotel;
+				
 				return (
 					<CustomCard
 						key={id}
