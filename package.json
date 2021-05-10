@@ -13,6 +13,7 @@
 		"@testing-library/user-event": "^12.1.10",
 		"axios": "^0.21.1",
 		"bootstrap": "^4.6.0",
+		"cross-env": "^7.0.3",
 		"hamburger-react": "^2.4.0",
 		"moment": "^2.18.1",
 		"react": "^16.1.1",
@@ -29,7 +30,7 @@
 		"yup": "^0.32.9"
 	},
 	"scripts": {
-		"start": "NODE_ENV=production",
+		"start": "react-scripts start cross-env NODE_ENV=production",
 		"build": "react-scripts build",
 		"test": "react-scripts test --env=jsdom",
 		"eject": "react-scripts eject"
