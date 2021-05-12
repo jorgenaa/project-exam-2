@@ -23,7 +23,7 @@ const EnquiriesList = ({
 
 	return (
 		<>
-			<tbody>
+			<tbody className="table_tbody">
 				{state.enquiries.map(enquiry => {
 					const {
 						id,
@@ -35,7 +35,7 @@ const EnquiriesList = ({
 						toDate,
 					} = enquiry;
 					return (
-						<tr className="table__row table__row--border-bottom" key={id}>
+						<tr className="table__row--border-bottom" key={id}>
 							<td>
 								<IoTrashBinSharp
 									className="table__trash table__trash--hover"

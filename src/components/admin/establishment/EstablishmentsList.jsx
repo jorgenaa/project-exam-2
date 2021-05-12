@@ -15,7 +15,7 @@ const EstablishmentsList = ({ state }) => {
 	}
 
 	return (
-		<tbody>
+		<table>
 			{state.establishments.map(establishment => {
 				const {
 					name,
@@ -37,7 +37,8 @@ const EstablishmentsList = ({ state }) => {
 
 				return (
 					<>
-						<tr key={id}>
+					<thead className="table__head">
+						<tr className="table__row">
 							<th>Name</th>
 							<th>Email</th>
 							<th>Price</th>
@@ -45,7 +46,10 @@ const EstablishmentsList = ({ state }) => {
 							<th>Self catering</th>
 							<th>Room Type</th>
 						</tr>
-						<tr>
+					</thead>
+						
+					<tbody className="table__body" key={id}>
+						<tr className="table__body-row">
 							<td>{name}</td>
 							<td>{email}</td>
 							<td>{price}</td>
@@ -55,13 +59,17 @@ const EstablishmentsList = ({ state }) => {
 							</td>
 							<td>{roomType}</td>
 						</tr>
-						<tr>
+					</tbody>
+					<thead className="table__head">
+						<tr className="table__row">
 							<th>Main Img</th>
 							<th>Images</th>
 							<th colSpan="2">Images mobile</th>
 							<th colSpan="2">Facility Icons</th>
 						</tr>
-						<tr>
+					</thead>
+					<tbody className="table__body">
+						<tr className="table__body-row">
 							{imgUrl ? <td key={imgUrl.id}>{imgUrl.name}</td> : null}
 							<td>
 								{imgsUrl ? (
@@ -91,13 +99,17 @@ const EstablishmentsList = ({ state }) => {
 								) : null}
 							</td>
 						</tr>
-						<tr>
+					</tbody>
+					<thead className="table__head">
+						<tr className="table__row">
 							<th>Star Icons</th>
 							<th>Popular Facility Icons</th>
 							<th>Booking Includes</th>
 							<th colSpan="3">Description</th>
 						</tr>
-						<tr className="table__row table__row--border-bottom-even">
+					</thead>
+					<tbody className="table__body">
+						<tr className="table__body-row table__body-row--border-bottom">
 							<td>
 								{stars ? (
 									<ul>
@@ -130,10 +142,11 @@ const EstablishmentsList = ({ state }) => {
 								dangerouslySetInnerHTML={{ __html: description }}
 							></td>
 						</tr>
+					</tbody>
 					</>
 				);
 			})}
-		</tbody>
+		</table>
 	);
 };
 

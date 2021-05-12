@@ -27,9 +27,7 @@ const Establishment = () => {
 				</div>
 			</section>
 			<TableSection className="table-section">
-				<table>
-					<EstablishmentsList state={state} />
-				</table>
+				<EstablishmentsList state={state} />
 			</TableSection>
 		</main>
 	);

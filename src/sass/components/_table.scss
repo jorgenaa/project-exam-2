@@ -1,6 +1,23 @@
 .table {
 
+	&__head {
+		border-bottom: none;
+	}
+
+	&__body-row {
+		background-color: $white;
+		
+		&--border-bottom {
+			border-bottom: 1px solid $blue;
+		}
+	}
 	&__row {
+		&:nth-child(odd) {
+			background-color: $lightBlue;
+		}
+		&:nth-child(even) {
+			background-color: $white;
+		}
 		&--border-bottom {
 			border-bottom: 1px solid $blue;
 		}
@@ -11,9 +28,8 @@
 		}
 	}
 	&__section {
-	
 		overflow-x: scroll;
-		@include screen("mobile") {
+		@include screen('mobile') {
 			padding: 0;
 		}
 	}

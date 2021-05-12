@@ -22,7 +22,7 @@ const MessageList = ({ REMOVE_MESSAGES, state, dispatch, deleteMessages }) => {
 				const { clientName, email, message, id } = msg;
 
 				return (
-					<tr className="table__row table__row--border-bottom" key={id}>
+					<tr className="table__row--border-bottom" key={id}>
 						<td>
 							<IoTrashBinSharp
 								className="table__trash table__trash--hover"

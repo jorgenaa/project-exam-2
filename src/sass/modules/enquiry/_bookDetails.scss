@@ -5,9 +5,7 @@
 	overflow: hidden;
     margin-bottom: 1rem;
     border-style: hidden; /* hide standard table (collapsed) border */
-	box-shadow: 0 0 0 1px #154BA0;
-    border-color: #154BA0;
-   
+	box-shadow: 0 0 0 1px #154ba0;
     &--first {
         flex: 1 1 auto;
         @include screen("mobile") {
