@@ -62,13 +62,11 @@ const SpecificSidebarContent = ({ id, icons }) => {
 							/>
 						</span>
 						<ul>
-							<li className="specific__list-services-item">- Laundry</li>
-							<li className="specific__list-services-item">
-								- Wake-up service
-							</li>
-							<li className="specific__list-services-item">
-								- 24-hour front desk
-							</li>
+						{serviceIcon.services.map(service => {
+							return (
+								<li className="specific__list-services-item" key={service.id}>{service.name}</li>
+							)	
+						})}
 						</ul>
 					</li>
 				</ul>
