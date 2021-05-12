@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 //Componentns
 import Button from './Button';
-import { BASE_URL } from '../../constants/api';
+//import { BASE_URL } from '../../constants/api';
 
 const CustomCard = ({ name, image, price, id, stars }) => {
 	//Convert from object to array
@@ -12,14 +12,14 @@ const CustomCard = ({ name, image, price, id, stars }) => {
 
 	return (
 		<div className="custom-card">
-			<div className="custom-card__img">
+			{/* <div className="custom-card__img">
 				<img
 					key={image.id}
 					className="custom-card__img-item"
 					src={`${BASE_URL}${image.url}`}
 					alt="Hotels"
 				/>
-			</div>
+			</div> */}
 			<div className="custom-card__info">
 				<div className="custom-card__title-wrapper">
 					<h5 className="custom-card__title">{name}</h5>
