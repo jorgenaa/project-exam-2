@@ -8,7 +8,7 @@ import Button from '../../common/Button';
 const SpecificSidebarContent = ({ id, icons }) => {
 	const [serviceIcon, setServiceIcon] = useState([]);
 	const [revisedIcons, setRevisedIcons] = useState([]);
-	const SVGicons = require("@fortawesome/free-solid-svg-icons");
+	const SVGicons = require('@fortawesome/free-solid-svg-icons');
 
 	useEffect(() => {
 		if (icons) {
@@ -31,6 +31,7 @@ const SpecificSidebarContent = ({ id, icons }) => {
 			}
 		}
 	}, [icons]);
+	console.log(serviceIcon.services);
 	return (
 		<>
 			<Link to={'/enquiry/' + id}>
@@ -40,17 +41,13 @@ const SpecificSidebarContent = ({ id, icons }) => {
 				<h4 className="specific__sidebar-title">Facilities</h4>
 
 				<ul className="specific__sidebar__list">
-					{revisedIcons.map((icon) => {
-					
+					{revisedIcons.map(icon => {
 						return (
-							 <li key={icon.id} className="specific__sidebar-list-item">
+							<li key={icon.id} className="specific__sidebar-list-item">
 								<span className={`fa ${icon.cssClass}`}>
-									<FontAwesomeIcon
-										icon={SVGicons[icon.name]
-										}
-									></FontAwesomeIcon>
+									<FontAwesomeIcon icon={SVGicons[icon.name]}></FontAwesomeIcon>
 								</span>
-							</li> 
+							</li>
 						);
 					})}
 					<li>
@@ -61,13 +58,20 @@ const SpecificSidebarContent = ({ id, icons }) => {
 								}
 							/>
 						</span>
-						<ul>
-						{serviceIcon.services.map(service => {
-							return (
-								<li className="specific__list-services-item" key={service.id}>{service.name}</li>
-							)	
-						})}
-						</ul>
+						{serviceIcon.services ? (
+							<ul>
+								{serviceIcon.services.map(service => {
+									return (
+										<li
+											className="specific__list-services-item"
+											key={service.id}
+										>
+											&#8208; {service.name}
+										</li>
+									);
+								})}
+							</ul>
+						) : null}
 					</li>
 				</ul>
 			</div>

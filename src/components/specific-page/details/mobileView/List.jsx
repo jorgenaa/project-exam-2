@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const List = ({ icons, id }) => {
 	const [firstIconsList, setFirstIconsList] = useState([]);
@@ -13,10 +13,10 @@ const List = ({ icons, id }) => {
 				icon => icon.name !== 'faConciergeBell'
 			);
 			const iconList = filteredIcon.slice(0, 2);
-			setFirstIconsList(iconList)
-			
+			setFirstIconsList(iconList);
+
 			const secondIconsList = filteredIcon.slice(3, 8);
-	 		setSecondIconsList(secondIconsList);
+			setSecondIconsList(secondIconsList);
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [icons]);
@@ -33,7 +33,6 @@ const List = ({ icons, id }) => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [icons]);
 
-
 	return (
 		<>
 			<ul className="specific__list-mobile" key={id}>
@@ -41,28 +40,51 @@ const List = ({ icons, id }) => {
 					{firstIconsList.map((icon, index) => {
 						return (
 							<li key={index} className="specific__details-list-item">
-								<span className={`fa ${icon.cssClass}`}><FontAwesomeIcon icon={require("@fortawesome/free-solid-svg-icons")[icon.name]}></FontAwesomeIcon></span>
+								<span className={`fa ${icon.cssClass}`}>
+									<FontAwesomeIcon
+										icon={
+											require('@fortawesome/free-solid-svg-icons')[icon.name]
+										}
+									></FontAwesomeIcon>
+								</span>
 							</li>
 						);
 					})}
 					<li>
-						<span className={`fa ${serviceIcon.cssClass}`}><FontAwesomeIcon icon={require("@fortawesome/free-solid-svg-icons")[serviceIcon.name]} /></span>
-						<ul>
-							<li className="specific__list-services-item">- Laundry</li>
-							<li className="specific__list-services-item">
-								- Wake-up service
-							</li>
-							<li className="specific__list-services-item">
-								- 24-hour front desk
-							</li>
-						</ul>
+						<span className={`fa ${serviceIcon.cssClass}`}>
+							<FontAwesomeIcon
+								icon={
+									require('@fortawesome/free-solid-svg-icons')[serviceIcon.name]
+								}
+							/>
+						</span>
+						{serviceIcon.services ? (
+							<ul>
+								{serviceIcon.services.map(service => {
+									return (
+										<li
+											className="specific__list-services-item"
+											key={service.id}
+										>
+											&#8208; {service.name}
+										</li>
+									);
+								})}
+							</ul>
+						) : null}
 					</li>
 				</ul>
 				<ul className="specific__list-mobile-item">
 					{secondIconsList.map((icon, index) => {
 						return (
 							<li key={index} className="specific__details-list-item">
-								<span className={`fa ${icon.cssClass}`}><FontAwesomeIcon icon={require("@fortawesome/free-solid-svg-icons")[icon.name]}></FontAwesomeIcon></span>
+								<span className={`fa ${icon.cssClass}`}>
+									<FontAwesomeIcon
+										icon={
+											require('@fortawesome/free-solid-svg-icons')[icon.name]
+										}
+									></FontAwesomeIcon>
+								</span>
 							</li>
 						);
 					})}
