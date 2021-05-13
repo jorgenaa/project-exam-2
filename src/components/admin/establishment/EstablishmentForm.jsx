@@ -106,7 +106,7 @@ const EstablishmentForm = () => {
 	const handleAddEstablishment = async data => {
 		const formData = new FormData();
 		//Get the files
-		formData.append('files.imgUrl', data.imgUrl[0], data.imgUrl[0].name);
+		//formData.append('files.imgUrl', data.imgUrl[0], data.imgUrl[0].name);
 
 		// for (const file of data.imgsUrl) {
 		// 	delete data.imgsUrl;
