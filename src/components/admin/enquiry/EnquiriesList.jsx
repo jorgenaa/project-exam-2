@@ -2,9 +2,9 @@ import { IoTrashBinSharp } from 'react-icons/io5';
 
 const EnquiriesList = ({
 	state,
-	dispatch,
+	//dispatch,
 	deleteEnquiries,
-	REMOVE_ENQUIRY,
+	//REMOVE_ENQUIRY,
 }) => {
 	if (state.enquiries.length === 0) {
 		return (
@@ -16,9 +16,9 @@ const EnquiriesList = ({
 		);
 	}
 
-	const handleEnqury = id => {
+	const handleEnqury = async id => {
 		deleteEnquiries(id);
-		dispatch({ type: REMOVE_ENQUIRY, payload: id });
+		//dispatch({ type: REMOVE_ENQUIRY });
 	};
 
 	return (
