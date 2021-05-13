@@ -1,8 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { PropTypes } from 'prop-types';
 
-import { BASE_URL } from '../../constants/api';
-
 const Overview = ({ name, stars, image, id }) => {
 	const parsedId = parseInt(id);
 	console.log(typeof image);
@@ -12,7 +10,7 @@ const Overview = ({ name, stars, image, id }) => {
 				<div className="enquiry__overview-item-1">
 					<img
 						className="enquiry__overview-img"
-						src={`${BASE_URL}${image.url}`}
+						src={image.url}
 						alt="Hotel"
 					/>
 				</div>

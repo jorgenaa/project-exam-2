@@ -12,7 +12,7 @@ const MessageList = ({ REMOVE_MESSAGES, state, dispatch, deleteMessages }) => {
 	}
 
 	const handleDeleteMessage = id => {
-		dispatch({ type: REMOVE_MESSAGES, payload: id });
+		dispatch({ type: REMOVE_MESSAGES });
 		deleteMessages(id);
 	};
 
