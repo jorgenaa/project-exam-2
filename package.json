@@ -13,11 +13,11 @@
 		"@testing-library/user-event": "^12.1.10",
 		"axios": "^0.21.1",
 		"bootstrap": "^4.6.0",
+		"css-loader": "^5.2.4",
 		"hamburger-react": "^2.4.0",
 		"moment": "^2.18.1",
 		"react": "^16.1.1",
 		"react-bootstrap": "^1.5.2",
-		"react-bootstrap-typeahead": "^5.1.4",
 		"react-dom": "^16.1.1",
 		"react-hook-form": "^6.15.2",
 		"react-icons": "^4.2.0",
@@ -54,6 +54,7 @@
 	},
 	"devDependencies": {
 		"node-sass": "^5.0.0",
-		"sass": "^1.32.12"
+		"sass": "^1.32.12",
+		"webpack-dev-server": "^3.1.14"
 	}
 }
