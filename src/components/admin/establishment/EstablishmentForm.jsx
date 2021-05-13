@@ -51,30 +51,30 @@ const schema = yup.object().shape({
 		.test('type', 'We only support jpg', value => {
 			return value && value[0].type === 'image/jpeg';
 		}),
-	facilityIcons: yup
-		.mixed()
-		.required('The file must contain an id, name and cssClass of the icons')
-		.test('type', 'We only support JSON', value => {
-			return value && value[0].type === 'application/json';
-		}),
-	bookingIncludes: yup
-		.mixed()
-		.required('You need to provide JSON file including id & name')
-		.test('type', 'We only support JSON', value => {
-			return value && value[0].type === 'application/json';
-		}),
-	popularFacilityIcons: yup
-		.mixed()
-		.required('The file must contain an id, name and cssClass of the icons')
-		.test('type', 'We only support JSON', value => {
-			return value && value[0].type === 'application/json';
-		}),
-	stars: yup
-		.mixed()
-		.required('The file must contain an id, name and cssClass of the icon')
-		.test('type', 'We only support JSON', value => {
-			return value && value[0].type === 'application/json';
-		}),
+	// facilityIcons: yup
+	// 	.mixed()
+	// 	.required('The file must contain an id, name and cssClass of the icons')
+	// 	.test('type', 'We only support JSON', value => {
+	// 		return value && value[0].type === 'application/json';
+	// 	}),
+	// bookingIncludes: yup
+	// 	.mixed()
+	// 	.required('You need to provide JSON file including id & name')
+	// 	.test('type', 'We only support JSON', value => {
+	// 		return value && value[0].type === 'application/json';
+	// 	}),
+	// popularFacilityIcons: yup
+	// 	.mixed()
+	// 	.required('The file must contain an id, name and cssClass of the icons')
+	// 	.test('type', 'We only support JSON', value => {
+	// 		return value && value[0].type === 'application/json';
+	// 	}),
+	// stars: yup
+	// 	.mixed()
+	// 	.required('The file must contain an id, name and cssClass of the icon')
+	// 	.test('type', 'We only support JSON', value => {
+	// 		return value && value[0].type === 'application/json';
+	// 	}),
 	description: yup.string().required('A description is required'),
 });
 
@@ -88,20 +88,20 @@ const EstablishmentForm = () => {
 	});
 
 //Read the content of the JSON files with new FileReader method
-	const processFile = file => {
-		return new Promise((resolve, reject) => {
-			const reader = new FileReader();
+	// const processFile = file => {
+	// 	return new Promise((resolve, reject) => {
+	// 		const reader = new FileReader();
 
-			reader.onload = e => {
-				resolve(JSON.parse(e.target.result));
-			};
-			//onerror event handler invokes eventtarget addEventListener whenever an error occurs on the FileRader method.
-			reader.onerror = reject;
+	// 		reader.onload = e => {
+	// 			resolve(JSON.parse(e.target.result));
+	// 		};
+	// 		//onerror event handler invokes eventtarget addEventListener whenever an error occurs on the FileRader method.
+	// 		reader.onerror = reject;
 
-			//read content of JSON files
-			reader.readAsText(file);
-		});
-	};
+	// 		//read content of JSON files
+	// 		reader.readAsText(file);
+	// 	});
+	// };
 
 	const handleAddEstablishment = async data => {
 		const formData = new FormData();
@@ -118,10 +118,10 @@ const EstablishmentForm = () => {
 			formData.append('files.imgsMobileUrl', file, file.name);
 		}
 
-		data.bookingIncludes = await processFile(data.bookingIncludes[0]);
-		data.popularFacilityIcons = await processFile(data.popularFacilityIcons[0]);
-		data.facilityIcons = await processFile(data.facilityIcons[0]);
-		data.stars = await processFile(data.stars[0]);
+		// data.bookingIncludes = await processFile(data.bookingIncludes[0]);
+		// data.popularFacilityIcons = await processFile(data.popularFacilityIcons[0]);
+		// data.facilityIcons = await processFile(data.facilityIcons[0]);
+		// data.stars = await processFile(data.stars[0]);
 
 		formData.append('data', JSON.stringify(data));
 
@@ -130,7 +130,7 @@ const EstablishmentForm = () => {
 		//Pass data from input fields to body
 		addEstablishment(formData);
 		//Pass data from input fields to the state
-		//dispatch({ type: ADD_ESTABLISHMENT, payload: formData });
+		
 		//reset input fields
 		reset(addEstablishment);
 	};
@@ -266,7 +266,7 @@ const EstablishmentForm = () => {
 							</Form.Group>
 						</Col>
 					</Form.Row>
-					<Form.Row>
+					{/* <Form.Row>
 						<Col sm={6} xs={12}>
 							<Form.Group>
 								<Form.Label className="form__label">
@@ -313,7 +313,7 @@ const EstablishmentForm = () => {
 								)}
 							</Form.Group>
 						</Col>
-					</Form.Row>
+					</Form.Row> */}
 					<Form.Group>
 						<Form.Label className="form__label">Description</Form.Label>
 						<Form.Control
