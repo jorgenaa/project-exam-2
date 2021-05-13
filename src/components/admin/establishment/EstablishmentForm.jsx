@@ -106,17 +106,17 @@ const EstablishmentForm = () => {
 	const handleAddEstablishment = async data => {
 		const formData = new FormData();
 		//Get the files
-		//formData.append('files.imgUrl', data.imgUrl[0], data.imgUrl[0].name);
+		formData.append('files.imgUrl', data.imgUrl[0], data.imgUrl[0].name);
 
-		for (const file of data.imgsUrl) {
-			delete data.imgsUrl;
-			formData.append('files.imgsUrl', file, file.name);
-		}
+		// for (const file of data.imgsUrl) {
+		// 	delete data.imgsUrl;
+		// 	formData.append('files.imgsUrl', file, file.name);
+		// }
 
-		for (const file of data.imgsMobileUrl) {
-			delete data.imgsMobileUrl;
-			formData.append('files.imgsMobileUrl', file, file.name);
-		}
+		// for (const file of data.imgsMobileUrl) {
+		// 	delete data.imgsMobileUrl;
+		// 	formData.append('files.imgsMobileUrl', file, file.name);
+		// }
 
 		data.bookingIncludes = await processFile(data.bookingIncludes[0]);
 		data.popularFacilityIcons = await processFile(data.popularFacilityIcons[0]);
@@ -238,14 +238,14 @@ const EstablishmentForm = () => {
 						</Col>
 					</Form.Row>
 					<Form.Row>
-						{/* <Col md={4} sm={6} xs={12}>
+						<Col md={4} sm={6} xs={12}>
 							<Form.Group>
 								<Form.Label className="form__label">Main Image</Form.Label>
 								<Form.File name="imgUrl" ref={register} />
 								{errors.imgUrl && <ErrorMsg>{errors.imgUrl.message}</ErrorMsg>}
 							</Form.Group>
-						</Col> */}
-						<Col md={4} sm={6} xs={12}>
+						</Col>
+						{/* <Col md={4} sm={6} xs={12}>
 							<Form.Group>
 								<Form.Label className="form__label">Images</Form.Label>
 								<Form.File multiple name="imgsUrl" ref={register} />
@@ -264,7 +264,7 @@ const EstablishmentForm = () => {
 									<ErrorMsg>{errors.imgsMobileUrl.message}</ErrorMsg>
 								)}
 							</Form.Group>
-						</Col>
+						</Col> */}
 					</Form.Row>
 					<Form.Row>
 						<Col sm={6} xs={12}>
