@@ -5,8 +5,6 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 
-//import TwoColumns from '../common/TwoColumns';
-
 const Footer = () => {
 	return (
 		<footer className="footer">
