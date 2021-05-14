@@ -10,7 +10,6 @@ import { AiFillCloseCircle } from 'react-icons/ai';
 
 //Components
 import EstablishmentsContext from '../../contexts/EstablishmentsContext';
-import { ADD_ESTABLISHMENT } from '../../contexts/EstablishmentsContext';
 import Button from '../../common/Button';
 import SubHeading from '../../common/SubHeading';
 import ErrorMsg from '../../common/ErrorMsg';
@@ -81,7 +80,7 @@ const schema = yup.object().shape({
 
 const EstablishmentForm = () => {
 	const context = useContext(EstablishmentsContext);
-	const [state, dispatch, addEstablishment] = context;
+	const [state, , addEstablishment] = context;
 	let history = useHistory();
 
 	const { register, handleSubmit, errors, reset } = useForm({
@@ -89,60 +88,61 @@ const EstablishmentForm = () => {
 	});
 
 	//Read the content of the JSON files with new FileReader method
-	// const processFile = file => {
-	// 	return new Promise((resolve, reject) => {
-	// 		const reader = new FileReader();
+	const processFile = file => {
+		return new Promise((resolve, reject) => {
+			const reader = new FileReader();
 
-	// 		reader.onload = e => {
-	// 			resolve(JSON.parse(e.target.result));
-	// 		};
-	// 		//onerror event handler invokes eventtarget addEventListener whenever an error occurs on the FileRader method.
-	// 		reader.onerror = reject;
+			reader.onload = e => {
+				resolve(JSON.parse(e.target.result));
+			};
+			//onerror event handler invokes eventtarget addEventListener whenever an error occurs on the FileRader method.
+			reader.onerror = reject;
 
-	// 		//read content of JSON files
-	// 		reader.readAsText(file);
-	// 	});
-	// };
+			//read content of JSON files
+			reader.readAsText(file);
+		});
+	};
 
 	const handleAddEstablishment = async data => {
 		const formData = new FormData();
 
-		//Get the files
-		formData.append('data', JSON.stringify({
+		formData.append('files.imgUrl', data.imgUrl[0], data.imgUrl[0].name);
+
+		for (const file of data.imgsUrl) {
+			//delete data.imgsUrl;
+			formData.append('files.imgsUrl', file, file.name);
+		}
+
+		for (const file of data.imgsMobileUrl) {
+			//delete data.imgsMobileUrl;
+			formData.append('files.imgsMobileUrl', file, file.name);
+		}
+
+		data.bookingIncludes = await processFile(data.bookingIncludes[0]);
+		data.popularFacilityIcons = await processFile(data.popularFacilityIcons[0]);
+		data.facilityIcons = await processFile(data.facilityIcons[0]);
+		data.stars = await processFile(data.stars[0]);
+
+		formData.append(
+			'data',
+			JSON.stringify({
 				name: data.name,
 				email: data.email,
 				price: data.price,
 				maxGuests: data.maxGuests,
 				roomType: data.roomType,
-				// facilityIcons: data.facilityIcons,
-				// bookingIncludes: data.bookingIncludes,
-				// popularFacilityIcons: data.popularFacilityIcons,
-				// stars: data.stars,
+				facilityIcons: data.facilityIcons,
+				bookingIncludes: data.bookingIncludes,
+				popularFacilityIcons: data.popularFacilityIcons,
+				stars: data.stars,
 				description: data.description,
 			})
 		);
 
-		formData.append('files.imgUrl', data.imgUrl[0], data.imgUrl[0].name);
-
-		// for (const file of data.imgsUrl) {
-		// 	delete data.imgsUrl;
-		// 	formData.append('files.imgsUrl', file, file.name);
-		// }
-
-		// for (const file of data.imgsMobileUrl) {
-		// 	delete data.imgsMobileUrl;
-		// 	formData.append('files.imgsMobileUrl', file, file.name);
-		// }
-
-		// data.bookingIncludes = await processFile(data.bookingIncludes[0]);
-		// data.popularFacilityIcons = await processFile(data.popularFacilityIcons[0]);
-		// data.facilityIcons = await processFile(data.facilityIcons[0]);
-		// data.stars = await processFile(data.stars[0]);
+		console.log(formData.getAll('data'));
 
 		//Pass data from input fields to body
 		addEstablishment(formData);
-
-		dispatch({ type: ADD_ESTABLISHMENT, payload: formData });
 
 		//reset input fields
 		reset(addEstablishment);
@@ -156,11 +156,7 @@ const EstablishmentForm = () => {
 				<SubHeading content="Establishment Form" />
 			</section>
 			<section>
-				<Form
-					// id="form1"
-					className="form"
-					onSubmit={handleSubmit(handleAddEstablishment)}
-				>
+				<Form className="form" onSubmit={handleSubmit(handleAddEstablishment)}>
 					<div className="form__header">
 						<h3 className="form__title heading--h3">Add Establishment</h3>
 						<AiFillCloseCircle className="form__close" onClick={handleClose} />
@@ -262,7 +258,7 @@ const EstablishmentForm = () => {
 								{errors.imgUrl && <ErrorMsg>{errors.imgUrl.message}</ErrorMsg>}
 							</Form.Group>
 						</Col>
-						{/* <Col md={4} sm={6} xs={12}>
+						<Col md={4} sm={6} xs={12}>
 							<Form.Group>
 								<Form.Label className="form__label">Images</Form.Label>
 								<Form.File multiple name="imgsUrl" ref={register} />
@@ -281,9 +277,9 @@ const EstablishmentForm = () => {
 									<ErrorMsg>{errors.imgsMobileUrl.message}</ErrorMsg>
 								)}
 							</Form.Group>
-						</Col> */}
+						</Col>
 					</Form.Row>
-					{/* <Form.Row>
+					<Form.Row>
 						<Col sm={6} xs={12}>
 							<Form.Group>
 								<Form.Label className="form__label">
@@ -330,7 +326,7 @@ const EstablishmentForm = () => {
 								)}
 							</Form.Group>
 						</Col>
-					</Form.Row> */}
+					</Form.Row>
 					<Form.Group>
 						<Form.Label className="form__label">Description</Form.Label>
 						<Form.Control
