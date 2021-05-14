@@ -94,7 +94,7 @@ const EstablishmentsList = ({ state }) => {
 										<ul>
 											{facilityIcons.map(icon => (
 												<li key={icon.id}>{icon.name}</li>
-											))} 
+											))}
 										</ul>
 									) : null}
 								</td>
@@ -118,13 +118,13 @@ const EstablishmentsList = ({ state }) => {
 											})}
 										</ul>
 									) : null}
-								</td> 
+								</td>
 								<td>
 									{popularFacilityIcons ? (
 										<ul>
 											{popularFacilityIcons.map(icon => (
-											<li key={icon.id}>{icon.name}</li>
-										))} 
+												<li key={icon.id}>{icon.name}</li>
+											))}
 										</ul>
 									) : null}
 								</td>
@@ -136,7 +136,7 @@ const EstablishmentsList = ({ state }) => {
 											))}
 										</ul>
 									) : null}
-								</td> 
+								</td>
 								<td
 									colSpan="3"
 									dangerouslySetInnerHTML={{ __html: description }}

@@ -88,20 +88,20 @@ const EstablishmentForm = () => {
 	});
 
 	//Read the content of the JSON files with new FileReader method
-	const processFile = file => {
-		return new Promise((resolve, reject) => {
-			const reader = new FileReader();
+	// const processFile = file => {
+	// 	return new Promise((resolve, reject) => {
+	// 		const reader = new FileReader();
 
-			reader.onload = e => {
-				resolve(JSON.parse(e.target.result));
-			};
-			//onerror event handler invokes eventtarget addEventListener whenever an error occurs on the FileRader method.
-			reader.onerror = reject;
+	// 		reader.onload = e => {
+	// 			resolve(JSON.parse(e.target.result));
+	// 		};
+	// 		//onerror event handler invokes eventtarget addEventListener whenever an error occurs on the FileRader method.
+	// 		reader.onerror = reject;
 
-			//read content of JSON files
-			reader.readAsText(file);
-		});
-	};
+	// 		//read content of JSON files
+	// 		reader.readAsText(file);
+	// 	});
+	// };
 
 	const handleAddEstablishment = async data => {
 		const formData = new FormData();
@@ -135,10 +135,10 @@ const EstablishmentForm = () => {
 			formData.append('files.imgsMobileUrl', file, file.name);
 		}
 
-		data.bookingIncludes = await processFile(data.bookingIncludes[0]);
-		data.popularFacilityIcons = await processFile(data.popularFacilityIcons[0]);
-		data.facilityIcons = await processFile(data.facilityIcons[0]);
-		data.stars = await processFile(data.stars[0]);
+		// data.bookingIncludes = await processFile(data.bookingIncludes[0]);
+		// data.popularFacilityIcons = await processFile(data.popularFacilityIcons[0]);
+		// data.facilityIcons = await processFile(data.facilityIcons[0]);
+		// data.stars = await processFile(data.stars[0]);
 
 		//Pass data from input fields to body
 		addEstablishment(formData);
