@@ -88,41 +88,35 @@ const EstablishmentForm = () => {
 	});
 
 	//Read the content of the JSON files with new FileReader method
-	const processFile = file => {
-		return new Promise((resolve, reject) => {
-			const reader = new FileReader();
+	// const processFile = file => {
+	// 	return new Promise((resolve, reject) => {
+	// 		const reader = new FileReader();
 
-			reader.onload = e => {
-				resolve(JSON.parse(e.target.result));
-			};
-			//onerror event handler invokes eventtarget addEventListener whenever an error occurs on the FileRader method.
-			reader.onerror = reject;
+	// 		reader.onload = e => {
+	// 			resolve(JSON.parse(e.target.result));
+	// 		};
+	// 		//onerror event handler invokes eventtarget addEventListener whenever an error occurs on the FileRader method.
+	// 		reader.onerror = reject;
 
-			//read content of JSON files
-			reader.readAsText(file);
-		});
-	};
+	// 		//read content of JSON files
+	// 		reader.readAsText(file);
+	// 	});
+	// };
 
 	const handleAddEstablishment = async data => {
 		const formData = new FormData();
 
 		//Get the files
-		formData.append(
-			'data',
-			JSON.stringify({
+		formData.append('data', JSON.stringify({
 				name: data.name,
 				email: data.email,
 				price: data.price,
 				maxGuests: data.maxGuests,
 				roomType: data.roomType,
-				bookingIncludes: data.bookingIncludes = await processFile(data.bookingIncludes),
-				popularFacilityIcons: data.popularFacilityIcons = await processFile(data.popularFacilityIcons),
-				facilityIcons: data.facilityIcons = await processFile(data.facilityIcons),
-				stars: data.stars = await processFile(data.stars),
-				// facilityIcons: data.facilityIcons,
-				// bookingIncludes: data.bookingIncludes,
-				// popularFacilityIcons: data.popularFacilityIcons,
-				// stars: data.stars,
+				facilityIcons: data.facilityIcons,
+				bookingIncludes: data.bookingIncludes,
+				popularFacilityIcons: data.popularFacilityIcons,
+				stars: data.stars,
 				description: data.description,
 			})
 		);
