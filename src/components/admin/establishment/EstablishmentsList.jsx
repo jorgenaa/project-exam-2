@@ -30,9 +30,9 @@ const EstablishmentsList = ({ state }) => {
 					imgsUrl,
 					imgsMobileUrl,
 					facilityIcons,
-					//bookingIncludes,
+					bookingIncludes,
 					popularFacilityIcons,
-					//stars,
+					stars,
 				} = establishment;
 
 				return (
@@ -95,9 +95,9 @@ const EstablishmentsList = ({ state }) => {
 								<td colSpan="2">
 									{facilityIcons ? (
 										<ul>
-											{/* {facilityIcons.map(icon => (
+											{facilityIcons.map(icon => (
 												<li key={icon.id}>{icon.name}</li>
-											))} */}
+											))} 
 										</ul>
 									) : null}
 								</td>
@@ -113,7 +113,7 @@ const EstablishmentsList = ({ state }) => {
 						</thead>
 						<tbody className="table__body">
 							<tr className="table__body-row table__body-row--border-bottom">
-								{/* <td>
+								<td>
 									{stars ? (
 										<ul>
 											{stars.map(item => {
@@ -121,17 +121,17 @@ const EstablishmentsList = ({ state }) => {
 											})}
 										</ul>
 									) : null}
-								</td> */}
+								</td> 
 								<td>
 									{popularFacilityIcons ? (
 										<ul>
-											{/* {popularFacilityIcons.map(icon => (
+											{popularFacilityIcons.map(icon => (
 											<li key={icon.id}>{icon.name}</li>
-										))} */}
+										))} 
 										</ul>
 									) : null}
 								</td>
-								{/* <td>
+								<td>
 									{bookingIncludes ? (
 										<ul>
 											{bookingIncludes.map(item => (
@@ -139,7 +139,7 @@ const EstablishmentsList = ({ state }) => {
 											))}
 										</ul>
 									) : null}
-								</td> */}
+								</td> 
 								<td
 									colSpan="3"
 									dangerouslySetInnerHTML={{ __html: description }}
