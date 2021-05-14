@@ -73,12 +73,7 @@ export const EstablishmentsProvider = props => {
 		dispatch({ type: ERROR, payload: null });
 
 		try {
-			const response = await axios.post(url, data, {
-				headers: {
-					Accept: 'application/json',
-					'Content-Type': 'multipart/form-data',
-				},
-			});
+			const response = await axios.post(url, data);
 			dispatch({ type: SUCCESS, payload: true });
 			const { status } = response;
 			if (status === 200) {
