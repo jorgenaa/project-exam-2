@@ -121,7 +121,7 @@ const EstablishmentForm = () => {
 			})
 		);
 
-		formData.append('files.imgUrl', JSON.stringify(data.imgUrl[0]), data.imgUrl[0].name);
+		formData.append('files.imgUrl', data.imgUrl[0], data.imgUrl[0].name);
 
 		// for (const file of data.imgsUrl) {
 		// 	delete data.imgsUrl;
