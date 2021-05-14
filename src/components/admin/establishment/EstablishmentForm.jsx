@@ -16,66 +16,66 @@ import ErrorMsg from '../../common/ErrorMsg';
 import SuccessMsg from '../../common/SuccessMsg';
 
 const schema = yup.object().shape({
-	// name: yup.string().required('Name is required'),
-	// email: yup
-	// 	.string()
-	// 	.email('Please enter a valid email')
-	// 	.required('Email is required'),
-	// price: yup.number().required('Please provide a valid number'),
-	// maxGuests: yup.number().required('Please provide a valid number'),
-	// roomType: yup.string().required('Select a room type'),
-	// imgUrl: yup
-	// 	.mixed()
-	// 	.required('You need to provide a jpg file')
-	// 	.test('filesize', 'The file is too large', value => {
-	// 		return value && value[0].size < 180000;
-	// 	})
-	// 	.test('type', 'We only support jpg', value => {
-	// 		return value && value[0].type === 'image/jpeg';
-	// 	}),
-	// imgsUrl: yup
-	// 	.mixed()
-	// 	.required('You need to provide 4 jpg files')
-	// 	.test('filesize', 'The files are too large', value => {
-	// 		return value && value[0].size < 180000;
-	// 	})
-	// 	.test('type', 'We only support jpg', value => {
-	// 		return value && value[0].type === 'image/jpeg';
-	// 	}),
-	// imgsMobileUrl: yup
-	// 	.mixed()
-	// 	.required('You need to provide 5 jpg files')
-	// 	.test('filesize', 'The files are too large', value => {
-	// 		return value && value[0].size < 300000;
-	// 	})
-	// 	.test('type', 'We only support jpg', value => {
-	// 		return value && value[0].type === 'image/jpeg';
-	// 	}),
-	// facilityIcons: yup
-	// 	.mixed()
-	// 	.required('The file must contain an id, name and cssClass of the icons')
-	// 	.test('type', 'We only support JSON', value => {
-	// 		return value && value[0].type === 'application/json';
-	// 	}),
-	// bookingIncludes: yup
-	// 	.mixed()
-	// 	.required('You need to provide JSON file including id & name')
-	// 	.test('type', 'We only support JSON', value => {
-	// 		return value && value[0].type === 'application/json';
-	// 	}),
-	// popularFacilityIcons: yup
-	// 	.mixed()
-	// 	.required('The file must contain an id, name and cssClass of the icons')
-	// 	.test('type', 'We only support JSON', value => {
-	// 		return value && value[0].type === 'application/json';
-	// 	}),
-	// stars: yup
-	// 	.mixed()
-	// 	.required('The file must contain an id, name and cssClass of the icon')
-	// 	.test('type', 'We only support JSON', value => {
-	// 		return value && value[0].type === 'application/json';
-	// 	}),
-	// description: yup.string().required('A description is required'),
+	name: yup.string().required('Name is required'),
+	email: yup
+		.string()
+		.email('Please enter a valid email')
+		.required('Email is required'),
+	price: yup.number().required('Please provide a valid number'),
+	maxGuests: yup.number().required('Please provide a valid number'),
+	roomType: yup.string().required('Select a room type'),
+	imgUrl: yup
+		.mixed()
+		.required('You need to provide a jpg file')
+		.test('filesize', 'The file is too large', value => {
+			return value && value[0].size < 180000;
+		})
+		.test('type', 'We only support jpg', value => {
+			return value && value[0].type === 'image/jpeg';
+		}),
+	imgsUrl: yup
+		.mixed()
+		.required('You need to provide 4 jpg files')
+		.test('filesize', 'The files are too large', value => {
+			return value && value[0].size < 180000;
+		})
+		.test('type', 'We only support jpg', value => {
+			return value && value[0].type === 'image/jpeg';
+		}),
+	imgsMobileUrl: yup
+		.mixed()
+		.required('You need to provide 5 jpg files')
+		.test('filesize', 'The files are too large', value => {
+			return value && value[0].size < 300000;
+		})
+		.test('type', 'We only support jpg', value => {
+			return value && value[0].type === 'image/jpeg';
+		}),
+	facilityIcons: yup
+		.mixed()
+		.required('The file must contain an id, name and cssClass of the icons')
+		.test('type', 'We only support JSON', value => {
+			return value && value[0].type === 'application/json';
+		}),
+	bookingIncludes: yup
+		.mixed()
+		.required('You need to provide JSON file including id & name')
+		.test('type', 'We only support JSON', value => {
+			return value && value[0].type === 'application/json';
+		}),
+	popularFacilityIcons: yup
+		.mixed()
+		.required('The file must contain an id, name and cssClass of the icons')
+		.test('type', 'We only support JSON', value => {
+			return value && value[0].type === 'application/json';
+		}),
+	stars: yup
+		.mixed()
+		.required('The file must contain an id, name and cssClass of the icon')
+		.test('type', 'We only support JSON', value => {
+			return value && value[0].type === 'application/json';
+		}),
+	description: yup.string().required('A description is required'),
 });
 
 const EstablishmentForm = () => {
@@ -88,82 +88,60 @@ const EstablishmentForm = () => {
 	});
 
 	//Read the content of the JSON files with new FileReader method
-	// const processFile = file => {
-	// 	return new Promise((resolve, reject) => {
-	// 		const reader = new FileReader();
+	const processFile = file => {
+		return new Promise((resolve, reject) => {
+			const reader = new FileReader();
 
-	// 		reader.onload = e => {
-	// 			resolve(JSON.parse(e.target.result));
-	// 		};
-	// 		//onerror event handler invokes eventtarget addEventListener whenever an error occurs on the FileRader method.
-	// 		reader.onerror = reject;
+			reader.onload = e => {
+				resolve(JSON.parse(e.target.result));
+			};
+			//onerror event handler invokes eventtarget addEventListener whenever an error occurs on the FileRader method.
+			reader.onerror = reject;
 
-	// 		//read content of JSON files
-	// 		reader.readAsText(file);
-	// 	});
-	// };
+			//read content of JSON files
+			reader.readAsText(file);
+		});
+	};
 
 	const handleAddEstablishment = async data => {
 		const formData = new FormData();
+
 		//Get the files
+		formData.append(
+			'data',
+			JSON.stringify({
+				name: data.name,
+				email: data.email,
+				price: data.price,
+				maxGuests: data.maxGuests,
+				roomType: data.roomType,
+				facilityIcons: data.facilityIcons,
+				bookingIncludes: data.bookingIncludes,
+				popularFacilityIcons: data.popularFacilityIcons,
+				stars: data.stars,
+				description: data.description,
+			})
+		);
 
-		formData.append('data', JSON.stringify({
-			name: data.name,
-			email: data.email,
-			price: data.price,
-			maxGuests: data.maxGuests,
-			roomType: data.roomType,
-			facilityIcons: data.facilityIcons,
-			bookingIncludes: data.bookingIncludes,
-			popularFacilityIcons: data.popularFacilityIcons,
-			stars: data.stars,
-			description: data.description
-		}));
-
-
-		// const formElement = document.getElementById('form1');
 		formData.append('files.imgUrl', data.imgUrl[0], data.imgUrl[0].name);
 
-		// console.log(e);
+		for (const file of data.imgsUrl) {
+			delete data.imgsUrl;
+			formData.append('files.imgsUrl', file, file.name);
+		}
 
-		// const formElements = formElement.elements;
-		// const data = {};
-		// for (let i = 0; i < formElements.length; i++) {
-		// 	const currentElement = formElements[i];
-		// 	if (!['submit', 'file'].includes(currentElement.type)) {
-		// 		data[currentElement.name] = currentElement.value;
-		// 	} else if (currentElement.type === 'file') {
-		// 		if (currentElement.files.length === 1) {
-		// 			const file = currentElement.files[0];
-		// 			formData.append(`files.${currentElement.name}`, file, file.name);
-		// 		} else {
-		// 			for (let i = 0; i < currentElement.files.length; i++) {
-		// 				const file = currentElement.files[i];
+		for (const file of data.imgsMobileUrl) {
+			delete data.imgsMobileUrl;
+			formData.append('files.imgsMobileUrl', file, file.name);
+		}
 
-		// 				formData.append(`files.${currentElement.name}`, file, file.name);
-		// 			}
-		// 		}
-		// 	}
-		// }
-		// for (const file of data.imgsUrl) {
-		// 	delete data.imgsUrl;
-		// 	formData.append('files.imgsUrl', file, file.name);
-		// }
+		data.bookingIncludes = await processFile(data.bookingIncludes[0]);
+		data.popularFacilityIcons = await processFile(data.popularFacilityIcons[0]);
+		data.facilityIcons = await processFile(data.facilityIcons[0]);
+		data.stars = await processFile(data.stars[0]);
 
-		// for (const file of data.imgsMobileUrl) {
-		// 	delete data.imgsMobileUrl;
-		// 	formData.append('files.imgsMobileUrl', file, file.name);
-		// }
-
-		// data.bookingIncludes = await processFile(data.bookingIncludes[0]);
-		// data.popularFacilityIcons = await processFile(data.popularFacilityIcons[0]);
-		// data.facilityIcons = await processFile(data.facilityIcons[0]);
-		// data.stars = await processFile(data.stars[0]);
-
-		//formData.append('data', JSON.stringify(data));
 		//Pass data from input fields to body
 		addEstablishment(formData);
-		//Pass data from input fields to the state
 
 		//reset input fields
 		reset(addEstablishment);
@@ -283,7 +261,7 @@ const EstablishmentForm = () => {
 								{errors.imgUrl && <ErrorMsg>{errors.imgUrl.message}</ErrorMsg>}
 							</Form.Group>
 						</Col>
-						{/* <Col md={4} sm={6} xs={12}>
+						<Col md={4} sm={6} xs={12}>
 							<Form.Group>
 								<Form.Label className="form__label">Images</Form.Label>
 								<Form.File multiple name="imgsUrl" ref={register} />
@@ -302,7 +280,7 @@ const EstablishmentForm = () => {
 									<ErrorMsg>{errors.imgsMobileUrl.message}</ErrorMsg>
 								)}
 							</Form.Group>
-						</Col> */}
+						</Col>
 					</Form.Row>
 					<Form.Row>
 						<Col sm={6} xs={12}>
