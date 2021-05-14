@@ -10,6 +10,7 @@ import { AiFillCloseCircle } from 'react-icons/ai';
 
 //Components
 import EstablishmentsContext from '../../contexts/EstablishmentsContext';
+import { ADD_ESTABLISHMENT } from '../../contexts/EstablishmentsContext';
 import Button from '../../common/Button';
 import SubHeading from '../../common/SubHeading';
 import ErrorMsg from '../../common/ErrorMsg';
@@ -80,7 +81,7 @@ const schema = yup.object().shape({
 
 const EstablishmentForm = () => {
 	const context = useContext(EstablishmentsContext);
-	const [state, , addEstablishment] = context;
+	const [state, dispatch, addEstablishment] = context;
 	let history = useHistory();
 
 	const { register, handleSubmit, errors, reset } = useForm({
@@ -140,6 +141,8 @@ const EstablishmentForm = () => {
 
 		//Pass data from input fields to body
 		addEstablishment(formData);
+
+		dispatch({ type: ADD_ESTABLISHMENT, payload: formData });
 
 		//reset input fields
 		reset(addEstablishment);
