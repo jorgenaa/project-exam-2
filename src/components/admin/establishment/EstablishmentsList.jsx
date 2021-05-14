@@ -39,9 +39,6 @@ const EstablishmentsList = ({ state }) => {
 					<>
 						<thead className="table__head">
 							<tr className="table__row">
-								<th>Id&#58; {id}</th>
-							</tr>
-							<tr className="table__row">
 								<th>Name</th>
 								<th>Email</th>
 								<th>Price</th>
