@@ -160,7 +160,7 @@ const EstablishmentForm = () => {
 		// data.facilityIcons = await processFile(data.facilityIcons[0]);
 		// data.stars = await processFile(data.stars[0]);
 
-		formData.append('data', JSON.stringify(data));
+		//formData.append('data', JSON.stringify(data));
 		//Pass data from input fields to body
 		addEstablishment(formData);
 		//Pass data from input fields to the state
