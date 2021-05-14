@@ -90,7 +90,7 @@ export const MessagesProvider = props => {
 		const { status } = res;
 
 		if (status === 200) {
-			dispatch({ type: REMOVE_MESSAGES }); //, payload: id
+			dispatch({ type: REMOVE_MESSAGES }); 
 		}
 	}
 
