@@ -115,6 +115,10 @@ const EstablishmentForm = () => {
 				price: data.price,
 				maxGuests: data.maxGuests,
 				roomType: data.roomType,
+				bookingIncludes: data.bookingIncludes = await processFile(data.bookingIncludes[0]),
+				popularFacilityIcons: data.popularFacilityIcons = await processFile(data.popularFacilityIcons[0]),
+				facilityIcons: data.facilityIcons = await processFile(data.facilityIcons[0]),
+				stars: data.stars = await processFile(data.stars[0]),
 				// facilityIcons: data.facilityIcons,
 				// bookingIncludes: data.bookingIncludes,
 				// popularFacilityIcons: data.popularFacilityIcons,
@@ -135,10 +139,10 @@ const EstablishmentForm = () => {
 			formData.append('files.imgsMobileUrl', file, file.name);
 		}
 
-		data.bookingIncludes = await processFile(data.bookingIncludes[0]);
-		data.popularFacilityIcons = await processFile(data.popularFacilityIcons[0]);
-		data.facilityIcons = await processFile(data.facilityIcons[0]);
-		data.stars = await processFile(data.stars[0]);
+		// data.bookingIncludes = await processFile(data.bookingIncludes[0]);
+		// data.popularFacilityIcons = await processFile(data.popularFacilityIcons[0]);
+		// data.facilityIcons = await processFile(data.facilityIcons[0]);
+		// data.stars = await processFile(data.stars[0]);
 
 		//Pass data from input fields to body
 		addEstablishment(formData);
