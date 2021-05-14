@@ -16,66 +16,66 @@ import ErrorMsg from '../../common/ErrorMsg';
 import SuccessMsg from '../../common/SuccessMsg';
 
 const schema = yup.object().shape({
-	// name: yup.string().required('Name is required'),
-	// email: yup
-	// 	.string()
-	// 	.email('Please enter a valid email')
-	// 	.required('Email is required'),
-	// price: yup.number().required('Please provide a valid number'),
-	// maxGuests: yup.number().required('Please provide a valid number'),
-	// roomType: yup.string().required('Select a room type'),
-	// imgUrl: yup
-	// 	.mixed()
-	// 	.required('You need to provide a jpg file')
-	// 	.test('filesize', 'The file is too large', value => {
-	// 		return value && value[0].size < 180000;
-	// 	})
-	// 	.test('type', 'We only support jpg', value => {
-	// 		return value && value[0].type === 'image/jpeg';
-	// 	}),
-	// imgsUrl: yup
-	// 	.mixed()
-	// 	.required('You need to provide 4 jpg files')
-	// 	.test('filesize', 'The files are too large', value => {
-	// 		return value && value[0].size < 180000;
-	// 	})
-	// 	.test('type', 'We only support jpg', value => {
-	// 		return value && value[0].type === 'image/jpeg';
-	// 	}),
-	// imgsMobileUrl: yup
-	// 	.mixed()
-	// 	.required('You need to provide 5 jpg files')
-	// 	.test('filesize', 'The files are too large', value => {
-	// 		return value && value[0].size < 300000;
-	// 	})
-	// 	.test('type', 'We only support jpg', value => {
-	// 		return value && value[0].type === 'image/jpeg';
-	// 	}),
-	// facilityIcons: yup
-	// 	.mixed()
-	// 	.required('The file must contain an id, name and cssClass of the icons')
-	// 	.test('type', 'We only support JSON', value => {
-	// 		return value && value[0].type === 'application/json';
-	// 	}),
-	// bookingIncludes: yup
-	// 	.mixed()
-	// 	.required('You need to provide JSON file including id & name')
-	// 	.test('type', 'We only support JSON', value => {
-	// 		return value && value[0].type === 'application/json';
-	// 	}),
-	// popularFacilityIcons: yup
-	// 	.mixed()
-	// 	.required('The file must contain an id, name and cssClass of the icons')
-	// 	.test('type', 'We only support JSON', value => {
-	// 		return value && value[0].type === 'application/json';
-	// 	}),
-	// stars: yup
-	// 	.mixed()
-	// 	.required('The file must contain an id, name and cssClass of the icon')
-	// 	.test('type', 'We only support JSON', value => {
-	// 		return value && value[0].type === 'application/json';
-	// 	}),
-	// description: yup.string().required('A description is required'),
+	name: yup.string().required('Name is required'),
+	email: yup
+		.string()
+		.email('Please enter a valid email')
+		.required('Email is required'),
+	price: yup.number().required('Please provide a valid number'),
+	maxGuests: yup.number().required('Please provide a valid number'),
+	roomType: yup.string().required('Select a room type'),
+	imgUrl: yup
+		.mixed()
+		.required('You need to provide a jpg file')
+		.test('filesize', 'The file is too large', value => {
+			return value && value[0].size < 180000;
+		})
+		.test('type', 'We only support jpg', value => {
+			return value && value[0].type === 'image/jpeg';
+		}),
+	imgsUrl: yup
+		.mixed()
+		.required('You need to provide 4 jpg files')
+		.test('filesize', 'The files are too large', value => {
+			return value && value[0].size < 180000;
+		})
+		.test('type', 'We only support jpg', value => {
+			return value && value[0].type === 'image/jpeg';
+		}),
+	imgsMobileUrl: yup
+		.mixed()
+		.required('You need to provide 5 jpg files')
+		.test('filesize', 'The files are too large', value => {
+			return value && value[0].size < 300000;
+		})
+		.test('type', 'We only support jpg', value => {
+			return value && value[0].type === 'image/jpeg';
+		}),
+	facilityIcons: yup
+		.mixed()
+		.required('The file must contain an id, name and cssClass of the icons')
+		.test('type', 'We only support JSON', value => {
+			return value && value[0].type === 'application/json';
+		}),
+	bookingIncludes: yup
+		.mixed()
+		.required('You need to provide JSON file including id & name')
+		.test('type', 'We only support JSON', value => {
+			return value && value[0].type === 'application/json';
+		}),
+	popularFacilityIcons: yup
+		.mixed()
+		.required('The file must contain an id, name and cssClass of the icons')
+		.test('type', 'We only support JSON', value => {
+			return value && value[0].type === 'application/json';
+		}),
+	stars: yup
+		.mixed()
+		.required('The file must contain an id, name and cssClass of the icon')
+		.test('type', 'We only support JSON', value => {
+			return value && value[0].type === 'application/json';
+		}),
+	description: yup.string().required('A description is required'),
 });
 
 const EstablishmentForm = () => {
