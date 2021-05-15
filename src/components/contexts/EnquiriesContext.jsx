@@ -63,7 +63,7 @@ export const EnquiriesProvider = props => {
 	}, []);
 
 	async function deleteEnquiries(id) {
-		try {
+	
 			let res = await axios.delete(url + '/' + id);
 			const { status } = res;
 	
@@ -71,12 +71,9 @@ export const EnquiriesProvider = props => {
 				dispatch({ type: REMOVE_ENQUIRY, payload: id });
 				console.log("enquiry is deleted")
 			}
-		}catch (error) {
-			console.log(error);
-			dispatch({ type: ERROR, payload: error.toString()});
 		}
 		
-	}
+	
 
 	return (
 		<EnquiriesContext.Provider
