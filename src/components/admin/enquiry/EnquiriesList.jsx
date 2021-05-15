@@ -18,7 +18,6 @@ const EnquiriesList = ({
 
 	const handleEnqury = async id => {
 		deleteEnquiries(id);
-		dispatch({ type: REMOVE_ENQUIRY, payload: id });
 	};
 
 	return (
