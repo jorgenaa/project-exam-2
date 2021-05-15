@@ -43,7 +43,6 @@ function reducer(state, action) {
 
 export const EnquiriesProvider = props => {
 	const [state, dispatch] = useReducer(reducer, initialState);
-	const [error, setError] = useState(null);
 	const url = BASE_URL + ENQUIRIES_PATH;
 
 	async function getUsers() {
@@ -53,7 +52,7 @@ export const EnquiriesProvider = props => {
 			console.log(response.data);
 		} catch (error) {
 			console.log(error);
-			setError(error.toString());
+			dispatch({ type: ERROR, payload: error.toString()});
 		}
 	}
 
@@ -64,18 +63,24 @@ export const EnquiriesProvider = props => {
 	}, []);
 
 	async function deleteEnquiries(id) {
-		let res = await axios.delete(url + '/' + id);
-		const { status } = res;
-
-		if (status === 200) {
-			dispatch({ type: REMOVE_ENQUIRY, payload: id });
-			console.log("enquiry is deleted")
+		try {
+			let res = await axios.delete(url + '/' + id);
+			const { status } = res;
+	
+			if (status === 200) {
+				dispatch({ type: REMOVE_ENQUIRY, payload: id });
+				console.log("enquiry is deleted")
+			}
+		}catch (error) {
+			console.log(error);
+			dispatch({ type: ERROR, payload: error.toString()});
 		}
+		
 	}
 
 	return (
 		<EnquiriesContext.Provider
-			value={[state, dispatch, deleteEnquiries, error]}
+			value={[state, dispatch, deleteEnquiries]}
 		>
 			{props.children}
 		</EnquiriesContext.Provider>
