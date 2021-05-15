@@ -1,6 +1,8 @@
 import { IoTrashBinSharp } from 'react-icons/io5';
+import axios from 'axios';
 
-const MessageList = ({ REMOVE_MESSAGES, state, dispatch, deleteMessages }) => {
+import { BASE_URL, INBOX_PATH } from '../../constants/api';
+const MessageList = ({ REMOVE_MESSAGES, state, dispatch }) => {
 	if (state.messages.length === 0) {
 		return (
 			<tbody>
@@ -15,6 +17,21 @@ const MessageList = ({ REMOVE_MESSAGES, state, dispatch, deleteMessages }) => {
 	// 	deleteMessages(id);
 	// 	dispatch({ type: REMOVE_MESSAGES, payload: id });
 	// };
+	const url = BASE_URL + INBOX_PATH;
+	async function deleteMessages(id) {
+		try {
+			await axios.delete(url + '/' + id);
+			dispatch({ type: REMOVE_MESSAGES, payload: id });
+		} catch(error){
+			console.log(error)
+		}
+	
+		//const { status } = res;
+		
+		// if (res.status === 200) {
+		// 	dispatch({ type: REMOVE_MESSAGES, payload: id });
+		// }
+	}
 
 	return (
 		<tbody>
@@ -26,7 +43,7 @@ const MessageList = ({ REMOVE_MESSAGES, state, dispatch, deleteMessages }) => {
 						<td>
 							<IoTrashBinSharp
 								className="table__trash table__trash--hover"
-								onClick={() => deleteMessages(id)}
+								onClick={deleteMessages(id)}
 							/>
 						</td>
 						<td>{clientName}</td>
