@@ -17,16 +17,10 @@ const EnquiriesList = ({
 		);
 	}
 
-	const handleDeleteEnqury = async id => {
-		
-		return new Promise((resolve, reject) => { 
-		 	if(deleteEnquiries) {
-				resolve(deleteEnquiries(id))
-			}else {
-				reject(console.log("failed deleting"));
-			}
-		})
-	}
+	// const handleDeleteEnqury = async id => {
+	// 	deleteEnquiries(id);
+			
+	// }
 
 	return (
 		<>
@@ -46,7 +40,7 @@ const EnquiriesList = ({
 							<td>
 								<IoTrashBinSharp
 									className="table__trash table__trash--hover"
-									onClick={() => handleDeleteEnqury(id)}
+									onClick={() => deleteEnquiries(id)}
 								/>
 							</td>
 							<td>{establishment}</td>
