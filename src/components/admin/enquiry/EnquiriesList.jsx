@@ -2,9 +2,10 @@ import { IoTrashBinSharp } from 'react-icons/io5';
 
 const EnquiriesList = ({
 	state,
-	dispatch,
+	//dispatch,
 	deleteEnquiries,
-	REMOVE_ENQUIRY,
+	//REMOVE_ENQUIRY,
+	
 }) => {
 	if (state.enquiries.length === 0) {
 		return (
@@ -17,8 +18,15 @@ const EnquiriesList = ({
 	}
 
 	const handleDeleteEnqury = async id => {
-		deleteEnquiries(id);
-	};
+		
+		return new Promise((resolve, reject) => { 
+		 	if(deleteEnquiries) {
+				resolve(deleteEnquiries(id))
+			}else {
+				reject(console.log("failed deleting"));
+			}
+		})
+	}
 
 	return (
 		<>
