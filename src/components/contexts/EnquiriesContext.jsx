@@ -1,4 +1,4 @@
-import { createContext, useReducer, useEffect, useState } from 'react';
+import { createContext, useReducer, useEffect } from 'react';
 import axios from 'axios';
 import { BASE_URL, ENQUIRIES_PATH } from '../../constants/api';
 
