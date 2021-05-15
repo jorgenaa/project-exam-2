@@ -11,10 +11,10 @@ const MessageList = ({ REMOVE_MESSAGES, state, dispatch, deleteMessages }) => {
 		);
 	}
 
-	const handleDeleteMessage = async id => {
-		deleteMessages(id);
-		dispatch({ type: REMOVE_MESSAGES, payload: id });
-	};
+	// const handleDeleteMessage = async id => {
+	// 	deleteMessages(id);
+	// 	dispatch({ type: REMOVE_MESSAGES, payload: id });
+	// };
 
 	return (
 		<tbody>
@@ -26,7 +26,7 @@ const MessageList = ({ REMOVE_MESSAGES, state, dispatch, deleteMessages }) => {
 						<td>
 							<IoTrashBinSharp
 								className="table__trash table__trash--hover"
-								onClick={() => handleDeleteMessage(id)}
+								onClick={() => deleteMessages(id)}
 							/>
 						</td>
 						<td>{clientName}</td>
