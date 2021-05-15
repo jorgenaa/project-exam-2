@@ -40,7 +40,7 @@ const EnquiriesList = ({
 							<td>
 								<IoTrashBinSharp
 									className="table__trash table__trash--hover"
-									onClick={() => deleteEnquiries(id)}
+									onClick={deleteEnquiries(id)}
 								/>
 							</td>
 							<td>{establishment}</td>
