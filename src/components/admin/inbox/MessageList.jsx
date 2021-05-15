@@ -43,7 +43,7 @@ const MessageList = ({ REMOVE_MESSAGES, state, dispatch }) => {
 						<td>
 							<IoTrashBinSharp
 								className="table__trash table__trash--hover"
-								onClick={deleteMessages(id)}
+								onClick={()=> deleteMessages(id)}
 							/>
 						</td>
 						<td>{clientName}</td>
