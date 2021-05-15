@@ -17,7 +17,7 @@ const EnquiriesList = ({
 		);
 	}
 
-	const handleDeleteEnqury = id => {
+	const handleDeleteEnqury = async id => {
 		deleteEnquiries(id);	
 		dispatch({ type: REMOVE_ENQUIRY, payload: id });
 	}
