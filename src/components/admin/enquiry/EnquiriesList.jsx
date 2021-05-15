@@ -17,10 +17,9 @@ const EnquiriesList = ({
 		);
 	}
 
-	// const handleDeleteEnqury = async id => {
-	// 	deleteEnquiries(id);
-			
-	// }
+	const handleDeleteEnqury = id => {
+		deleteEnquiries(id);	
+	}
 
 	return (
 		<>
@@ -40,7 +39,7 @@ const EnquiriesList = ({
 							<td>
 								<IoTrashBinSharp
 									className="table__trash table__trash--hover"
-									onClick={deleteEnquiries(id)}
+									onClick={() => handleDeleteEnqury(id)}
 								/>
 							</td>
 							<td>{establishment}</td>
