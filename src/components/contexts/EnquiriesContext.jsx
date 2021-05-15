@@ -69,6 +69,7 @@ export const EnquiriesProvider = props => {
 
 		if (status === 200) {
 			dispatch({ type: REMOVE_ENQUIRY, payload: id });
+			console.log("enquiry is deleted")
 		}
 	}
 
