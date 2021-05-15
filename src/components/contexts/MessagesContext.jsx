@@ -89,7 +89,7 @@ export const MessagesProvider = props => {
 		let res = await axios.delete(url + '/' + id);
 		console.log(res.status)
 		//const { status } = res;
-		dispatch({ type: REMOVE_MESSAGES, payload: id });
+		
 		// if (res.status === 200) {
 		// 	dispatch({ type: REMOVE_MESSAGES, payload: id });
 		// }
