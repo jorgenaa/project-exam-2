@@ -1,7 +1,7 @@
 import { IoTrashBinSharp } from 'react-icons/io5';
 import axios from 'axios';
 
-import { BASE_URL, INBOX_PATH } from '../../constants/api';
+import { BASE_URL, INBOX_PATH } from '../../../constants/api';
 const MessageList = ({ REMOVE_MESSAGES, state, dispatch }) => {
 	if (state.messages.length === 0) {
 		return (
