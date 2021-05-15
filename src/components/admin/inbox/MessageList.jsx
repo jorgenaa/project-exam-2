@@ -13,7 +13,7 @@ const MessageList = ({ REMOVE_MESSAGES, state, dispatch, deleteMessages }) => {
 
 	const handleDeleteMessage = async id => {
 		deleteMessages(id);
-		dispatch({ type: REMOVE_MESSAGES, payload: id });
+		//dispatch({ type: REMOVE_MESSAGES, payload: id });
 	};
 
 	return (
