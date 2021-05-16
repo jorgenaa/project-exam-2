@@ -72,7 +72,7 @@ export const MessagesProvider = props => {
 			dispatch({ type: SUCCESS, payload: true });
 			const { status } = response;
 			if (status === 200) {
-				dispatch({ type: ADD_MESSAGES, payload: data });
+				dispatch({ type: ADD_MESSAGES, payload: response.data });
 				setTimeout(() => {
 					dispatch({ type: SUCCESS, payload: false });
 				}, 1000);
