@@ -39,7 +39,6 @@ const SpecificSidebarContent = ({ id, icons }) => {
 			</Link>
 			<div>
 				<h4 className="specific__sidebar-title">Facilities</h4>
-
 				<ul className="specific__sidebar__list">
 					{revisedIcons.map(icon => {
 						return (

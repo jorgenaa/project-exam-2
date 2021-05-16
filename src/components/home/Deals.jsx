@@ -12,7 +12,7 @@ import ErrorMsg from '../common/ErrorMsg';
 import LoadingMsg from '../common/LoadingMsg';
 
 const Deals = () => {
-	const specialDealId = 3;
+	const specialDealId = 4;
 	const establishmentContext = useContext(EstablishmentContext);
 	const [state, , ,] = establishmentContext; //dispatch
 
@@ -70,9 +70,5 @@ const Deals = () => {
 		</section>
 	);
 };
-
-// Deals.propTypes = {
-// 	specialDealId: PropTypes.number.isRequired
-// }
 
 export default Deals;
