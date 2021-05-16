@@ -63,14 +63,16 @@ export const EnquiriesProvider = props => {
 	}, []);
 
 	async function deleteEnquiries(id) {
-	
-			let res = await axios.delete(url + '/' + id);
-			const { status } = res;
-	
-			if (status === 200) {
+		try {
+			const res = await axios.delete(url + '/' + id);
+			if (res.status === 200) {
 				dispatch({ type: REMOVE_ENQUIRY, payload: id });
 				console.log("enquiry is deleted")
 			}
+		} catch(error) {
+			console.log(error)
+			dispatch({ type: ERROR, payload: error.toString()});
+		}
 		}
 		
 	

@@ -2,6 +2,8 @@ import { useContext, useEffect, useState } from 'react';
 
 //Components
 import SubHeading from '../../common/SubHeading';
+import ErrorMsg from '../../common/ErrorMsg';
+import SuccessMsg from '../../common/SuccessMsg';
 import InboxTableHeader from './InboxTableHeader';
 import TableSection from '../../common/TableSection';
 import MessageList from './MessageList';
@@ -37,6 +39,10 @@ const Inbox = () => {
 		<main className="inbox">
 			<section className="inbox__header-section">
 				<SubHeading content="Inbox messages" />
+			</section>
+			<section>
+				{state.serverError && <ErrorMsg>{state.serverError}</ErrorMsg>}
+				{state.successMsg && <SuccessMsg>Successfully deleted</SuccessMsg>}
 			</section>
 			{visible ? (
 				<section>

@@ -88,11 +88,16 @@ export const MessagesProvider = props => {
 	async function deleteMessages(id) {
 		try {
 			const res = await axios.delete(url + '/' + id);
+			dispatch({ type: SUCCESS, payload: true });
 			if (res.status === 200) {
 				dispatch({ type: REMOVE_MESSAGES, payload: id });
+				setTimeout(() => {
+					dispatch({ type: SUCCESS, payload: false });
+				}, 1000);
 			}
 		} catch(error){
 			console.log(error)
+			dispatch({ type: ERROR, payload: error.toString() });
 		}
 		
 	}
