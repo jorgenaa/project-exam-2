@@ -87,7 +87,6 @@ export const MessagesProvider = props => {
 
 	async function deleteMessages(id) {
 		try {
-			if (id === undefined) alert('id is undefined');
 			const res = await axios.delete(url + '/' + id);
 			dispatch({ type: SUCCESS, payload: true });
 			if (res.status === 200) {

@@ -43,7 +43,7 @@ const EnquiryForm = ({ id, name, fromDate, toDate, handleOnDateChangeStart, hand
             dispatch({ type: SUCCESS, payload: true});
             const { status } = response;
 			if (status === 200){
-                dispatch({ type: ADD_ENQUIRY, payload: data})
+                dispatch({ type: ADD_ENQUIRY, payload: response.data})
 				setTimeout(() => {
 					dispatch({ type: SUCCESS, payload: false});
 					reset(response);
