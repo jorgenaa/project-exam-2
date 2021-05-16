@@ -15,13 +15,13 @@ const MessageList = ({ state, deleteMessages }) => {
 		<tbody>
 			{state.messages.map(msg => {
 				const { clientName, email, message, id } = msg;
-				console.log(typeof(id))
+				
 				return (
 					<tr className="table__row--border-bottom" key={id}>
 						<td>
 							<IoTrashBinSharp
 								className="table__trash table__trash--hover"
-								onClick={()=> deleteMessages(id.toString())}
+								onClick={()=> deleteMessages(id)}
 							/>
 						</td>
 						<td>{clientName}</td>
