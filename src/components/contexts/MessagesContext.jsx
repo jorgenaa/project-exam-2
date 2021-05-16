@@ -87,6 +87,7 @@ export const MessagesProvider = props => {
 
 	async function deleteMessages(id) {
 		try {
+			if (id === undefined) alert('id is undefined');
 			const res = await axios.delete(url + '/' + id);
 			dispatch({ type: SUCCESS, payload: true });
 			if (res.status === 200) {
@@ -95,15 +96,15 @@ export const MessagesProvider = props => {
 					dispatch({ type: SUCCESS, payload: false });
 				}, 1000);
 			}
-		} catch(error){
-			console.log(error)
+		} catch (error) {
+			console.log(error);
 			dispatch({ type: ERROR, payload: error.toString() });
-		}	
+		}
 	}
 
 	return (
 		<MessagesContext.Provider
-			value={[state, dispatch, sendMsg, deleteMessages]} 
+			value={[state, dispatch, sendMsg, deleteMessages]}
 		>
 			{props.children}
 		</MessagesContext.Provider>
