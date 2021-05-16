@@ -1,6 +1,8 @@
 import { useContext, useEffect, useState } from 'react';
 //Components
 import SubHeading from '../../common/SubHeading';
+import ErrorMsg from '../../common/ErrorMsg';
+import SuccessMsg from '../../common/SuccessMsg';
 import EnquiriesTableHeader from './EnquiriesTableHeader';
 import EnquiriesList from './EnquiriesList';
 import TableSection from '../../common/TableSection';
@@ -37,6 +39,10 @@ const EnquiryAdminPage = () => {
 			<section className="inbox__header-section">
 				<SubHeading content="Enquiries" />
 			</section>
+			<section>
+				{state.serverError && <ErrorMsg>{state.serverError}</ErrorMsg>}
+				{state.successMsg && <SuccessMsg>Successfully deleted</SuccessMsg>}
+			</section>
 			{visible ? (
 				<section>
 					<Button
@@ -49,12 +55,7 @@ const EnquiryAdminPage = () => {
 			<TableSection className="table-section">
 				<table>
 					<EnquiriesTableHeader />
-					<EnquiriesList
-						state={state}
-						dispatch={dispatch}
-						deleteEnquiries={deleteEnquiries}
-						REMOVE_ENQUIRY={REMOVE_ENQUIRY}
-					/>
+					<EnquiriesList state={state} deleteEnquiries={deleteEnquiries} />
 				</table>
 			</TableSection>
 		</main>

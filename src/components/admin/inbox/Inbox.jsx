@@ -57,10 +57,7 @@ const Inbox = () => {
 			<TableSection className="table-section">
 				<table>
 					<InboxTableHeader />
-					<MessageList
-						state={state}
-						deleteMessages={deleteMessages}
-					/>
+					<MessageList state={state} deleteMessages={deleteMessages} />
 				</table>
 			</TableSection>
 		</main>

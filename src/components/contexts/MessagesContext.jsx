@@ -98,8 +98,7 @@ export const MessagesProvider = props => {
 		} catch(error){
 			console.log(error)
 			dispatch({ type: ERROR, payload: error.toString() });
-		}
-		
+		}	
 	}
 
 	return (
