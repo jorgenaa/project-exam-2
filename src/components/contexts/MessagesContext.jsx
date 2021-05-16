@@ -85,19 +85,21 @@ export const MessagesProvider = props => {
 		}
 	}
 
-	// async function deleteMessages(id) {
-	// 	await axios.delete(url + '/' + id);
-	// 	dispatch({ type: REMOVE_MESSAGES, payload: id });
-	// 	//const { status } = res;
+	async function deleteMessages(id) {
+		try {
+			const res = await axios.delete(url + '/' + id);
+			if (res.status === 200) {
+				dispatch({ type: REMOVE_MESSAGES, payload: id });
+			}
+		} catch(error){
+			console.log(error)
+		}
 		
-	// 	// if (res.status === 200) {
-	// 	// 	dispatch({ type: REMOVE_MESSAGES, payload: id });
-	// 	// }
-	// }
+	}
 
 	return (
 		<MessagesContext.Provider
-			value={[state, dispatch, sendMsg]} //deleteMessages
+			value={[state, dispatch, sendMsg, deleteMessages]} 
 		>
 			{props.children}
 		</MessagesContext.Provider>

@@ -1,8 +1,6 @@
 import { IoTrashBinSharp } from 'react-icons/io5';
-import axios from 'axios';
 
-import { BASE_URL, INBOX_PATH } from '../../../constants/api';
-const MessageList = ({ REMOVE_MESSAGES, state, dispatch }) => {
+const MessageList = ({ state, deleteMessages }) => {
 	if (state.messages.length === 0) {
 		return (
 			<tbody>
@@ -11,26 +9,6 @@ const MessageList = ({ REMOVE_MESSAGES, state, dispatch }) => {
 				</tr>
 			</tbody>
 		);
-	}
-
-	// const handleDeleteMessage = async id => {
-	// 	deleteMessages(id);
-	// 	dispatch({ type: REMOVE_MESSAGES, payload: id });
-	// };
-	const url = BASE_URL + INBOX_PATH;
-	async function deleteMessages(id) {
-		try {
-			await axios.delete(url + '/' + id);
-			dispatch({ type: REMOVE_MESSAGES, payload: id });
-		} catch(error){
-			console.log(error)
-		}
-	
-		//const { status } = res;
-		
-		// if (res.status === 200) {
-		// 	dispatch({ type: REMOVE_MESSAGES, payload: id });
-		// }
 	}
 
 	return (

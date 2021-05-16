@@ -52,9 +52,7 @@ const Inbox = () => {
 				<table>
 					<InboxTableHeader />
 					<MessageList
-						REMOVE_MESSAGES={REMOVE_MESSAGES}
 						state={state}
-						dispatch={dispatch}
 						deleteMessages={deleteMessages}
 					/>
 				</table>
