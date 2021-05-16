@@ -21,7 +21,7 @@ const MessageList = ({ state, deleteMessages }) => {
 						<td>
 							<IoTrashBinSharp
 								className="table__trash table__trash--hover"
-								onClick={()=> deleteMessages(id)}
+								onClick={()=> deleteMessages(id.toString())}
 							/>
 						</td>
 						<td>{clientName}</td>
