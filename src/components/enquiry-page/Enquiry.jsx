@@ -28,7 +28,6 @@ const Enquiry = () => {
 	//Split string to array
 	const splitId = id.split(' ');
 	const parsedId = parseInt(splitId);
-	console.log(typeof parsedId);
 
 	const handleOnDateChangeStart = startDate => {
 		const fromdate = startDate.target.value;
@@ -44,7 +43,6 @@ const Enquiry = () => {
 
 	const startDate = fromDate;
 	const endDate = toDate;
-
 	const start = moment(startDate, 'DD/MM/YYYY');
 	const end = moment(endDate, 'DD/MM/YYYY');
 	const diffDays = moment.duration(end.diff(start)).asDays();

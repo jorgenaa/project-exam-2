@@ -31,7 +31,7 @@ const SpecificSidebarContent = ({ id, icons }) => {
 			}
 		}
 	}, [icons]);
-	console.log(serviceIcon.services);
+	
 	return (
 		<>
 			<Link to={'/enquiry/' + id}>

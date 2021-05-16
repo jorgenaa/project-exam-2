@@ -3,7 +3,7 @@ import { PropTypes } from 'prop-types';
 
 const Overview = ({ name, stars, image, id }) => {
 	const parsedId = parseInt(id);
-	console.log(typeof image);
+	
 	return (
 		<section className="enquiry__overview" key={parsedId}>
 			{image ? (

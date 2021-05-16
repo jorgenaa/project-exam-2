@@ -54,7 +54,6 @@ export const EstablishmentsProvider = props => {
 			const response = await axios.get(url);
 			dispatch({ type: STORE_ESTABLISHMENT, payload: response.data });
 			dispatch({ type: LOADING, payload: false });
-			console.log(response.data);
 		} catch (error) {
 			console.log(error);
 			dispatch({ type: ERROR, payload: error.toString() });
