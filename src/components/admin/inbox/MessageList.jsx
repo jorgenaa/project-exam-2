@@ -37,7 +37,7 @@ const MessageList = ({ REMOVE_MESSAGES, state, dispatch }) => {
 		<tbody>
 			{state.messages.map(msg => {
 				const { clientName, email, message, id } = msg;
-
+				
 				return (
 					<tr className="table__row--border-bottom" key={id}>
 						<td>
