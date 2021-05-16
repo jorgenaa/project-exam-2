@@ -205,7 +205,8 @@
 			margin: 0 auto;
 		}
 		&:nth-child(1) {
-			flex: 1;
+			//flex: 1;
+			flex: 1 1 380px;
 			@include screen('mobileSm') {
 				flex: none;
 				margin: 0 auto;
