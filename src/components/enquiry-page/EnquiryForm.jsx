@@ -109,7 +109,7 @@ const EnquiryForm = ({ id, name, fromDate, toDate, handleOnDateChangeStart, hand
                 <Form.Row>
                     <Col sm={6} xs={12}>
                         <Form.Group>
-                            <Button label={state.submitting ? "Completing booking..." : "Complete booking"} type="form__btn button--blue button--hover" />
+                            <Button label={state.submitting ? "Completing booking..." : "Complete booking"} type="form__btn button--yellow button--hover" />
                         </Form.Group>
                     </Col>
                 </Form.Row>
