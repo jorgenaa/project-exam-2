@@ -7,14 +7,13 @@ import SubHeading from '../common/SubHeading';
 import CustomCard from '../common/Card';
 import Button from '../common/Button';
 import EstablishmentContext from '../contexts/EstablishmentsContext';
-//import { ERROR, LOADING } from '../contexts/EstablishmentsContext';
 import ErrorMsg from '../common/ErrorMsg';
 import LoadingMsg from '../common/LoadingMsg';
 
 const Deals = () => {
 	const specialDealId = 4;
 	const establishmentContext = useContext(EstablishmentContext);
-	const [state, , ,] = establishmentContext; //dispatch
+	const [state, , ,] = establishmentContext; 
 
 	//Return max 4 hotels from array
 	const hotelResult = state.establishments.slice(0, 4);
