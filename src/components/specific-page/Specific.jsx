@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 //Components
 import EstablishmentContext from '../contexts/EstablishmentsContext';
@@ -21,10 +21,10 @@ const Specific = () => {
 	const [specificHotel, setSpecificHotel] = useState([]);
 	const { id } = useParams();
 	const establishmentContext = useContext(EstablishmentContext);
-	const [state ] = establishmentContext; 
+	const [state] = establishmentContext;
 
 	let parsedId = parseInt(id);
-	
+
 	useEffect(() => {
 		for (let i = 0; i < state.establishments.length; i++) {
 			if (state.establishments[i].id === parsedId) {
@@ -51,7 +51,13 @@ const Specific = () => {
 						{specificHotel.stars.map(star => {
 							return (
 								<li key={star.id} className="specific__star">
-									<span className={`fa ${star.cssClass}`}><FontAwesomeIcon icon={require("@fortawesome/free-solid-svg-icons")[star.name]}></FontAwesomeIcon></span>
+									<span className={`fa ${star.cssClass}`}>
+										<FontAwesomeIcon
+											icon={
+												require('@fortawesome/free-solid-svg-icons')[star.name]
+											}
+										></FontAwesomeIcon>
+									</span>
 								</li>
 							);
 						})}
@@ -98,9 +104,7 @@ const Specific = () => {
 					<Sidebar />
 				</div>
 			</div>
-
 			<ContentHeading content="Top attractions nearby" />
-
 			<div className="specific__wrapper">
 				<Attractions />
 				<div className="specific__sidebar">
@@ -130,6 +134,5 @@ const Specific = () => {
 		</main>
 	);
 };
-
 
 export default Specific;

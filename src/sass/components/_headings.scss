@@ -18,6 +18,7 @@
 		}
 	}
 	&--h3 {
+		padding: 0 1rem;
 		font-size: 1.75em;
 		@include screen('mobile') {
 			font-size: 1.375em;
