@@ -60,12 +60,7 @@ const DetailsSection = ({
 								})}
 							</ul>
 						) : null}
-						<Link className="specific__facilities-link-mobile" to={'/enquiry/' + id}>
-							<Button
-								label="Reserve"
-								type="specific__btn button button--blue button--hover"
-							/>
-						</Link>
+						
 					</div>
 				</div>
 			</div>
