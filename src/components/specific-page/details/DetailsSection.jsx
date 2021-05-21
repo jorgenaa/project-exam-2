@@ -1,7 +1,9 @@
 import { PropTypes } from 'prop-types';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 //Components
+import Button from '../../common/Button';
 import ContentHeading from '../../common/ContentHeading';
 import FacilitiesMobileView from './mobileView/FacilitiesMobileView';
 
@@ -58,7 +60,12 @@ const DetailsSection = ({
 								})}
 							</ul>
 						) : null}
-						
+						<Link className="specific__facilities-link-mobile" to={'/enquiry/' + id}>
+							<Button
+								label="Reserve"
+								type="specific__btn button button--blue button--hover"
+							/>
+						</Link>
 					</div>
 				</div>
 			</div>
