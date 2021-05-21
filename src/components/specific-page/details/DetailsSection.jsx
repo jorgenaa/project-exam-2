@@ -22,7 +22,7 @@ const DetailsSection = ({
 			<FacilitiesMobileView icons={icons} id={id} />
 			<div className="specific__details-wrapper">
 				<div className="specific__details-item">
-					<ContentHeading content="Details about" data={name} />
+					<h3 className="heading--h3 heading--content pl-0">Details about {name}</h3>
 					<p
 						className="specific__text"
 						dangerouslySetInnerHTML={{ __html: description }}
