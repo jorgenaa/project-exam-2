@@ -166,9 +166,9 @@
 
 	&__facilities-link-mobile {
 		display: none;
-		margin: 0;
-		float: right;
-		width: 150px;
+		// margin: 0;
+		// float: right;
+		// width: 150px;
 		@include screen('desktop991px') {
 			display: block;
 		}

@@ -18,7 +18,7 @@ const FacilitiesMobileView = ({ id, icons }) => {
 					/>
 				</Link>
 			</section>
-			<Link className="specific__facilities-link-mobile float-right" to={'/enquiry/' + id}>
+			<Link className="specific__link float-right" to={'/enquiry/' + id}>
 				<Button
 					label="Reserve"
 					type="specific__btn button button--blue button--hover"
