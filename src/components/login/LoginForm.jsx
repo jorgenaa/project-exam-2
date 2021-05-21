@@ -45,11 +45,9 @@ const LoginForm = () => {
 
 		try {
 			const response = await axios.post(url, data);
-			console.log('response', response.data);
 			setAuth(response.data.jwt);
 			setSuccessMsg(true);
 			setTimeout(() => {
-				//clearStorage();
 				setSuccessMsg(false);
 				history.push('/enquiryadmin/');
 			}, 1500);
