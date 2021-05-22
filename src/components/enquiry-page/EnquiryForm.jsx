@@ -58,7 +58,7 @@ const EnquiryForm = ({ id, name, fromDate, toDate, handleOnDateChangeStart, hand
     }
 
     return (
-        <section key={id}>
+        <section key={id} className="enquiry__form-container">
            
             <Form className="form" onSubmit={handleSubmit(onSubmit)}>
             <h4 className="form__title heading--h4">Enter your details</h4>
