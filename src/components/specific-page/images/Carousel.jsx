@@ -8,7 +8,7 @@ const CarouselSlider = ({ imgMobile }) => {
 	};
 	
 	return (
-		<Carousel className="carousel" onSelect={handleSelect} activeIndex={index}>
+		<Carousel className="carousel" onSelect={handleSelect} activeIndex={index} data-interval="false">
 		{imgMobile ? imgMobile.map((img) => {
 			return (
 				<Carousel.Item key={img.id}>
