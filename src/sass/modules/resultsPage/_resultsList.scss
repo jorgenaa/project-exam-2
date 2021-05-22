@@ -1,4 +1,7 @@
 .resultsList {
     padding: 0;
+    @include screen('mobile') {
+		padding: 0 1rem;
+	}
     @extend .deals__hotelList; 
 }

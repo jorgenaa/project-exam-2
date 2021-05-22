@@ -1,4 +1,7 @@
 .enquiry {
+	@include screen('mobile') {
+		padding: 0 1rem;
+	}
 	&__overview {
 		display: flex;
 		grid-gap: 1rem;
