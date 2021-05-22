@@ -19,7 +19,7 @@
         }
     }
     &--third {
-        //flex: 1 1 149.5px;
+        flex: 1 1 149.5px;
         justify-content: stretch;
         @include screen("mobile") {
             flex: 1 1 auto;
