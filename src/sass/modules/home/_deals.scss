@@ -1,8 +1,6 @@
 .deals {
-	padding: 0;
-	@include screen('mobile') {
-		padding: 0 1rem;
-	}
+	padding: 0 1rem;
+	
 	&__hotelList {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
