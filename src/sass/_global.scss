@@ -38,7 +38,7 @@ p {
 	font-size: 1em;
 	line-height: 1.5;
 	max-width: 60ch;
-	letter-spacing: .5;
+	letter-spacing: 0.5;
 }
 
 article,
@@ -91,11 +91,10 @@ tr {
 	vertical-align: text-top;
 }
 
-thead  {
+thead {
 	background-color: #d6e7ff;
 	border-bottom: 1px solid #154ba0;
 }
-
 
 @media screen and (max-width: 991px) {
 	p {
@@ -106,5 +105,4 @@ thead  {
 	div {
 		padding: 0;
 	}
-	
 }
