@@ -161,7 +161,6 @@ const EstablishmentForm = () => {
 						<h3 className="form__title heading--h3">Add Establishment</h3>
 						<AiFillCloseCircle className="form__close" onClick={handleClose} />
 					</div>
-
 					<Fields errors={errors} register={register} />
 					<Form.Group>
 						{state.serverError && <ErrorMsg>{state.serverError}</ErrorMsg>}

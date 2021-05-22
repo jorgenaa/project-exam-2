@@ -2,7 +2,7 @@ import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import ErrorMsg from '../../../common/ErrorMsg';
 
-export const Fields = ({ errors, register }) => {
+const Fields = ({ errors, register }) => {
 	return (
 		<>
 			<Form.Row>
@@ -172,3 +172,5 @@ export const Fields = ({ errors, register }) => {
 		</>
 	);
 };
+
+export default Fields;

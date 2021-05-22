@@ -9,7 +9,7 @@ import Contact from '../contact/Contact';
 import Login from '../login/Login';
 import EnquiryAdminPage from '../admin/enquiry/EnquiryAdminPage';
 import Establishment from '../admin/establishment/Establishment ';
-import EstablishmentForm from '../admin/establishment/EstablishmentForm';
+import EstablishmentForm from '../admin/establishment/form/EstablishmentForm';
 import Inbox from '../admin/inbox/Inbox';
 
 const Layout = () => {
