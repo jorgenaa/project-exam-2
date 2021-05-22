@@ -7,9 +7,8 @@
     border-style: hidden; /* hide standard table (collapsed) border */
 	box-shadow: 0 0 0 1px #154ba0;
     &--first {
-        flex: 1 1 auto;
+        flex: 1 1 292.59px;
         @include screen("mobile") {
-            flex: 1 1 292.59px;
             margin-bottom: 0rem;
         }
     }
