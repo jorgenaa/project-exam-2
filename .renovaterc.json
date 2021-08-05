@@ -1,22 +1,47 @@
 {
-  "extends": ["config:base"],
-   {
-      "matchManagers": ["npm"],
-      "updateTypes": ["minor", "patch", "pin", "digest"],
+  "extends": [
+    "config:base"
+  ],
+  "enabled": true,
+  "prHourlyLimit": 10,
+  "separateMajorMinor": true,
+  "separateMinorPatch": true,
+  "packageRules": [
+    {
+      "matchManagers": [
+        "npm"
+      ],
+      "updateTypes": [
+        "minor",
+        "patch",
+        "pin",
+        "digest"
+      ],
       "automerge": true
     },
-  {
-  "matchSourceUrlPrefixes": [
-    "https://github.com/facebook/react"
-  ],
-   "automerge": true
-},
-{
-  "matchSourceUrlPrefixes": [
-    "https://github.com/ReactTraining/react-router"
-  ],
-  "automerge": true
-},
-  "separateMajorMinor": true,
-  "separateMinorPatch": true
+    {
+      "depTypeList": [
+        "devDependencies"
+      ],
+      "automerge": true
+    },
+    {
+      "packagePatterns": [
+        "eslint"
+      ],
+      "groupName": "eslint"
+    },
+    {
+      "matchSourceUrlPrefixes": [
+        "https://github.com/facebook/react"
+      ],
+      "automerge": true
+    },
+    {
+      "matchSourceUrlPrefixes": [
+        "https://github.com/ReactTraining/react-router"
+      ],
+      "automerge": true
+    }
+  ]
 }
