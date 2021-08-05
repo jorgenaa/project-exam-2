@@ -1,3 +1,23 @@
 {
-  "extends": ["config:base"]
+  "extends": ["config:base"],
+  "separateMajorMinor": true,
+  "separateMinorPatch": true,
+ 
+   {
+      "matchManagers": ["npm"],
+      "updateTypes": ["minor", "patch", "pin", "digest"],
+      "automerge": true
+    },
+  {
+  "matchSourceUrlPrefixes": [
+    "https://github.com/facebook/react"
+  ],
+   "automerge": true
+},
+{
+  "matchSourceUrlPrefixes": [
+    "https://github.com/ReactTraining/react-router"
+  ],
+  "automerge": true
+}
 }
