@@ -1,8 +1,5 @@
 {
   "extends": ["config:base"],
-  "separateMajorMinor": true,
-  "separateMinorPatch": true,
- 
    {
       "matchManagers": ["npm"],
       "updateTypes": ["minor", "patch", "pin", "digest"],
@@ -19,5 +16,7 @@
     "https://github.com/ReactTraining/react-router"
   ],
   "automerge": true
-}
+},
+  "separateMajorMinor": true,
+  "separateMinorPatch": true
 }
