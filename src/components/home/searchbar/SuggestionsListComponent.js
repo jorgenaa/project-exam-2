@@ -1,7 +1,7 @@
 
 const SuggestionsListComponent = ({filteredSuggestions, activeSuggestionIndex, onClick}) => {
     return filteredSuggestions.length ? (
-      <ul className="suggestions">
+      <ul className="searchBar">
         {filteredSuggestions.map((hotel, index) => {
           let className;
           // Flag the active suggestion with a class
