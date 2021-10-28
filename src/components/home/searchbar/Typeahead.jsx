@@ -61,32 +61,6 @@ const Typeahead = () => {
         }
     };
 
-	// const renderSuggestions = () => {
-	// 	if (state.establishments.length === 0) {
-	// 		return null;
-	// 	} else {
-	// 		return (
-	// 			<ul className="searchBar__options">
-	// 				{filteredSuggestions.map(hotel => (
-	// 					<li
-	// 						className="searchBar__options-item"
-	// 						onClick={() => suggestionSelected(hotel)}
-	// 						key={hotel.id}
-	// 					>
-	// 						{hotel.name}
-	// 					</li>
-	// 				))}
-	// 			</ul>
-	// 		);
-	// 	}
-	// };
-
-	// const suggestionSelected = value => {
-	// 	//setText(value);
-	// 	filteredSuggestions([]);
-	// 	history.push('/specific/' + value.id);
-	// };
-
 	return (
 		<div>
 			<div className="searchBar" >

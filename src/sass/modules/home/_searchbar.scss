@@ -5,6 +5,7 @@
 	z-index: 50;
 	box-shadow: 0px 3px 6px $grey;
 	border-radius: 5px;
+	position: relative;
 	@include screen('mobile') {
 		margin: 0 auto;
 		max-width: 350px;
@@ -24,22 +25,26 @@
 		}
 	}
 	&__options {
-		max-width: 500px;
-		//max-height: 143px;
 		margin: auto;
 		z-index: 50;
 		background-color: $white;
 		border-radius: 5px;
 		border-top: 1px solid $blue;
+		
 	}
 	&__options-item {
+		max-width: 500px;
 		background-color: $white;
 		color: $black;
 		padding: 0.5rem;
 		text-align: left;
-		margin-bottom: 0;
+		margin: 0 auto 0;
 		cursor: pointer;
 		overflow-y: auto;
+		@include screen('mobile') {
+			max-width: 350px;
+			
+		}
 		&:nth-last-child(1) {
 			border-bottom-left-radius: 5px;
 			border-bottom-right-radius: 5px;
@@ -50,14 +55,16 @@
 		}
 		&--no-suggestions {
 			color: #999;
-			padding: 0.4rem;
-			font-size: 0.9rem;
+			
+			
 		}
 	}
 	&__icon {
 		font-size: 1.5rem;
 		align-self: center;
-		margin-left: -33px;
+		position: absolute;
+		right: 10px;
+		top: 10px;
 		@include screen('mobile') {
 			font-size: 1rem;
 		}

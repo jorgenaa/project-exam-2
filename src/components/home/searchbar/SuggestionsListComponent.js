@@ -16,7 +16,7 @@ const SuggestionsListComponent = ({filteredSuggestions, activeSuggestionIndex, o
         })}
       </ul>
     ) : (
-      <div className="searchBar__options-item--no-suggestions">
+      <div className="searchBar__options-item searchBar__options-item--no-suggestions">
         <em>No suggestions</em>
       </div>
     );
