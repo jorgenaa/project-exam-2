@@ -1,79 +1,107 @@
 import { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa'
-
+import SuggestionsListComponent from './SuggestionsListComponent';
 import EstablishmentContext from '../../contexts/EstablishmentsContext';
-import { useClickOutside } from './useClickOutside';
 
 const Typeahead = () => {
 	const context = useContext(EstablishmentContext);
 	const [state, , ,] = context;
-	const [suggestions, setSuggestions] = useState([]);
-	const [text, setText] = useState('');
-	const [isOpen, setIsOpen] = useState(false);
+	const [filteredSuggestions, setFilteredSuggestions] = useState([]);
+    const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(0);
+    const [showSuggestions, setShowSuggestions] = useState(false);
+    const [input, setInput] = useState("");
 
 	const history = useHistory();
 
-	const onTextChangeHandler = e => {
-		const searchValue = e.target.value.toLowerCase();
-		let suggestionsValue = [];
-		setIsOpen(true);
-		suggestionsValue = state.establishments.filter(hotel => {
-			const lowerCaseName = hotel.name.toLowerCase();
+	const onChange = (e) => {
+        const userInput = e.target.value;
+    
+        // Filter our suggestions that don't contain the user's input
+        const unLinked = state.establishments.filter((hotel) =>
+            hotel.toLowerCase().indexOf(userInput.toLowerCase()) > -1
+        );
+    
+        setInput(userInput);
+        setFilteredSuggestions(unLinked);
+        setActiveSuggestionIndex(0);
+        setShowSuggestions(true);
+    };
 
-			if (lowerCaseName.includes(searchValue)) {
-				return true;
-			}
-			return false;
-		});
-		setSuggestions(suggestionsValue);
-		setText(searchValue);
-	};
-
-	const suggestionSelected = value => {
-		setText(value);
-		setSuggestions([]);
+    const onClick = (e, value) => {
+        setFilteredSuggestions([]);
+        setInput(e.target.innerText);
+        setActiveSuggestionIndex(0);
+        setShowSuggestions(false);
 		history.push('/specific/' + value.id);
-	};
+      };
 
-	const renderSuggestions = () => {
-		if (suggestions.length === 0) {
-			return null;
-		} else {
-			return (
-				<ul className="searchBar__options">
-					{suggestions.map(hotel => (
-						<li
-							className="searchBar__options-item"
-							onClick={() => suggestionSelected(hotel)}
-							key={hotel.id}
-						>
-							{hotel.name}
-						</li>
-					))}
-				</ul>
-			);
-		}
-	};
+      const onKeyDown = (e) => {
+        // User pressed the enter key
+        if (e.keyCode === 13) {
+          setInput(filteredSuggestions[activeSuggestionIndex]);
+          setActiveSuggestionIndex(0);
+          setShowSuggestions(false);
+        }
+        // User pressed the up arrow
+        else if (e.keyCode === 38) {
+          if (activeSuggestionIndex === 0) {
+            return;
+          }
+    
+          setActiveSuggestionIndex(activeSuggestionIndex - 1);
+        }
+        // User pressed the down arrow
+        else if (e.keyCode === 40) {
+          if (activeSuggestionIndex - 1 === filteredSuggestions.length) {
+            return;
+          }
+    
+          setActiveSuggestionIndex(activeSuggestionIndex + 1);
+        }
+    };
 
-	let domNode = useClickOutside(() => {
-		setIsOpen(false);
-	});
+	// const renderSuggestions = () => {
+	// 	if (state.establishments.length === 0) {
+	// 		return null;
+	// 	} else {
+	// 		return (
+	// 			<ul className="searchBar__options">
+	// 				{filteredSuggestions.map(hotel => (
+	// 					<li
+	// 						className="searchBar__options-item"
+	// 						onClick={() => suggestionSelected(hotel)}
+	// 						key={hotel.id}
+	// 					>
+	// 						{hotel.name}
+	// 					</li>
+	// 				))}
+	// 			</ul>
+	// 		);
+	// 	}
+	// };
+
+	// const suggestionSelected = value => {
+	// 	//setText(value);
+	// 	filteredSuggestions([]);
+	// 	history.push('/specific/' + value.id);
+	// };
 
 	return (
-		<div ref={domNode}>
+		<div>
 			<div className="searchBar" >
 				<input
 					className="searchBar__input"
 					type="text"
 					placeholder="Search..."
-					value={text}
-					onChange={onTextChangeHandler}
+					onChange={onChange}
+					onKeyDown={onKeyDown}
+					value={input}
 				/>
 				<FaSearch className="searchBar__icon" />
 			
 			</div>
-			{isOpen && <div>{renderSuggestions()}</div>}
+			{showSuggestions && input && <SuggestionsListComponent filteredSuggestions={filteredSuggestions} onClick={onClick} />}
 		</div>
 	);
 };
