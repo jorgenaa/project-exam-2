@@ -10,7 +10,7 @@ const SuggestionsListComponent = ({filteredSuggestions, activeSuggestionIndex, o
           }
           return (
             <li className={className} key={hotel.id} onClick={() => onClick(hotel)}>
-              {hotel.name}
+              {hotel}
             </li>
           );
         })}

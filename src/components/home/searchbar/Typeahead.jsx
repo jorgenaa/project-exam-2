@@ -19,7 +19,7 @@ const Typeahead = () => {
     
         // Filter our suggestions that don't contain the user's input
         const unLinked = state.establishments.filter((hotel) =>
-            hotel.toLowerCase().indexOf(userInput.toLowerCase()) > -1
+            hotel.name.toLowerCase().indexOf(userInput.toLowerCase()) > -1
         );
     
         setInput(userInput);
