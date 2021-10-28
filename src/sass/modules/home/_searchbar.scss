@@ -38,6 +38,8 @@
 		text-align: left;
 		margin-bottom: 0;
 		cursor: pointer;
+		max-height: 143px;
+		overflow-y: auto;
 		&:nth-last-child(1) {
 			border-bottom-left-radius: 5px;
 			border-bottom-right-radius: 5px;
