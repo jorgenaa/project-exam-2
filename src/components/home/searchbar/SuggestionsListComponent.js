@@ -9,7 +9,7 @@ const SuggestionsListComponent = ({filteredSuggestions, activeSuggestionIndex, o
             className = 'searchBar__options-item';
           }
           return (
-            <li className={className} key={hotel.id} onClick={() => onClick(hotel)}>
+            <li className={className} key={hotel.id} onClick={(e) => onClick(e, hotel)}>
               {hotel.name}
             </li>
           );
