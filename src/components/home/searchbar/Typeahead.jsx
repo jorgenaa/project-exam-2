@@ -4,8 +4,6 @@ import { FaSearch } from 'react-icons/fa'
 import SuggestionsListComponent from './SuggestionsListComponent';
 import EstablishmentContext from '../../contexts/EstablishmentsContext';
 
-
-
 const Typeahead = () => {
 	const context = useContext(EstablishmentContext);
 	const [state, , ,] = context;

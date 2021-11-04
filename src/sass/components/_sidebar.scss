@@ -16,7 +16,7 @@
 		padding: 0 0 0 1rem;
 		display: flex;
 		flex-direction: column;
-
+		
 		@include screen('mobile') {
 			padding: 1rem 0;
 			flex-direction: column;
@@ -41,6 +41,10 @@
 			flex: 1 1 190px;
 			display: flex;
 			flex-direction: column;
+			@include screen('mobile') {
+				display: block;
+				flex: auto;
+			}
 		}
 	}
 }
